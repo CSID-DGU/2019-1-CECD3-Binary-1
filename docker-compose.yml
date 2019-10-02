@@ -65,11 +65,24 @@ services:
     working_dir: /usr/src/app
     volumes:
       - ./Backend/App:/usr/src/app
-    network_mode: "host"
     ports:
       - "8081:3000"
     expose:
       - "8081"
+    command: "yarn start"
+    depends_on:
+      - backend_mongo
+
+  frontend_app:
+    container_name: frontend_app
+    image: "node:latest"
+    working_dir: /usr/src/app
+    volumes:
+      - ./Frontend:/usr/src/app
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
     command: "yarn start"
 
 volumes:
