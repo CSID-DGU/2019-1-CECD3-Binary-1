@@ -7,8 +7,8 @@ export function* login(action) {
   try {
     yield put(UserAction.login.request());
     const response = yield call(POST, '/login', { ...action.payload, pw: SHA256(action.payload).toString() });
-    if (response.data.isLoggedIn === 'admin' || response.data.isLoggedIn === 'user') {
-      yield put(UserAction.login.success({ ...action.payload, isLoggedIn: response.data.isLoggedIn, name: response.data.name }));
+    if (response.data.auth === 'admin' || response.data.auth === 'user') {
+      yield put(UserAction.login.success({ ...action.payload, auth: response.data.auth, name: response.data.name }));
     }
     else alert('아이디 또는 비밀번호를 확인해주세요.');
   } catch (error) {
@@ -28,10 +28,20 @@ export function* logout() {
 export function* signUp(action) {
   try {
     yield put(UserAction.signUp.request());
-    yield call(POST, '/users', { ...action.payload, pw: SHA256(action.payload).toString() });
-    yield put(UserAction.signUp.success({ ...action.payload.id }));
+    const response = yield call(POST, '/users', { ...action.payload, pw: SHA256(action.payload).toString() });
+    yield put(UserAction.signUp.success(response.data));
   } catch (error) {
     yield put(UserAction.signUp.failure(error));
+  }
+}
+
+export function* signUpAdmin(action) {
+  try {
+    yield put(UserAction.signUpAdmin.request());
+    const response = yield call(POST, '/users/admin', { ...action.payload, pw: SHA256(action.payload).toString() });
+    yield put(UserAction.signUpAdmin.success(response.data));
+  } catch (error) {
+    yield put(UserAction.signUpAdmin.failure(error));
   }
 }
 
@@ -39,4 +49,5 @@ export const UserSagas = [
   takeLatest(UserActionTypes.LOGIN.INDEX, login),
   takeLatest(UserActionTypes.LOGOUT.INDEX, logout),
   takeLatest(UserActionTypes.SIGN_UP.INDEX, signUp),
+  takeLatest(UserActionTypes.SIGN_UP_ADMIN.INDEX, signUpAdmin),
 ];

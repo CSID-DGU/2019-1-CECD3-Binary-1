@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SignUp = () => {
+const SignUpAdmin = () => {
   const classes = useStyles();
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
@@ -54,14 +54,14 @@ const SignUp = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Sign up for Admin
         </Typography>
         <form
           className={classes.form}
           onSubmit={
             event => {
               event.preventDefault();
-              dispatch(UserAction.signUp.index({ id: id, pw: pw, name: name }));
+              dispatch(UserAction.signUpAdmin.index({ id: id, pw: pw, name: name }));
             }}
         >
           <Grid container spacing={2}>
@@ -126,4 +126,4 @@ const SignUp = () => {
   );
 }
 
-export default SignUp;
+export default SignUpAdmin;

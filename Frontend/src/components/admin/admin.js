@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { UserAction } from '../../store/user/user.action';
 import {
   AppBar,
   Button,
@@ -12,13 +14,16 @@ import {
   Typography,
   makeStyles,
   Container,
-  Link
 } from '@material-ui/core';
 import { Dashboard } from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
   icon: {
     marginRight: theme.spacing(2),
+  },
+  toolbarButtons: {
+    marginLeft: "auto",
+    marginRight: theme.spacing(1),
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
@@ -48,6 +53,7 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const Admin = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   return (
     <React.Fragment>
@@ -58,6 +64,15 @@ const Admin = () => {
           <Typography variant="h6" color="inherit" noWrap>
             Album layout
           </Typography>
+          <span className={classes.toolbarButtons}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => dispatch(UserAction.logout.index())}
+            >
+              Logout
+          </Button>
+          </span>
         </Toolbar>
       </AppBar>
       <main>

@@ -70,10 +70,10 @@ const Login = () => {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="id"
+            label="User ID"
+            name="id"
+            autoComplete="id"
             autoFocus
             onChange={event => setId(event.target.value)}
           />
@@ -100,7 +100,7 @@ const Login = () => {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Login
           </Button>
           <Grid container>
             <Grid item xs>
@@ -109,7 +109,7 @@ const Login = () => {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="./signup" variant="body2">
+              <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
