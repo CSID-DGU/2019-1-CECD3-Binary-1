@@ -21,7 +21,13 @@ router.get('/:id', function (req: Request, res: Response) {
 
 // Sign Up
 router.post('/', function (req: Request, res: Response) {
-  User.create(req.body.data)
+  User.create({ ...req.body.data, auth: 'user' })
+    .then(user => res.status(200).send(user))
+    .catch(err => res.status(500).send(err));
+});
+
+router.post('/admin', function (req: Request, res: Response) {
+  User.create({ ...req.body.data, auth: 'admin' })
     .then(user => res.status(200).send(user))
     .catch(err => res.status(500).send(err));
 });

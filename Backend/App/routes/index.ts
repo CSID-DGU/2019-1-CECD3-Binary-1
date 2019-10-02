@@ -8,7 +8,7 @@ router.post('/login', function (req: Request, res: Response) {
   User.findOne({ 'id': id }, function (err, result: IUser) {
     if (err) res.status(500).send(err);
     else {
-      if (result != null && pw == result.pw) res.status(200).send({ isLoggedIn: 'ok', name: result.name });
+      if (result != null && pw == result.pw) res.status(200).send({ auth: result.auth, name: result.name });
       else res.status(200).send();
     }
   });
