@@ -1,0 +1,76 @@
+version: '2.1'
+
+services:
+  backend_mysql:
+    container_name: backend_mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_HOST: "localhost"
+      MYSQL_DATABASE: "mobiusdb"
+      MYSQL_USER: "mysql"
+      MYSQL_PASSWORD: "secret"
+      MYSQL_ROOT_PASSWORD: "secret"
+    ports:
+      - "3306:3306"
+    network_mode: "host"
+    volumes:
+      - ./Backend/sql:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=secret --execute \"SHOW DATABASES;\""
+      timeout: 20s
+      retries: 10
+
+  backend_mobius:
+    container_name: backend_mobius
+    image: "node:latest"
+    working_dir: /usr/src/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./Backend:/usr/src/app
+    network_mode: "host"
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    command: "node mobius"
+    depends_on:
+      backend_mysql:
+        condition: service_healthy
+
+  backend_mqtt:
+    container_name: backend_mqtt
+    image: eclipse-mosquitto:latest
+    ports:
+      - 1883:1883
+    network_mode: "host"
+    volumes:
+      - ./docker/etc/mosquitto:/etc/mosquitto:ro
+      - ./docker/var/log/mosquitto:/var/log/mosquitto:rw
+    depends_on:
+      backend_mysql:
+        condition: service_healthy
+
+  backend_mongo:
+    container_name: backend_mongo
+    image: mongo
+    volumes:
+      - mongodata:/data/db
+    ports:
+      - "27017:27017"
+
+  backend_app:
+    container_name: backend_app
+    image: "node:latest"
+    working_dir: /usr/src/app
+    volumes:
+      - ./Backend/App:/usr/src/app
+    network_mode: "host"
+    ports:
+      - "8081:3000"
+    expose:
+      - "8081"
+    command: "yarn start"
+
+volumes:
+  mongodata:
