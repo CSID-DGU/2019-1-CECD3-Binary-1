@@ -7,12 +7,9 @@ services:
     environment:
       MYSQL_HOST: "localhost"
       MYSQL_DATABASE: "mobiusdb"
-      MYSQL_USER: "mysql"
-      MYSQL_PASSWORD: "secret"
       MYSQL_ROOT_PASSWORD: "secret"
     ports:
       - "3306:3306"
-    network_mode: "host"
     volumes:
       - ./Backend/sql:/docker-entrypoint-initdb.d
     healthcheck:
@@ -42,7 +39,7 @@ services:
     container_name: backend_mqtt
     image: eclipse-mosquitto:latest
     ports:
-      - 1883:1883
+      - "1883:1883"
     network_mode: "host"
     volumes:
       - ./docker/etc/mosquitto:/etc/mosquitto:ro
@@ -84,6 +81,35 @@ services:
     expose:
       - "3000"
     command: "yarn start"
+
+  gateway_mysql:
+    container_name: gateway_mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_HOST: "localhost"
+      MYSQL_DATABASE: "rosemarydb"
+      MYSQL_ROOT_PASSWORD: "secret"
+    ports:
+      - "13306:3306"
+    volumes:
+      - ./Gateway/sql:/docker-entrypoint-initdb.d
+
+  gateway_rosemary:
+    container_name: gateway_rosemary
+    image: "node:latest"
+    working_dir: /usr/src/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./Gateway:/usr/src/app
+    network_mode: "host"
+    ports:
+      - "8090:8090"
+    expose:
+      - "8090"
+    depends_on:
+      - backend_mobius
+    command: "node rosemary"
 
 volumes:
   mongodata:

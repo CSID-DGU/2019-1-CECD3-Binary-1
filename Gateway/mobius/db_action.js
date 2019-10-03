@@ -27,7 +27,7 @@ exports.connect = function (host, port, user, password, callback) {
         port: port,
         user: user,
         password: password,
-        database: 'mobiusdb',
+        database: 'rosemarydb',
         connectionLimit: 100,
         waitForConnections: true,
         debug: false,
