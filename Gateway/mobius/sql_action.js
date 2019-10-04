@@ -77,9 +77,9 @@ exports.insert_cb = function(ty, ri, rn, pi, ct, lt, et, acpi, lbl, at, aa, st, 
     _this.insert_lookup(ty, ri, rn, pi, ct, lt, et, acpi, lbl, at, aa, st, sri, spi, function (err, results) {
         if(!err) {
             var sql = util.format('insert into cb (' +
-                'ri, cst, csi, srt, poa, nl, ncp, srv) ' +
-                'value (\'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\')',
-                ri, cst, csi, srt, poa, nl, ncp, srv);
+                'ri, cst, csi, srt, poa, nl, ncp) ' +
+                'value (\'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\')',
+                ri, cst, csi, JSON.stringify(srt), JSON.stringify(poa), nl, ncp);
             db.getResult(sql, '', function (err, results) {
                 if(!err) {
                     console.timeEnd('insert_cb ' + ri);
@@ -129,9 +129,9 @@ exports.insert_ae = function(ty, ri, rn, pi, ct, lt, et, acpi, lbl, at, aa, st, 
     console.time('insert_ae ' + ri);
     _this.insert_lookup(ty, ri, rn, pi, ct, lt, et, acpi, lbl, at, aa, st, sri, spi, function (err, results) {
         if(!err) {
-            var sql = util.format('insert into ae (ri, apn, api, aei, poa, ae.or, nl, rr, csz, srv) ' +
-                'value (\'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\')',
-                ri, apn, api, aei, poa, or, nl, rr, csz, srv);
+            var sql = util.format('insert into ae (ri, apn, api, aei, poa, ae.or, nl, rr, csz) ' +
+                'value (\'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\')',
+                ri, apn, api, aei, JSON.stringify(poa), or, nl, rr, csz);
             db.getResult(sql, '', function (err, results) {
                 if(!err) {
                     console.timeEnd('insert_ae ' + ri);
@@ -520,10 +520,9 @@ exports.insert_csr = function(ty, ri, rn, pi, ct, lt, et, acpi, lbl, at, aa, st,
     console.time('insert_csr ' + ri);
     _this.insert_lookup(ty, ri, rn, pi, ct, lt, et, acpi, lbl, at, aa, st, sri, spi, function (err, results) {
         if(!err) {
-            var sql = util.format('insert into csr (ri, cst, poa, cb, csi, mei, tri, rr, nl, srv) ' +
-                'value (\'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\')',
-                ri, cst, poa, cb, csi,
-                mei, tri, rr, nl, srv);
+            var sql = util.format('insert into csr (ri, cst, poa, cb, csi, mei, tri, rr, nl) ' +
+                'value (\'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\')',
+                ri, cst, JSON.stringify(poa), cb, csi, mei, tri, rr, nl);
             db.getResult(sql, '', function (err, results) {
                 if(!err) {
                     console.timeEnd('insert_csr ' + ri);

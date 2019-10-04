@@ -24,15 +24,15 @@ var acp = {};
 conf.useprotocol = 'http'; // select one for 'http' or 'mqtt' or 'coap' or 'ws'
 
 // build cse
-cse.host        = '203.253.128.161';
-cse.port        = '7579';
-cse.name        = 'Mobius';
-cse.id          = '/Mobius2';
+cse.host        = '10.0.75.2';
+cse.port        = '8090';
+cse.name        = 'rosemary';
+cse.id          = '/rosemary2';
 cse.mqttport    = '1883';
-cse.wsport      = '7577';
+cse.wsport      = '7573';
 
 // build ae
-ae.name         = 'edu6';
+ae.name         = 'camera1';
 
 ae.id           = 'S' + ae.name;
 
