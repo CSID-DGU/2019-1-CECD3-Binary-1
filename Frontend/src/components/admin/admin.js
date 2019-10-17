@@ -1,13 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { UserAction } from '../../store/user/user.action';
+import Player from '../player';
 import {
   AppBar,
   Button,
   Card,
-  CardActions,
   CardContent,
-  CardMedia,
   CssBaseline,
   Grid,
   Toolbar,
@@ -38,18 +37,18 @@ const useStyles = makeStyles(theme => ({
   },
   card: {
     height: '100%',
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '56.25%', // 16:9
   },
   cardContent: {
     flexGrow: 1,
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const cameras = [
+  { id: 'camera1', url: 'ws://localhost:9999/' },
+];
 
 const Admin = () => {
   const classes = useStyles();
@@ -104,30 +103,15 @@ const Admin = () => {
         </div>
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
-            {cards.map(card => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+            {cameras.map((camera, index) => (
+              <Grid item key={camera.id}>
                 <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
-                    title="Image title"
-                  />
+                  <Player index={index} url={camera.url} />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
-                    </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe the content.
+                      {camera.id}
                     </Typography>
                   </CardContent>
-                  <CardActions>
-                    <Button size="small" color="primary">
-                      View
-                    </Button>
-                    <Button size="small" color="primary">
-                      Edit
-                    </Button>
-                  </CardActions>
                 </Card>
               </Grid>
             ))}
