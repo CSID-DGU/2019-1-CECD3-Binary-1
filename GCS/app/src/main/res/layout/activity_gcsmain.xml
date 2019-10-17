@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    android:background="@drawable/gcsmain_bg"
+    android:id="@+id/RELATIVELAYOUT_MAIN"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BTN_GCS_MAIN_MISSION"
+        android:background="@drawable/m_k_mp_2" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BTN_GCS_MAIN_CALIBRATION"
+        android:background="@drawable/m_k_sc_2"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BTN_GCS_MAIN_SETTING"
+        android:background="@drawable/m_k_st_2" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BTN_GCS_MAIN_EDITOR"
+        android:background="@drawable/m_k_me_2" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BTN_GCS_MAIN_CONTROL"
+        android:background="@drawable/m_k_fc_2"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BTN_GCS_MAIN_VIDEO"
+        android:background="@drawable/m_k_vr_2"/>
+    <Switch
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="20dp"
+        android:id="@+id/SWITCH_GCS_MAIN_CONNECT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="OFF"
+        android:textOn="ON"
+        android:text="기체 연결"/>
+</RelativeLayout>
