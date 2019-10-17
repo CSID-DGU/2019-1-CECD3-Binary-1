@@ -1,0 +1,185 @@
+package huins.ex.view.fragments.missions;
+
+import android.content.Context;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Spinner;
+import org.beyene.sius.unit.length.LengthUnit;
+import java.util.Collections;
+import java.util.List;
+
+import huins.ex.R;
+import huins.ex.model.MissionProxy;
+import huins.ex.model.adapters.CamerasAdapter;
+import huins.ex.proto.Flight;
+import huins.ex.proto.attribute.AttributeType;
+import huins.ex.proto.mission.MissionItemType;
+import huins.ex.proto.mission.item.MissionItem;
+import huins.ex.proto.mission.item.complex.CameraDetail;
+import huins.ex.proto.mission.item.complex.StructureScanner;
+import huins.ex.proto.mission.item.complex.SurveyDetail;
+import huins.ex.proto.property.CameraProxy;
+import huins.ex.util.unit.providers.length.LengthUnitProvider;
+import huins.ex.view.widgets.spinnerWheel.CardWheelHorizontalView;
+import huins.ex.view.widgets.spinnerWheel.adapters.LengthWheelAdapter;
+import huins.ex.view.widgets.spinnerWheel.adapters.NumericWheelAdapter;
+import huins.ex.view.widgets.spinners.SpinnerSelfSelect;
+
+public class MissionStructureScannerFragment extends MissionDetailFragment implements
+        CardWheelHorizontalView.OnCardWheelScrollListener, CompoundButton.OnCheckedChangeListener, Flight.OnMissionItemsBuiltCallback {
+
+    private CamerasAdapter cameraAdapter;
+
+    @Override
+    protected int getResource() {
+        return R.layout.fragment_editor_detail_structure_scanner;
+    }
+
+    @Override
+    public void onApiConnected() {
+        super.onApiConnected();
+
+        final View view = getView();
+        final Context context = getActivity().getApplicationContext();
+
+        typeSpinner.setSelection(commandAdapter.getPosition(MissionItemType.STRUCTURE_SCANNER));
+
+        CameraProxy camera = getFlight().getAttribute(AttributeType.CAMERA);
+        List<CameraDetail> cameraDetails = camera == null
+                ? Collections.<CameraDetail>emptyList()
+                : camera.getAvailableCameraInfos();
+        cameraAdapter = new CamerasAdapter(getActivity(), android.R.layout.simple_spinner_dropdown_item, cameraDetails);
+        SpinnerSelfSelect cameraSpinner = (SpinnerSelfSelect) view.findViewById(R.id.cameraFileSpinner);
+        cameraSpinner.setAdapter(cameraAdapter);
+        cameraSpinner.setOnSpinnerItemSelectedListener(this);
+
+        final LengthUnitProvider lengthUP = getLengthUnitProvider();
+
+        CardWheelHorizontalView<LengthUnit> radiusPicker = (CardWheelHorizontalView) view
+                .findViewById(R.id.radiusPicker);
+        radiusPicker.setViewAdapter(new LengthWheelAdapter(context, R.layout.wheel_text_centered,
+                lengthUP.boxBaseValueToTarget(2), lengthUP.boxBaseValueToTarget(100)));
+        radiusPicker.addScrollListener(this);
+
+        CardWheelHorizontalView<LengthUnit> startAltitudeStepPicker = (CardWheelHorizontalView) view
+                .findViewById(R.id.startAltitudePicker);
+        startAltitudeStepPicker.setViewAdapter(new LengthWheelAdapter(context, R.layout.wheel_text_centered,
+                lengthUP.boxBaseValueToTarget(MIN_ALTITUDE), lengthUP.boxBaseValueToTarget(MAX_ALTITUDE)));
+        startAltitudeStepPicker.addScrollListener(this);
+
+        CardWheelHorizontalView<LengthUnit> endAltitudeStepPicker = (CardWheelHorizontalView) view
+                .findViewById(R.id.heightStepPicker);
+        endAltitudeStepPicker.setViewAdapter(new LengthWheelAdapter(context, R.layout.wheel_text_centered,
+                lengthUP.boxBaseValueToTarget(1), lengthUP.boxBaseValueToTarget(MAX_ALTITUDE)));
+        endAltitudeStepPicker.addScrollListener(this);
+
+        CardWheelHorizontalView<Integer> numberStepsPicker = (CardWheelHorizontalView<Integer>) view
+                .findViewById(R.id.stepsPicker);
+        numberStepsPicker.setViewAdapter(new NumericWheelAdapter(context, R.layout.wheel_text_centered, 1, 10, "%d"));
+        numberStepsPicker.addScrollListener(this);
+
+        CheckBox checkBoxAdvanced = (CheckBox) view.findViewById(R.id.checkBoxSurveyCrossHatch);
+        checkBoxAdvanced.setOnCheckedChangeListener(this);
+
+        // Use the first one as reference.
+        final StructureScanner firstItem = getMissionItems().get(0);
+
+        final int cameraSelection = cameraAdapter.getPosition(firstItem.getSurveyDetail().getCameraDetail());
+        cameraSpinner.setSelection(Math.max(cameraSelection, 0));
+
+        radiusPicker.setCurrentValue(lengthUP.boxBaseValueToTarget(firstItem.getRadius()));
+        startAltitudeStepPicker.setCurrentValue(lengthUP.boxBaseValueToTarget(firstItem.getCoordinate().getAltitude()));
+        endAltitudeStepPicker.setCurrentValue(lengthUP.boxBaseValueToTarget(firstItem.getHeightStep()));
+        numberStepsPicker.setCurrentValue(firstItem.getStepsCount());
+        checkBoxAdvanced.setChecked(firstItem.isCrossHatch());
+    }
+
+    private void submitForBuilding() {
+        final List<StructureScanner> scannerList = getMissionItems();
+        if (scannerList.isEmpty()) return;
+
+        getFlight().buildMissionItemsAsync(this, scannerList.toArray(new MissionItem.ComplexItem[scannerList.size()]));
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        for (StructureScanner item : getMissionItems()) {
+            item.setCrossHatch(isChecked);
+        }
+
+        submitForBuilding();
+    }
+
+    @Override
+    public void onScrollingStarted(CardWheelHorizontalView cardWheel, Object startValue) {
+    }
+
+    @Override
+    public void onScrollingUpdate(CardWheelHorizontalView cardWheel, Object oldValue, Object newValue) {
+    }
+
+    @Override
+    public void onScrollingEnded(CardWheelHorizontalView cardWheel, Object startValue, Object endValue) {
+        switch (cardWheel.getId()) {
+            case R.id.radiusPicker: {
+                final double radius = ((LengthUnit) endValue).toBase().getValue();
+                for (StructureScanner item : getMissionItems()) {
+                    item.setRadius(radius);
+                }
+                break;
+            }
+
+            case R.id.startAltitudePicker: {
+                final double altitude =  ((LengthUnit) endValue).toBase().getValue();
+                for (StructureScanner item : getMissionItems()) {
+                    item.getCoordinate().setAltitude(altitude);
+                }
+                break;
+            }
+
+            case R.id.heightStepPicker: {
+                final double heightStep = ((LengthUnit) endValue).toBase().getValue();
+                for (StructureScanner item : getMissionItems()) {
+                    item.setHeightStep(heightStep);
+                }
+                break;
+            }
+
+            case R.id.stepsPicker:
+                final int stepsCount = (Integer) endValue;
+                for (StructureScanner item : getMissionItems()) {
+                    item.setStepsCount(stepsCount);
+                }
+                break;
+        }
+
+        submitForBuilding();
+    }
+
+    @Override
+    public void onSpinnerItemSelected(Spinner spinner, int position) {
+        if (spinner.getId() == R.id.cameraFileSpinner) {
+
+            CameraDetail cameraInfo = cameraAdapter.getItem(position);
+            for (StructureScanner scan : getMissionItems()) {
+                SurveyDetail surveyDetail = scan.getSurveyDetail();
+                surveyDetail.setCameraDetail(cameraInfo);
+            }
+
+            submitForBuilding();
+        }
+    }
+
+    @Override
+    protected List<StructureScanner> getMissionItems() {
+        return (List<StructureScanner>) super.getMissionItems();
+    }
+
+    @Override
+    public void onMissionItemsBuilt(MissionItem.ComplexItem[] complexItems) {
+        MissionProxy missionProxy = getMissionProxy();
+        if (missionProxy != null)
+            missionProxy.notifyMissionUpdate();
+    }
+}

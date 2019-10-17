@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "huins.ex"
+        minSdkVersion 18
+        targetSdkVersion 22
+        versionName "2.1.0"
+        versionCode 30106
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.google.android.gms:play-services-maps:9.0.1'
+    compile 'com.google.android.gms:play-services-location:9.0.1'
+    compile 'com.google.android.gms:play-services-analytics:9.0.1'
+    compile 'com.android.support:cardview-v7:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.sothree.slidinguppanel:library:2.0.2'
+    compile files('libs/sius-0.3.2-SNAPSHOT.jar')
+    compile 'com.facebook.shimmer:shimmer:0.1.0@aar'
+    compile files('libs/j2xx.jar')
+    compile project(':dependencyLibs:usb-serial-for-android:UsbSerialLibrary')
+    compile 'me.grantland:autofittextview:0.2.1'
+}

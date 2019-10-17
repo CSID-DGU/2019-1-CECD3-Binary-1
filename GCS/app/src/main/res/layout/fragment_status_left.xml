@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:clickable="true"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    android:weightSum="10">
+    <huins.ex.proto.StatusCustomButton
+        android:id="@+id/STATUS_NETWORK"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"  />
+    <huins.ex.proto.status.StatusGPSView
+        android:id="@+id/STATUS_GPS"
+        android:layout_weight="1"
+        android:layout_marginLeft="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"  />
+    <huins.ex.proto.status.StatusSpeedView
+        android:id="@+id/STATUS_SPEED"
+        android:layout_weight="1"
+        android:layout_marginLeft="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"  />
+    <huins.ex.proto.status.StatusAltitudeView
+        android:id="@+id/STATUS_ALTITUDE"
+        android:layout_weight="1"
+        android:layout_marginLeft="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"  />
+    <huins.ex.proto.status.StatusDistanceView
+        android:id="@+id/STATUS_DISTANCE"
+        android:layout_weight="1"
+        android:layout_marginLeft="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"  />
+
+
+    <huins.ex.proto.status.StatusBatteryView
+        android:id="@+id/STATUS_BATTERY"
+        android:layout_weight="1"
+        android:layout_marginLeft="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"  />
+    <huins.ex.proto.StatusCustomButton
+        android:id="@+id/STATUS_FLIGHTTIME"
+        android:layout_weight="1"
+        android:layout_marginLeft="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"  />
+        <huins.ex.proto.StatusCustomButton
+            android:id="@+id/STATUS_ROLL"
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"  />
+    <huins.ex.proto.StatusCustomButton
+        android:id="@+id/STATUS_PITCH"
+        android:layout_weight="1"
+        android:layout_marginLeft="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"  />
+    <huins.ex.proto.StatusCustomButton
+        android:id="@+id/STATUS_YAW"
+        android:layout_weight="1"
+        android:layout_marginLeft="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"  />
+</LinearLayout>
