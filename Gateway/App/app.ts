@@ -17,10 +17,8 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
 
 // Route handlers
 import * as index from './routes/index';
-import * as user from './routes/user';
 
 app.use('/', index.router);
-app.use('/users', user.router);
 
 // Start server
 app.listen(app.get('port'), () => {
