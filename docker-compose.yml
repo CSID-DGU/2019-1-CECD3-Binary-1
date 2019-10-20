@@ -35,18 +35,18 @@ services:
       backend_mysql:
         condition: service_healthy
 
-  backend_mqtt:
-    container_name: backend_mqtt
-    image: eclipse-mosquitto:latest
-    ports:
-      - "1883:1883"
-    network_mode: "host"
-    volumes:
-      - ./docker/etc/mosquitto:/etc/mosquitto:ro
-      - ./docker/var/log/mosquitto:/var/log/mosquitto:rw
-    depends_on:
-      backend_mysql:
-        condition: service_healthy
+  # backend_mqtt:
+  #   container_name: backend_mqtt
+  #   image: eclipse-mosquitto:latest
+  #   ports:
+  #     - "1883:1883"
+  #   network_mode: "host"
+  #   volumes:
+  #     - ./docker/etc/mosquitto:/etc/mosquitto:ro
+  #     - ./docker/var/log/mosquitto:/var/log/mosquitto:rw
+  #   depends_on:
+  #     backend_mysql:
+  #       condition: service_healthy
 
   backend_mongo:
     container_name: backend_mongo
@@ -55,6 +55,8 @@ services:
       - mongodata:/data/db
     ports:
       - "27017:27017"
+    depends_on:
+      - gateway_rosemary
 
   backend_app:
     container_name: backend_app
@@ -81,6 +83,8 @@ services:
     expose:
       - "3000"
     command: "yarn start"
+    depends_on:
+      - backend_app
 
   gateway_mysql:
     container_name: gateway_mysql
@@ -93,6 +97,8 @@ services:
       - "13306:3306"
     volumes:
       - ./Gateway/sql:/docker-entrypoint-initdb.d
+    depends_on:
+      - backend_mobius
 
   gateway_rosemary:
     container_name: gateway_rosemary
@@ -107,9 +113,21 @@ services:
       - "8090:8090"
     expose:
       - "8090"
-    depends_on:
-      - backend_mobius
     command: "node rosemary"
+    depends_on:
+      - gateway_mysql
+
+  gateway_mqtt:
+    container_name: gateway_mqtt
+    image: eclipse-mosquitto:latest
+    ports:
+      - "1883:1883"
+    network_mode: "host"
+    volumes:
+      - ./docker/etc/mosquitto2:/etc/mosquitto:ro
+      - ./docker/var/log/mosquitto2:/var/log/mosquitto:rw
+    depends_on:
+      - gateway_mysql
 
 volumes:
   mongodata:
