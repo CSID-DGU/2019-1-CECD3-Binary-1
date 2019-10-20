@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Admin from './components/admin';
 import User from './components/user';
 import Login from './components/login';
 import SignUp from './components/signup';
 import SignUpAdmin from './components/signup/signup.admin';
+import { UrlAction } from './store/url/url.action'
 
 const App = () => {
+  const dispatch = useDispatch();
   const auth = useSelector(state => state.user.auth);
+
+  useEffect(() => {
+    dispatch(UrlAction.getRosemaryUrl.index());
+  }, []);
 
   return (
     <div>
