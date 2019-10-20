@@ -26,18 +26,18 @@ conf.useprotocol = 'http'; // select one for 'http' or 'mqtt' or 'coap' or 'ws'
 // build cse
 cse.host        = '10.0.75.2';
 cse.port        = '8090';
-cse.name        = 'rosemary';
-cse.id          = '/rosemary2';
+cse.name        = 'Rosemary';
+cse.id          = '/Rosemary2';
 cse.mqttport    = '1883';
 cse.wsport      = '7573';
 
 // build ae
-ae.name         = 'drone1';
+ae.name         = 'Drone1';
 
 ae.id           = 'S' + ae.name;
 
 ae.parent       = '/' + cse.name;
-ae.appid        = 'measure_co2';
+ae.appid        = 'smart_policing';
 ae.port         = '9727';
 ae.bodytype     = 'json'; // select 'json' or 'xml' or 'cbor'
 ae.tasport      = '3105';
@@ -46,16 +46,16 @@ ae.tasport      = '3105';
 var count = 0;
 cnt_arr[count] = {};
 cnt_arr[count].parent = '/' + cse.name + '/' + ae.name;
-cnt_arr[count++].name = 'co2';
+cnt_arr[count++].name = 'gps';
 cnt_arr[count] = {};
 cnt_arr[count].parent = '/' + cse.name + '/' + ae.name;
-cnt_arr[count++].name = 'led';
-cnt_arr[count] = {};
-cnt_arr[count].parent = '/' + cse.name + '/' + ae.name;
-cnt_arr[count++].name = 'temp';
-cnt_arr[count] = {};
-cnt_arr[count].parent = '/' + cse.name + '/' + ae.name;
-cnt_arr[count++].name = 'tvoc';
+cnt_arr[count++].name = 'url';
+// cnt_arr[count] = {};
+// cnt_arr[count].parent = '/' + cse.name + '/' + ae.name;
+// cnt_arr[count++].name = 'temp';
+// cnt_arr[count] = {};
+// cnt_arr[count].parent = '/' + cse.name + '/' + ae.name;
+// cnt_arr[count++].name = 'tvoc';
 // cnt_arr[count] = {};
 // cnt_arr[count].parent = '/' + cse.name + '/' + ae.name;
 // cnt_arr[count++].name = 'timer';
