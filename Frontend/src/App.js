@@ -14,6 +14,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(UrlAction.getRosemaryUrl.index());
+    dispatch(UrlAction.getGwAppUrl.index());
   }, []);
 
   return (

@@ -6,8 +6,6 @@ import {
   Button,
   CssBaseline,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Link,
   Grid,
   Typography,
@@ -88,10 +86,6 @@ const Login = () => {
             id="password"
             autoComplete="current-password"
             onChange={event => setPw(event.target.value)}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
           />
           <Button
             type="submit"
