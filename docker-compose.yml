@@ -56,7 +56,7 @@ services:
     ports:
       - "27017:27017"
     depends_on:
-      - gateway_rosemary
+      - gateway_app
 
   backend_app:
     container_name: backend_app
@@ -65,7 +65,7 @@ services:
     volumes:
       - ./Backend/App:/usr/src/app
     ports:
-      - "8081:3000"
+      - "8081:8081"
     expose:
       - "8081"
     command: "yarn start"
@@ -122,12 +122,28 @@ services:
     image: eclipse-mosquitto:latest
     ports:
       - "1883:1883"
+      - "9001:9001"
     network_mode: "host"
     volumes:
+      - ./Gateway/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
       - ./docker/etc/mosquitto2:/etc/mosquitto:ro
       - ./docker/var/log/mosquitto2:/var/log/mosquitto:rw
     depends_on:
       - gateway_mysql
+
+  gateway_app:
+    container_name: gateway_app
+    image: "node:latest"
+    working_dir: /usr/src/app
+    volumes:
+      - ./Gateway/App:/usr/src/app
+    ports:
+      - "8091:8091"
+    expose:
+      - "8091"
+    command: "yarn start"
+    depends_on:
+      - gateway_rosemary
 
 volumes:
   mongodata:
