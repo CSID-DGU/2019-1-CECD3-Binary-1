@@ -1,8 +1,9 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { UserAction } from '../../store/user/user.action';
 import CityMap from '../map';
 import Player from '../player';
+import { mqttConnection } from '../../utils/Mqtt';
 import {
   AppBar,
   Button,
@@ -59,14 +60,19 @@ const useStyles = makeStyles(theme => ({
 const cameras = [
   { id: 'camera1', url: 'ws://localhost:9999/' },
   { id: 'camera2', url: 'ws://localhost:9998/' },
-  { id: 'camera1', url: 'ws://localhost:9999/' },
-  { id: 'camera2', url: 'ws://localhost:9998/' },
-  { id: 'camera1', url: 'ws://localhost:9999/' },
+  { id: 'camera3', url: 'ws://localhost:9999/' },
+  { id: 'camera4', url: 'ws://localhost:9998/' },
+  { id: 'camera5', url: 'ws://localhost:9999/' },
 ];
 
 const Admin = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const rosemaryUrl = useSelector(state => state.url.rosemary.url);
+
+  useEffect(() => {
+    if (rosemaryUrl) mqttConnection(rosemaryUrl);
+  }, [rosemaryUrl]);
 
   return (
     <React.Fragment>

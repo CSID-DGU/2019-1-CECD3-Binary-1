@@ -25,6 +25,7 @@ const CityMap = () => {
         <DroneMarker
           anchor={[drone.lat, drone.lng]}
           payload={index}
+          key={index}
           style={{
             width: 20,
             height: 20,

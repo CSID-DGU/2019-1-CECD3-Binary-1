@@ -20,9 +20,7 @@ const App = () => {
   return (
     <div>
       <Switch>
-        <Route exact path='/' component={auth === 'admin' ? Admin
-          : auth === 'user' ? User : Login
-        } />
+        <Route exact path='/' component={auth === 'admin' ? Admin : auth === 'user' ? User : Login} />
         <Route exact path='/signup' component={SignUp} />
         <Route exact path='/signup/admin' component={SignUpAdmin} />
       </Switch>
