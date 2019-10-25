@@ -1,20 +1,18 @@
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Admin from './components/admin';
 import User from './components/user';
 import Login from './components/login';
 import SignUp from './components/signup';
 import SignUpAdmin from './components/signup/signup.admin';
-import { UrlAction } from './store/url/url.action'
+import { init } from './utils/oneM2M';
 
 const App = () => {
-  const dispatch = useDispatch();
   const auth = useSelector(state => state.user.auth);
 
   useEffect(() => {
-    dispatch(UrlAction.getRosemaryUrl.index());
-    dispatch(UrlAction.getGwAppUrl.index());
+    init();
   }, []);
 
   return (

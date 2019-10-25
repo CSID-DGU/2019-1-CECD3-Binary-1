@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { UserAction } from '../../store/user/user.action';
 import CityMap from '../map';
 import Player from '../player';
-import { mqttConnection } from '../../utils/Mqtt';
+import * as mqtt from '../../utils/Mqtt';
 import {
   AppBar,
   Button,
@@ -68,11 +68,11 @@ const cameras = [
 const Admin = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const rosemaryUrl = useSelector(state => state.url.rosemary.url);
 
   useEffect(() => {
-    if (rosemaryUrl) mqttConnection(rosemaryUrl);
-  }, [rosemaryUrl]);
+    mqtt.connect();
+    mqtt.subscribe();
+  }, []);
 
   return (
     <React.Fragment>
