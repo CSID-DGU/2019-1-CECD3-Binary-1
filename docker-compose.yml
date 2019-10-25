@@ -35,18 +35,20 @@ services:
       backend_mysql:
         condition: service_healthy
 
-  # backend_mqtt:
-  #   container_name: backend_mqtt
-  #   image: eclipse-mosquitto:latest
-  #   ports:
-  #     - "1883:1883"
-  #   network_mode: "host"
-  #   volumes:
-  #     - ./docker/etc/mosquitto:/etc/mosquitto:ro
-  #     - ./docker/var/log/mosquitto:/var/log/mosquitto:rw
-  #   depends_on:
-  #     backend_mysql:
-  #       condition: service_healthy
+  backend_mqtt:
+    container_name: backend_mqtt
+    image: eclipse-mosquitto:latest
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    network_mode: "host"
+    volumes:
+      - ./Backend/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./docker/etc/mosquitto:/etc/mosquitto:ro
+      - ./docker/var/log/mosquitto:/var/log/mosquitto:rw
+    depends_on:
+      backend_mysql:
+        condition: service_healthy
 
   backend_mongo:
     container_name: backend_mongo
@@ -56,7 +58,7 @@ services:
     ports:
       - "27017:27017"
     depends_on:
-      - gateway_app
+      - backend_mobius
 
   backend_app:
     container_name: backend_app
@@ -64,6 +66,7 @@ services:
     working_dir: /usr/src/app
     volumes:
       - ./Backend/App:/usr/src/app
+    network_mode: "host"
     ports:
       - "8081:8081"
     expose:
@@ -85,65 +88,6 @@ services:
     command: "yarn start"
     depends_on:
       - backend_app
-
-  gateway_mysql:
-    container_name: gateway_mysql
-    image: mysql:5.7
-    environment:
-      MYSQL_HOST: "localhost"
-      MYSQL_DATABASE: "rosemarydb"
-      MYSQL_ROOT_PASSWORD: "secret"
-    ports:
-      - "13306:3306"
-    volumes:
-      - ./Gateway/sql:/docker-entrypoint-initdb.d
-    depends_on:
-      - backend_mobius
-
-  gateway_rosemary:
-    container_name: gateway_rosemary
-    image: "node:latest"
-    working_dir: /usr/src/app
-    environment:
-      - NODE_ENV=production
-    volumes:
-      - ./Gateway:/usr/src/app
-    network_mode: "host"
-    ports:
-      - "8090:8090"
-    expose:
-      - "8090"
-    command: "node rosemary"
-    depends_on:
-      - gateway_mysql
-
-  gateway_mqtt:
-    container_name: gateway_mqtt
-    image: eclipse-mosquitto:latest
-    ports:
-      - "1883:1883"
-      - "9001:9001"
-    network_mode: "host"
-    volumes:
-      - ./Gateway/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
-      - ./docker/etc/mosquitto2:/etc/mosquitto:ro
-      - ./docker/var/log/mosquitto2:/var/log/mosquitto:rw
-    depends_on:
-      - gateway_mysql
-
-  gateway_app:
-    container_name: gateway_app
-    image: "node:latest"
-    working_dir: /usr/src/app
-    volumes:
-      - ./Gateway/App:/usr/src/app
-    ports:
-      - "8091:8091"
-    expose:
-      - "8091"
-    command: "yarn start"
-    depends_on:
-      - gateway_rosemary
 
 volumes:
   mongodata:
