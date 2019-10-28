@@ -143,6 +143,7 @@ exports.crtae = function (parent, rn, api, callback) {
         results_ae['m2m:ae'].api = api;
         results_ae['m2m:ae'].rn = rn;
         results_ae['m2m:ae'].rr = true;
+        results_ae['m2m:ae'].poa = [conf.ae.host + ':' + conf.ae.port];
         bodyString = cbor.encode(results_ae).toString('hex');
         console.log(bodyString);
     }
@@ -151,6 +152,7 @@ exports.crtae = function (parent, rn, api, callback) {
         results_ae['m2m:ae'].api = api;
         results_ae['m2m:ae'].rn = rn;
         results_ae['m2m:ae'].rr = true;
+        results_ae['m2m:ae'].poa = [conf.ae.host + ':' + conf.ae.port];
         //results_ae['m2m:ae'].acpi = '/mobius-yt/acp1';
 
         bodyString = JSON.stringify(results_ae);
