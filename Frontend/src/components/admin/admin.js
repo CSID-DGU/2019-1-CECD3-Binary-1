@@ -60,16 +60,18 @@ const useStyles = makeStyles(theme => ({
 const cameras = [
   { id: 'camera1', url: 'ws://localhost:9999/' },
   { id: 'camera2', url: 'ws://localhost:9998/' },
-  { id: 'camera3', url: 'ws://localhost:9999/' },
-  { id: 'camera4', url: 'ws://localhost:9998/' },
-  { id: 'camera5', url: 'ws://localhost:9999/' },
 ];
 
 const Admin = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [flag, setFlag] = useState(0);
+  const [userGrp, setUserGrp] = useState(new Map());
   const [droneGrp, setDroneGrp] = useState(new Map());
+  const updateUserGrp = (id, lat, lon) => {
+    setUserGrp(userGrp.set(id, { id: id, lat: lat, lon: lon }));
+    setFlag(lat + lon);
+  };
   const updateDroneGps = (id, lat, lon) => {
     setDroneGrp(droneGrp.set(id, { id: id, lat: lat, lon: lon }));
     setFlag(lat + lon);
@@ -77,7 +79,7 @@ const Admin = () => {
 
   useEffect(() => {
     mqtt.connect();
-    mqtt.on(updateDroneGps);
+    mqtt.on(updateUserGrp, updateDroneGps);
     mqtt.subscribe();
   }, []);
 
@@ -104,7 +106,7 @@ const Admin = () => {
       <main>
         <div className={classes.heroContent}>
           <Container maxWidth="xl">
-            <CityMap drones={droneGrp} />
+            <CityMap users={userGrp} drones={droneGrp} />
           </Container>
         </div>
         <Container className={classes.cardGrid} maxWidth="xl">
