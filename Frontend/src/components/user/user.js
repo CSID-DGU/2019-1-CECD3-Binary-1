@@ -1,6 +1,7 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { UserAction } from '../../store/user/user.action';
+import * as mqtt from '../../utils/Mqtt';
 import {
   AppBar,
   Button,
@@ -65,6 +66,36 @@ const Copyright = () => {
 const User = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const userId = useSelector(state => state.user.id);
+  const intervalId = useRef();
+  const [isCall, setIsCall] = useState(false);
+  const droneCall = () => {
+    if (window.navigator.geolocation) setIsCall(true);
+    else alert('Current location information is not verified.');
+  }
+
+  useEffect(() => {
+    mqtt.connect();
+
+    return () => {
+      clearInterval(intervalId.current);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isCall) {
+      const interval = setInterval(() => {
+        window.navigator.geolocation.getCurrentPosition(position => {
+          mqtt.publish('/oneM2M/req/FE_APP/' + userId + '/json', { id: userId, lat: position.coords.latitude, lon: position.coords.longitude });
+        }, () => {
+          alert('Current location information is not verified.');
+          clearInterval(interval);
+        }, { enableHighAccuracy: true });
+      }, 1000);
+      intervalId.current = interval;
+    }
+    else clearInterval(intervalId.current);
+  }, [isCall]);
 
   return (
     <div className={classes.root}>
@@ -100,14 +131,19 @@ const User = () => {
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                  <Button variant="contained" color="secondary" onClick={() => alert('Drone Call')}>
-                    Drone Call
+                  {!isCall
+                    ? <Button variant="contained" color="secondary" onClick={() => droneCall()}>
+                      Drone Call
                   </Button>
+                    : <Button variant="contained" color="secondary" onClick={() => setIsCall(false)}>
+                      Terminate Drone Call
+                    </Button>
+                  }
                 </Grid>
                 <Grid item>
                   <Button variant="outlined" color="secondary"
                     onClick={() => alert('The service center phone number is not registered yet.')}>
-                    Service Center Connection
+                    Connect Service Center
                   </Button>
                 </Grid>
               </Grid>
