@@ -1,0 +1,17 @@
+{
+  "name": "Test",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "dependencies": {
+    "gpx-parse": "^0.10.4",
+    "mqtt": "^3.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  },
+  "scripts": {
+    "start": "nodemon --exec babel-node app.js"
+  }
+}
