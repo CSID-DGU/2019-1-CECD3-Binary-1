@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { UserAction } from '../../store/user/user.action';
 import CityMap from '../map';
@@ -16,7 +16,7 @@ import {
   makeStyles,
   Container,
 } from '@material-ui/core';
-import { grey } from '@material-ui/core/colors'
+import { grey } from '@material-ui/core/colors';
 import { Dashboard } from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
@@ -68,9 +68,16 @@ const cameras = [
 const Admin = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [flag, setFlag] = useState(0);
+  const [droneGrp, setDroneGrp] = useState(new Map());
+  const updateDroneGps = (id, lat, lon) => {
+    setDroneGrp(droneGrp.set(id, { id: id, lat: lat, lon: lon }));
+    setFlag(lat + lon);
+  };
 
   useEffect(() => {
     mqtt.connect();
+    mqtt.on(updateDroneGps);
     mqtt.subscribe();
   }, []);
 
@@ -97,7 +104,7 @@ const Admin = () => {
       <main>
         <div className={classes.heroContent}>
           <Container maxWidth="xl">
-            <CityMap />
+            <CityMap drones={droneGrp} />
           </Container>
         </div>
         <Container className={classes.cardGrid} maxWidth="xl">
