@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/MAVSDK/example/getGPS
+CMAKE_SOURCE_DIR = /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/MAVSDK/example/getGPS
+CMAKE_BINARY_DIR = /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/MAVSDK/example/getGPS/CMakeFiles /home/pi/MAVSDK/example/getGPS/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/MAVSDK/example/getGPS/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

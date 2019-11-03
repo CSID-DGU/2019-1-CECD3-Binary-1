@@ -77,7 +77,8 @@ void unixDomainSocket::socketAccept(int local_fd) {
                 mutex_atcion->lock();
                 //set condition variable to enable
                 action_on = true;
-                command = 1;    //todo : 변경필요
+                *command = 1;    //todo : 변경필요
+                std::cout << "getCommand!!" << std::endl;
                 mutex_atcion->unlock();
                 cv->notify_one();
             }

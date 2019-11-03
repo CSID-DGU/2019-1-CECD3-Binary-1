@@ -86,9 +86,9 @@ int main(int argc, char** argv)
 
     auto telemetry = std::make_shared<Telemetry>(system);
     auto action = std::make_shared<Action>(system);
+#ifdef SOCKET_ON
     unixDomainSocket sock("/tmp/unix.sock", &cv, &mutex_action, &command);    //make socket
-    
-
+#endif
     // We want to listen to the GPS and alititude of the drone at 1 Hz.
     {
         std::cout << "Setting rate updates..." << std::endl;
@@ -123,7 +123,9 @@ int main(int argc, char** argv)
                   << "Altitude: " << position.relative_altitude_m << " m"
                   << NORMAL_CONSOLE_TEXT // set to default color again
                   << std::endl;
+#ifdef SOCKET_ON
         sock.setGPS(position.relative_altitude_m, position.latitude_deg, position.longitude_deg);
+#endif
         std::cout << "Altitude: " << position.relative_altitude_m << " m" << std::endl
                 << "Latitude: " << position.latitude_deg << std::endl
                 << "Longitude: " << position.longitude_deg << std::endl;
@@ -137,10 +139,15 @@ int main(int argc, char** argv)
 
     
     while (true) {
+#ifdef SOCKET_ON
         std::unique_lock<std::mutex> lk(mutex_action);
         cv.wait(
                 lk, [&] { return test.isActivate(); });
 
+#else
+        command = 1;
+        std::cout << "This is for test" << std::endl;
+#endif
         switch(command) {
         case 1: //takeoff and land test
             std::cout << "Before Arming......" << std::endl;
@@ -186,13 +193,12 @@ int main(int argc, char** argv)
             sleep_for(seconds(3));
             std::cout << "Finished..." << std::endl;
             break;
-
-        default:
-            break;
+            
         }
 
-
+#ifdef SOCKET_ON
         test.actionOff();
+#endif
         std::this_thread::sleep_for(std::chrono::milliseconds(80));
     }
 

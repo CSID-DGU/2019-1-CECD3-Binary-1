@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/MAVSDK/example/getGPS
+CMAKE_SOURCE_DIR = /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/MAVSDK/example/getGPS
+CMAKE_BINARY_DIR = /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS
 
 # Include any dependencies generated for this target.
 include CMakeFiles/takeoff_and_land.dir/depend.make
@@ -59,29 +59,29 @@ include CMakeFiles/takeoff_and_land.dir/flags.make
 
 CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.o: CMakeFiles/takeoff_and_land.dir/flags.make
 CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.o: takeoff_and_land.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/MAVSDK/example/getGPS/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.o -c /home/pi/MAVSDK/example/getGPS/takeoff_and_land.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.o -c /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/takeoff_and_land.cpp
 
 CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/MAVSDK/example/getGPS/takeoff_and_land.cpp > CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/takeoff_and_land.cpp > CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.i
 
 CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/MAVSDK/example/getGPS/takeoff_and_land.cpp -o CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/takeoff_and_land.cpp -o CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.s
 
 CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.o: CMakeFiles/takeoff_and_land.dir/flags.make
 CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.o: unix_domain_socket.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/MAVSDK/example/getGPS/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.o -c /home/pi/MAVSDK/example/getGPS/unix_domain_socket.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.o -c /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/unix_domain_socket.cpp
 
 CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/MAVSDK/example/getGPS/unix_domain_socket.cpp > CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/unix_domain_socket.cpp > CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.i
 
 CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/MAVSDK/example/getGPS/unix_domain_socket.cpp -o CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/unix_domain_socket.cpp -o CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.s
 
 # Object files for target takeoff_and_land
 takeoff_and_land_OBJECTS = \
@@ -99,7 +99,7 @@ takeoff_and_land: /usr/local/lib/libmavsdk_telemetry.so
 takeoff_and_land: /usr/local/lib/libmavsdk_action.so
 takeoff_and_land: /usr/local/lib/libmavsdk.so
 takeoff_and_land: CMakeFiles/takeoff_and_land.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/MAVSDK/example/getGPS/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable takeoff_and_land"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable takeoff_and_land"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/takeoff_and_land.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -112,6 +112,6 @@ CMakeFiles/takeoff_and_land.dir/clean:
 .PHONY : CMakeFiles/takeoff_and_land.dir/clean
 
 CMakeFiles/takeoff_and_land.dir/depend:
-	cd /home/pi/MAVSDK/example/getGPS && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/MAVSDK/example/getGPS /home/pi/MAVSDK/example/getGPS /home/pi/MAVSDK/example/getGPS /home/pi/MAVSDK/example/getGPS /home/pi/MAVSDK/example/getGPS/CMakeFiles/takeoff_and_land.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/takeoff_and_land.dir/depend
 
