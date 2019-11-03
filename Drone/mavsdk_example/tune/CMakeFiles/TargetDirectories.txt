@@ -1,0 +1,3 @@
+/home/pi/MAVSDK/example/tune/CMakeFiles/rebuild_cache.dir
+/home/pi/MAVSDK/example/tune/CMakeFiles/tune.dir
+/home/pi/MAVSDK/example/tune/CMakeFiles/edit_cache.dir

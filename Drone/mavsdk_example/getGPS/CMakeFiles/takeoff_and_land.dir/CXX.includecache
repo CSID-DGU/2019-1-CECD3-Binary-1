@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pi/MAVSDK/example/getGPS/unix_domain_socket.cpp
+unix_domain_socket.h
+/home/pi/MAVSDK/example/getGPS/unix_domain_socket.h
+
+/home/pi/MAVSDK/example/getGPS/unix_domain_socket.h
+sys/types.h
+-
+sys/stat.h
+-
+sys/socket.h
+-
+sys/un.h
+-
+unistd.h
+-
+cstdio
+-
+cstdlib
+-
+cstring
+-
+iostream
+-
+thread
+-
+vector
+-
+mutex
+-
+condition_variable
+-
+

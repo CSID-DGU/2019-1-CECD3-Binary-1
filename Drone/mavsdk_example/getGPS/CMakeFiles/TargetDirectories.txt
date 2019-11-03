@@ -1,0 +1,3 @@
+/home/pi/MAVSDK/example/getGPS/CMakeFiles/rebuild_cache.dir
+/home/pi/MAVSDK/example/getGPS/CMakeFiles/takeoff_and_land.dir
+/home/pi/MAVSDK/example/getGPS/CMakeFiles/edit_cache.dir

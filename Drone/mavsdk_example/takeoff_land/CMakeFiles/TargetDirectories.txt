@@ -1,0 +1,3 @@
+/home/pi/MAVSDK/example/takeoff_land/CMakeFiles/rebuild_cache.dir
+/home/pi/MAVSDK/example/takeoff_land/CMakeFiles/takeoff_and_land.dir
+/home/pi/MAVSDK/example/takeoff_land/CMakeFiles/edit_cache.dir

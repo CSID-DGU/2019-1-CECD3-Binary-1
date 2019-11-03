@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/battery.dir/battery.cpp.o  -o battery -Wl,-rpath,/usr/local/lib /usr/local/lib/libmavsdk_telemetry.so -lMAVSDK::mavsdk_mavlink_passthrough /usr/local/lib/libmavsdk.so 
