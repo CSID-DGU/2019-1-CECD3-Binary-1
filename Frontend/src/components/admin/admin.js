@@ -78,9 +78,7 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    mqtt.connect();
-    mqtt.on(updateUserGrp, updateDroneGps);
-    mqtt.subscribe();
+    mqtt.connect(updateUserGrp, updateDroneGps);
   }, []);
 
   return (
