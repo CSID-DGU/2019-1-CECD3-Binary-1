@@ -68,17 +68,27 @@ const Admin = () => {
   const [flag, setFlag] = useState(0);
   const [userGrp, setUserGrp] = useState(new Map());
   const [droneGrp, setDroneGrp] = useState(new Map());
-  const updateUserGrp = (id, lat, lon) => {
+  const updateUserGps = (id, lat, lon) => {
     setUserGrp(userGrp.set(id, { id: id, lat: lat, lon: lon }));
     setFlag(lat + lon);
+  };
+  const removeUser = (id) => {
+    userGrp.delete(id);
+    setUserGrp(userGrp);
+    setFlag(0);
   };
   const updateDroneGps = (id, lat, lon) => {
     setDroneGrp(droneGrp.set(id, { id: id, lat: lat, lon: lon }));
     setFlag(lat + lon);
   };
+  const removeDrone = (id) => {
+    droneGrp.delete(id);
+    setDroneGrp(droneGrp);
+    setFlag(0);
+  };
 
   useEffect(() => {
-    mqtt.connect(updateUserGrp, updateDroneGps);
+    mqtt.connect(updateUserGps, removeUser, updateDroneGps, removeDrone);
   }, []);
 
   return (
