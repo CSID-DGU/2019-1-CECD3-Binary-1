@@ -9,7 +9,7 @@ const PublishCurrentLoaction = () => {
   let i = 0;
   setInterval(() => {
     if (i == GPS_PATH.length) i = 0;
-    client.publish('/oneM2M/req/Mobius2/Test/json', JSON.stringify({ id: droneId, lat: GPS_PATH[i++].lat, lon: GPS_PATH[i++].lon }));
+    client.publish('/oneM2M/req/Mobius2/' + droneId + '/json', JSON.stringify({ id: droneId, lat: GPS_PATH[i].lat, lon: GPS_PATH[i++].lon }));
   }, 1000);
 }
 
@@ -22,12 +22,14 @@ client.on('connect', function () {
         let lon1 = parseFloat(data.tracks[0].segments[0][i].lon);
         let lat2 = parseFloat(data.tracks[0].segments[0][i + 1].lat);
         let lon2 = parseFloat(data.tracks[0].segments[0][i + 1].lon);
-        let dlat = lat1 - lat2;
-        let dlon = lon1 - lon2;
-        let requiredTime = parseInt(calcDistance(lat1, lon1, lat2, lon2));
+        let dlat = Number(lat2 - lat1).toFixed(13);
+        let dlon = Number(lon2 - lon1).toFixed(13);
+        let requiredTime = parseInt(calcDistance(lat1, lon1, lat2, lon2) / 10);
+        dlat = Number(dlat / requiredTime).toFixed(13);
+        dlon = Number(dlon / requiredTime).toFixed(13)
 
         for (let j = 0; j < requiredTime; j++) {
-          GPS_PATH.push({ lat: lat1 + dlat * j, lon: lon1 + dlon * j });
+          GPS_PATH.push({ lat: Number(lat1 + dlat * j).toFixed(13), lon: Number(lon1 + dlon * j).toFixed(13) });
         }
       }
       PublishCurrentLoaction();
@@ -36,14 +38,13 @@ client.on('connect', function () {
 });
 
 function calcDistance(lat1, lon1, lat2, lon2) {
-  var theta = lon1 - lon2;
-  let dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1))
-    * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+  let theta = Number(lon1 - lon2).toFixed(13);
+  let dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
   dist = Math.acos(dist);
   dist = rad2deg(dist);
   dist = dist * 60 * 1.1515;
   dist = dist * 1.609344;
-  return Number(dist * 1000).toFixed(2);
+  return Number(dist * 1000).toFixed();
 }
 
 function deg2rad(deg) {
