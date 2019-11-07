@@ -19,12 +19,12 @@ export const connect = (updateUserGps, removeUser, updateDroneGps, removeDrone) 
     client.on('message', function (topic, message) {
       const data = JSON.parse(message.toString());
       if (topic.split('/')[3] === 'FE_APP')
-        updateUserGps(data.id, data.lat, data.lon);
+        updateUserGps(data.id, parseFloat(data.lat), parseFloat(data.lon));
       else if (topic.split('/')[3] === 'Mobius2')
-        updateDroneGps(data.id, data.lat, data.lon);
+        updateDroneGps(data.id, parseFloat(data.lat), parseFloat(data.lon));
       else if (topic.split('/')[3] === 'BE_APP') {
-        if (data.type === 'user') removeUser(data.id, data.lat, data.lon);
-        else if (data.type === 'drone') removeDrone(data.id, data.lat, data.lon);
+        if (data.type === 'user') removeUser(data.id);
+        else if (data.type === 'drone') removeDrone(data.id);
       }
     });
   });

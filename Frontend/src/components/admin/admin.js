@@ -4,6 +4,8 @@ import { UserAction } from '../../store/user/user.action';
 import CityMap from '../map';
 import Player from '../player';
 import * as mqtt from '../../utils/Mqtt';
+import moment from 'moment';
+import 'moment-timezone';
 import {
   AppBar,
   Button,
@@ -18,6 +20,8 @@ import {
 } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
 import { Dashboard } from '@material-ui/icons';
+
+moment.tz.setDefault('Asia/Seoul')
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -65,26 +69,26 @@ const cameras = [
 const Admin = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [flag, setFlag] = useState(0);
+  const [timestamp, setTimestamp] = useState('');
   const [userGrp, setUserGrp] = useState(new Map());
   const [droneGrp, setDroneGrp] = useState(new Map());
   const updateUserGps = (id, lat, lon) => {
     setUserGrp(userGrp.set(id, { id: id, lat: lat, lon: lon }));
-    setFlag(lat + lon);
+    setTimestamp(moment().format('YYYY-MM-DD HH:mm:ss'));
   };
   const removeUser = (id) => {
     userGrp.delete(id);
     setUserGrp(userGrp);
-    setFlag(0);
+    setTimestamp(moment().format('YYYY-MM-DD HH:mm:ss'));
   };
   const updateDroneGps = (id, lat, lon) => {
     setDroneGrp(droneGrp.set(id, { id: id, lat: lat, lon: lon }));
-    setFlag(lat + lon);
+    setTimestamp(moment().format('YYYY-MM-DD HH:mm:ss'));
   };
   const removeDrone = (id) => {
     droneGrp.delete(id);
     setDroneGrp(droneGrp);
-    setFlag(0);
+    setTimestamp(moment().format('YYYY-MM-DD HH:mm:ss'));
   };
 
   useEffect(() => {
