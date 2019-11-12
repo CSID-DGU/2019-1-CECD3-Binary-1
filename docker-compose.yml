@@ -25,11 +25,8 @@ services:
       - NODE_ENV=production
     volumes:
       - ./Backend:/usr/src/app
-    network_mode: "host"
     ports:
       - "8080:8080"
-    expose:
-      - "8080"
     command: "node mobius"
     depends_on:
       backend_mysql:
@@ -66,11 +63,8 @@ services:
     working_dir: /usr/src/app
     volumes:
       - ./Backend/App:/usr/src/app
-    network_mode: "host"
     ports:
       - "8081:8081"
-    expose:
-      - "8081"
     command: "yarn start"
     depends_on:
       - backend_mongo
@@ -83,8 +77,6 @@ services:
       - ./Frontend:/usr/src/app
     ports:
       - "3000:3000"
-    expose:
-      - "3000"
     command: "yarn start"
     depends_on:
       - backend_app
