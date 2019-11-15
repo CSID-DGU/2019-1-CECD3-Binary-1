@@ -10,8 +10,22 @@ export const UserInfoGrp: Map<string, IUserInfo> = new Map();
 export const DroneInfoGrp: Map<string, IDroneInfo> = new Map();
 
 export const register = (type: string, id: string, url: string) => {
-  if (type === 'user') UserInfoGrp.set(id, { id: id });
-  else if (type === 'drone') DroneInfoGrp.set(id, { id: id, url: url });
+  if (type === 'user') UserInfoGrp.set(id, { id: id, status: 'unmatched' });
+  else if (type === 'drone') DroneInfoGrp.set(id, { id: id, url: url, status: 'patrol' });
+}
+
+export const matching = () => {
+  UserInfoGrp.forEach(userInfo => {
+    if (userInfo.status === 'unmatched') {
+      const userGps = gpsManager.UserGpsGrp.get(userInfo.id)
+      let distance = -1;
+      DroneInfoGrp.forEach(droneInfo => {
+        if (droneInfo.status === 'patrol') {
+          // TODO calculate the distance between drones and users
+        }
+      })
+    }
+  });
 }
 
 export const remove = () => {
