@@ -1,0 +1,3 @@
+/home/pi/MAVSDK/example/battery/CMakeFiles/rebuild_cache.dir
+/home/pi/MAVSDK/example/battery/CMakeFiles/battery.dir
+/home/pi/MAVSDK/example/battery/CMakeFiles/edit_cache.dir

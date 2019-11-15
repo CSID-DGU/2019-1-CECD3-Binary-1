@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.o  -o takeoff_and_land -Wl,-rpath,/usr/local/lib /usr/local/lib/libmavsdk_info.so /usr/local/lib/libmavsdk_telemetry.so /usr/local/lib/libmavsdk_action.so /usr/local/lib/libmavsdk.so 

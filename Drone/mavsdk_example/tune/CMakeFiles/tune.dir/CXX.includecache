@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pi/MAVSDK/example/tune/tune.cpp
+cstdint
+-
+mavsdk/mavsdk.h
+-
+mavsdk/plugins/tune/tune.h
+-
+iostream
+-
+thread
+-
+
+/usr/local/include/mavsdk/connection_result.h
+
+/usr/local/include/mavsdk/mavsdk.h
+string
+-
+memory
+-
+vector
+-
+functional
+-
+system.h
+/usr/local/include/mavsdk/system.h
+connection_result.h
+/usr/local/include/mavsdk/connection_result.h
+
+/usr/local/include/mavsdk/system.h
+memory
+-
+functional
+-
+

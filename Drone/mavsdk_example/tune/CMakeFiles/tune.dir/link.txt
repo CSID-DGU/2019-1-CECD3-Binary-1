@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/tune.dir/tune.cpp.o  -o tune -Wl,-rpath,/usr/local/lib -lMAVSDK::mavsdk_tune /usr/local/lib/libmavsdk.so 
