@@ -33,7 +33,7 @@ void unixDomainSocket::socketAccept(int local_fd) {
         }
         std::cout << "GET DATA : " << buf << std::endl;
 
-
+        //이부분이 소켓으로 온거에 따라서 반응하는거임
         if (strncmp(buf, "quit", 4) == 0) {
             write(local_fd, "Disconnected\n", 8);
             close(local_fd);
@@ -96,6 +96,8 @@ void unixDomainSocket::socketListen() {
         printf("Connected!\n");
 
         //create Thread
+        //todo 그 지금 보면 스레드가 쫌 좆같게돌아가는데, 어차피 하나만 연결될꺼면
+        //여기서 따로 스레드 만들 필요는 없지않으려나 싶음
         std::thread mine([=](){socketAccept(client_sockfd);});
         mine.detach();
     }
