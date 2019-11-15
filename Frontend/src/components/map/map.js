@@ -38,7 +38,7 @@ const CityMap = ({ users, drones }) => {
       payload={drone.id}
       key={drone.id}
       style={{ background: '#8CC1D8' }}>
-      {drone.id.substring(5, drone.id.length)}
+      {drone.id.substring(6, drone.id.length)}
     </Marker>
   ));
 

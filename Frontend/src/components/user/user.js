@@ -86,7 +86,7 @@ const User = () => {
     if (isCall) {
       const interval = setInterval(() => {
         window.navigator.geolocation.getCurrentPosition(position => {
-          mqtt.publish('/oneM2M/req/FE_APP/' + userId + '/json', { id: userId, lat: position.coords.latitude, lon: position.coords.longitude });
+          mqtt.publish('/oneM2M/req/FE_APP/' + userId + '/json', { lat: position.coords.latitude, lon: position.coords.longitude });
         }, () => {
           alert('Current location information is not verified.');
           clearInterval(interval);

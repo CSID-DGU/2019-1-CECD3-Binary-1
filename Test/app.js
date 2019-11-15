@@ -1,7 +1,7 @@
 import mqtt from 'mqtt';
 import gpxParse from 'gpx-parse';
 
-const droneId = 'drone0'
+const droneId = 'SDrone0'
 const client = mqtt.connect('mqtt://10.0.75.2:1883');
 const GPS_PATH = [];
 
@@ -9,7 +9,8 @@ const PublishCurrentLoaction = () => {
   let i = 0;
   setInterval(() => {
     if (i == GPS_PATH.length) i = 0;
-    client.publish('/oneM2M/req/Mobius2/' + droneId + '/json', JSON.stringify({ id: droneId, lat: GPS_PATH[i].lat, lon: GPS_PATH[i++].lon }));
+    client.publish('/oneM2M/req/Mobius2/' + droneId + '/json', 
+      JSON.stringify({ 'pc': { 'm2m:sgn': { 'nev': { 'rep': { 'm2m:cin': { 'con': { latitude: GPS_PATH[i].lat, longitude: GPS_PATH[i++].lon } } } } } } }));
   }, 1000);
 }
 

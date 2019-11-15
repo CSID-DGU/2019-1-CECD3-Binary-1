@@ -5,18 +5,18 @@ import * as gpsManager from './gpsManager';
 const client = mqtt.connect('mqtt://10.0.75.2:1883');
 
 export const connect = () => {
-  client.on('connect', function () {
-    client.subscribe('/oneM2M/req/FE_APP/+/json', function (err) {
+  client.on('connect', () => {
+    client.subscribe('/oneM2M/req/FE_APP/+/json', err => {
       if (err) console.error(err);
       else console.log("Subscribe success!");
     });
 
-    client.subscribe('/oneM2M/req/Mobius2/+/json', function (err) {
+    client.subscribe('/oneM2M/req/Mobius2/+/json', err => {
       if (err) console.error(err);
       else console.log("Subscribe success!");
     });
 
-    client.on('message', function (topic, message) {
+    client.on('message', (topic, message) => {
       const id = topic.split('/')[4];
       const data = JSON.parse(message.toString());
 
@@ -31,9 +31,8 @@ export const connect = () => {
       }
       else if (topic.split('/')[3] === 'Mobius2') {
         try {
-          const lat = data.lat;
-          const lon = data.lon;
-          gpsManager.update('drone', id, lat, lon);
+          const con = data['pc']['m2m:sgn']['nev']['rep']['m2m:cin']['con'];
+          gpsManager.update('drone', id, con.latitude, con.longitude);
         } catch (error) {
           const url = '';
           infoManager.register('drone', id, url);
