@@ -1,7 +1,7 @@
 import request from 'request';
 
-const MOBIUS_URL = 'http://10.0.75.2:8080';
-const BE_APP_URL = 'http://10.0.75.2:8081';
+const MOBIUS_URL = 'https://localhost:8080';
+const BE_APP_URL = 'https://localhost:8081';
 
 export const init = () => {
   request.post({
