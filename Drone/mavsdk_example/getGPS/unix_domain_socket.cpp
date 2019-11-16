@@ -57,14 +57,7 @@ void unixDomainSocket::socketAccept(int local_fd) {
                 //nothing to send
             }
         }
-        else if (strncmp(buf, "set_location", 6) == 0){
-            if (!action_on) {
-                //set condition variable to enable
-                action_on = true;
-                cv->notify_one();
-            }
-        }
-        else if (strncmp(buf, "set_arm", 3) == 0){
+        else if (strncmp(buf, "call_arm", 8) == 0){
 
             if (!action_on) {
                 mutex_atcion->lock();
@@ -78,10 +71,20 @@ void unixDomainSocket::socketAccept(int local_fd) {
             }
 
         }
-        else if (strncmp(buf, "land", 6) == 0){
-            //set some action
+        else if (strncmp(buf, "call_test", 9) == 0){
+
+            if (!action_on) {
+                mutex_atcion->lock();
+                //set condition variable to enable
+                action_on = true;
+                command = 1;    //todo : 변경필요
+                mutex_atcion->unlock();
+                cv->notify_one();
+            }
+            else {
+                write(local_fd, "ERROR", 5);
+            }
         }
-        
     }
 }
 void unixDomainSocket::socketListen() {
@@ -119,8 +122,9 @@ bool unixDomainSocket::isActivate() {
     }
     return false;
 }
-unixDomainSocket::unixDomainSocket(std::string path, std::condition_variable* _cv, std::mutex* _mutex_action){
+unixDomainSocket::unixDomainSocket(std::string path, std::condition_variable* _cv, std::mutex* _mutex_action, unsigned int* _command){
     action_on = false;
+    command = _command;
     cv = _cv;
     mutex_atcion = _mutex_action;
     strcpy(file_name, path.c_str());
