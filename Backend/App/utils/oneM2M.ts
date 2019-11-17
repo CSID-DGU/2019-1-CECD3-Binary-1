@@ -1,7 +1,8 @@
 import request from 'request';
+import { HOST_ADDRESS } from './env';
 
-const MOBIUS_URL = 'https://localhost:8080';
-const BE_APP_URL = 'https://localhost:8081';
+const MOBIUS_URL = `http://${HOST_ADDRESS}:8080`;
+const BE_APP_URL = `http://${HOST_ADDRESS}:8081`;
 
 export const init = () => {
   request.post({

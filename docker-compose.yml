@@ -68,6 +68,8 @@ services:
     command: "yarn start"
     depends_on:
       - backend_mongo
+    env_file:
+      - .env
 
   frontend_app:
     container_name: frontend_app
@@ -80,6 +82,8 @@ services:
     command: "yarn start"
     depends_on:
       - backend_app
+    env_file:
+      - .env
 
 volumes:
   mongodata:

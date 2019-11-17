@@ -1,8 +1,9 @@
 import mqtt from 'mqtt';
 import * as infoManager from './infoManager';
 import * as gpsManager from './gpsManager';
+import { HOST_ADDRESS } from './env';
 
-const client = mqtt.connect('mqtt://10.0.75.2:1883');
+const client = mqtt.connect(`mqtt://${HOST_ADDRESS}:1883`);
 
 export const connect = () => {
   client.on('connect', () => {
