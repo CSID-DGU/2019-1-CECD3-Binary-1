@@ -40,7 +40,7 @@ int main(int argc, char** argv)
     ConnectionResult connection_result;
     std::condition_variable cv;
     std::mutex mutex_action;
-    
+    unsigned int command = 0;
 
     bool discovered_system = false;
     if (argc == 2) {
@@ -86,10 +86,9 @@ int main(int argc, char** argv)
 
     auto telemetry = std::make_shared<Telemetry>(system);
     auto action = std::make_shared<Action>(system);
-    unixDomainSocket test("/tmp/unix.sock", &cv, &mutex_action);
-    test.setGPS(0.015, 37.559965, 126.998737);
-    //make socket
-
+#ifdef SOCKET_ON
+    unixDomainSocket sock("/tmp/unix.sock", &cv, &mutex_action, &command);    //make socket
+#endif
     // We want to listen to the GPS and alititude of the drone at 1 Hz.
     {
         std::cout << "Setting rate updates..." << std::endl;
@@ -109,13 +108,7 @@ int main(int argc, char** argv)
         }
         
     }
-    telemetry->position_async([](Telemetry::Position position) {
-        
-    std::cout << "Altitude: " << position.relative_altitude_m << " m" << std::endl
-              << "Latitude: " << position.latitude_deg << std::endl
-              << "Longitude: " << position.longitude_deg << std::endl;
-    });
-#if 0
+    
     const Telemetry::Result set_rate_result = telemetry->set_rate_position(1.0);
     if (set_rate_result != Telemetry::Result::SUCCESS) {
         std::cout << ERROR_CONSOLE_TEXT
@@ -130,70 +123,87 @@ int main(int argc, char** argv)
                   << "Altitude: " << position.relative_altitude_m << " m"
                   << NORMAL_CONSOLE_TEXT // set to default color again
                   << std::endl;
-    });
+#ifdef SOCKET_ON
+        sock.setGPS(position.relative_altitude_m, position.latitude_deg, position.longitude_deg);
 #endif
+        std::cout << "Altitude: " << position.relative_altitude_m << " m" << std::endl
+                << "Latitude: " << position.latitude_deg << std::endl
+                << "Longitude: " << position.longitude_deg << std::endl;
+    });
     // Check if vehicle is ready to arm
-    while (true) {
-        std::unique_lock<std::mutex> lk(mutex_action);
-        cv.wait(
-                lk, [&] { return test.isActivate(); });
-
-        std::cout << "DO SOME ACTION" << std::endl;
-        test.actionOff();
-        std::this_thread::sleep_for(std::chrono::milliseconds(80));
-    }
-
     while (telemetry->health_all_ok() != true) {
         std::cerr << "Vehicle is getting ready to arm" << std::endl;
         std::cerr << telemetry->health() << std::endl;
         sleep_for(seconds(1));
     }
+
     
+    while (true) {
+#ifdef SOCKET_ON
+        std::unique_lock<std::mutex> lk(mutex_action);
+        cv.wait(
+                lk, [&] { return test.isActivate(); });
 
-#if 1
-
-    std::cout << "Before Arming......" << std::endl;
-    // Arm vehicle
-
-    std::cout << "Arming..." << std::endl;
-    const Action::Result arm_result = action->arm();
-
-    if (arm_result != Action::Result::SUCCESS) {
-        std::cout << ERROR_CONSOLE_TEXT << "Arming failed:" << Action::result_str(arm_result)
-                  << NORMAL_CONSOLE_TEXT << std::endl;
-        return 1;
-    }
-
-    // Take off
-    std::cout << "Taking off..." << std::endl;
-    const Action::Result takeoff_result = action->takeoff();
-    if (takeoff_result != Action::Result::SUCCESS) {
-        std::cout << ERROR_CONSOLE_TEXT << "Takeoff failed:" << Action::result_str(takeoff_result)
-                  << NORMAL_CONSOLE_TEXT << std::endl;
-        return 1;
-    }
-
-    // Let it hover for a bit before landing again.
-    sleep_for(seconds(10));
-
-    std::cout << "Landing..." << std::endl;
-    const Action::Result land_result = action->land();
-    if (land_result != Action::Result::SUCCESS) {
-        std::cout << ERROR_CONSOLE_TEXT << "Land failed:" << Action::result_str(land_result)
-                  << NORMAL_CONSOLE_TEXT << std::endl;
-        return 1;
-    }
-
-    // Check if vehicle is still in air
-    while (telemetry->in_air()) {
-        std::cout << "Vehicle is landing..." << std::endl;
-        sleep_for(seconds(1));
-    }
-    std::cout << "Landed!" << std::endl;
-
-    // We are relying on auto-disarming but let's keep watching the telemetry for a bit longer.
-    sleep_for(seconds(3));
-    std::cout << "Finished..." << std::endl;
+#else
+        command = 1;
+        std::cout << "This is for test" << std::endl;
 #endif
+        switch(command) {
+        case 1: //takeoff and land test
+            std::cout << "Before Arming......" << std::endl;
+            // Arm vehicle
+
+            std::cout << "Arming..." << std::endl;
+            const Action::Result arm_result = action->arm();
+
+            if (arm_result != Action::Result::SUCCESS) {
+                std::cout << ERROR_CONSOLE_TEXT << "Arming failed:" << Action::result_str(arm_result)
+                        << NORMAL_CONSOLE_TEXT << std::endl;
+                return 1;
+            }
+
+            // Take off
+            std::cout << "Taking off..." << std::endl;
+            const Action::Result takeoff_result = action->takeoff();
+            if (takeoff_result != Action::Result::SUCCESS) {
+                std::cout << ERROR_CONSOLE_TEXT << "Takeoff failed:" << Action::result_str(takeoff_result)
+                        << NORMAL_CONSOLE_TEXT << std::endl;
+                return 1;
+            }
+
+            // Let it hover for a bit before landing again.
+            sleep_for(seconds(10));
+
+            std::cout << "Landing..." << std::endl;
+            const Action::Result land_result = action->land();
+            if (land_result != Action::Result::SUCCESS) {
+                std::cout << ERROR_CONSOLE_TEXT << "Land failed:" << Action::result_str(land_result)
+                        << NORMAL_CONSOLE_TEXT << std::endl;
+                return 1;
+            }
+
+            // Check if vehicle is still in air
+            while (telemetry->in_air()) {
+                std::cout << "Vehicle is landing..." << std::endl;
+                sleep_for(seconds(1));
+            }
+            std::cout << "Landed!" << std::endl;
+
+            // We are relying on auto-disarming but let's keep watching the telemetry for a bit longer.
+            sleep_for(seconds(3));
+            std::cout << "Finished..." << std::endl;
+            break;
+            
+        }
+
+#ifdef SOCKET_ON
+        test.actionOff();
+#endif
+        std::this_thread::sleep_for(std::chrono::milliseconds(80));
+    }
+
+    
+    
+    
     return 0;
 }

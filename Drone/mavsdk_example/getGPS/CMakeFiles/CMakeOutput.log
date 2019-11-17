@@ -10,7 +10,7 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "/home/pi/MAVSDK/example/getGPS/CMakeFiles/3.13.4/CompilerIdC/a.out"
+The C compiler identification is GNU, found in "/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/3.13.4/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler: /usr/bin/c++ 
@@ -23,33 +23,33 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is GNU, found in "/home/pi/MAVSDK/example/getGPS/CMakeFiles/3.13.4/CompilerIdCXX/a.out"
+The CXX compiler identification is GNU, found in "/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/3.13.4/CompilerIdCXX/a.out"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: /home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_df546/fast"
-/usr/bin/make -f CMakeFiles/cmTC_df546.dir/build.make CMakeFiles/cmTC_df546.dir/build
-make[1]: Entering directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_df546.dir/testCCompiler.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_df546.dir/testCCompiler.c.o   -c /home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_df546
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_df546.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_df546.dir/testCCompiler.c.o  -o cmTC_df546 
-make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_c3b86/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c3b86.dir/build.make CMakeFiles/cmTC_c3b86.dir/build
+make[1]: Entering directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c3b86.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_c3b86.dir/testCCompiler.c.o   -c /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_c3b86
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c3b86.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_c3b86.dir/testCCompiler.c.o  -o cmTC_c3b86 
+make[1]: Leaving directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_1ec64/fast"
-/usr/bin/make -f CMakeFiles/cmTC_1ec64.dir/build.make CMakeFiles/cmTC_1ec64.dir/build
-make[1]: Entering directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_1ec64.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_1ec64.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.13/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_1ec64
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1ec64.dir/link.txt --verbose=1
-/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_1ec64.dir/CMakeCCompilerABI.c.o  -o cmTC_1ec64 
+Run Build Command:"/usr/bin/make" "cmTC_5e636/fast"
+/usr/bin/make -f CMakeFiles/cmTC_5e636.dir/build.make CMakeFiles/cmTC_5e636.dir/build
+make[1]: Entering directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5e636.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_5e636.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.13/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_5e636
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5e636.dir/link.txt --verbose=1
+/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_5e636.dir/CMakeCCompilerABI.c.o  -o cmTC_5e636 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper
@@ -59,24 +59,24 @@ Thread model: posix
 gcc version 8.3.0 (Raspbian 8.3.0-6+rpi1) 
 COMPILER_PATH=/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/
 LIBRARY_PATH=/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/8/../../../:/lib/arm-linux-gnueabihf/:/lib/:/usr/lib/arm-linux-gnueabihf/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_1ec64'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp'
- /usr/lib/gcc/arm-linux-gnueabihf/8/collect2 -plugin /usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so -plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccAMPQtk.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu -m armelf_linux_eabi -o cmTC_1ec64 /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/8 -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../.. -L/lib/arm-linux-gnueabihf -L/usr/lib/arm-linux-gnueabihf CMakeFiles/cmTC_1ec64.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/arm-linux-gnueabihf/8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_1ec64'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp'
-make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_5e636'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp'
+ /usr/lib/gcc/arm-linux-gnueabihf/8/collect2 -plugin /usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so -plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccIkBwPj.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu -m armelf_linux_eabi -o cmTC_5e636 /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/8 -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../.. -L/lib/arm-linux-gnueabihf -L/usr/lib/arm-linux-gnueabihf CMakeFiles/cmTC_5e636.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/arm-linux-gnueabihf/8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_5e636'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp'
+make[1]: Leaving directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_1ec64/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_1ec64.dir/build.make CMakeFiles/cmTC_1ec64.dir/build]
-  ignore line: [make[1]: Entering directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_1ec64.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_1ec64.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.13/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_1ec64]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1ec64.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_1ec64.dir/CMakeCCompilerABI.c.o  -o cmTC_1ec64 ]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_5e636/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_5e636.dir/build.make CMakeFiles/cmTC_5e636.dir/build]
+  ignore line: [make[1]: Entering directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_5e636.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_5e636.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.13/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_5e636]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5e636.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_5e636.dir/CMakeCCompilerABI.c.o  -o cmTC_5e636 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper]
@@ -86,13 +86,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 8.3.0 (Raspbian 8.3.0-6+rpi1) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/8/../../../:/lib/arm-linux-gnueabihf/:/lib/:/usr/lib/arm-linux-gnueabihf/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_1ec64'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp']
-  link line: [ /usr/lib/gcc/arm-linux-gnueabihf/8/collect2 -plugin /usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so -plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccAMPQtk.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu -m armelf_linux_eabi -o cmTC_1ec64 /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/8 -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../.. -L/lib/arm-linux-gnueabihf -L/usr/lib/arm-linux-gnueabihf CMakeFiles/cmTC_1ec64.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/arm-linux-gnueabihf/8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_5e636'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp']
+  link line: [ /usr/lib/gcc/arm-linux-gnueabihf/8/collect2 -plugin /usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so -plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccIkBwPj.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu -m armelf_linux_eabi -o cmTC_5e636 /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/8 -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../.. -L/lib/arm-linux-gnueabihf -L/usr/lib/arm-linux-gnueabihf CMakeFiles/cmTC_5e636.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/arm-linux-gnueabihf/8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crtn.o]
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccAMPQtk.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccIkBwPj.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -108,7 +108,7 @@ Parsed C implicit link information from above output:
     arg [-m] ==> ignore
     arg [armelf_linux_eabi] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_1ec64] ==> ignore
+    arg [cmTC_5e636] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o] ==> ignore
@@ -117,7 +117,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/gcc/arm-linux-gnueabihf/8/../../..] ==> dir [/usr/lib/gcc/arm-linux-gnueabihf/8/../../..]
     arg [-L/lib/arm-linux-gnueabihf] ==> dir [/lib/arm-linux-gnueabihf]
     arg [-L/usr/lib/arm-linux-gnueabihf] ==> dir [/usr/lib/arm-linux-gnueabihf]
-    arg [CMakeFiles/cmTC_1ec64.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_5e636.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--push-state] ==> ignore
     arg [--as-needed] ==> ignore
@@ -144,17 +144,17 @@ Parsed C implicit link information from above output:
 
 
 Detecting C [-std=c11] compiler features compiled with the following output:
-Change Dir: /home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_51c5a/fast"
-/usr/bin/make -f CMakeFiles/cmTC_51c5a.dir/build.make CMakeFiles/cmTC_51c5a.dir/build
-make[1]: Entering directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_51c5a.dir/feature_tests.c.o
-/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_51c5a.dir/feature_tests.c.o   -c /home/pi/MAVSDK/example/getGPS/CMakeFiles/feature_tests.c
-Linking C executable cmTC_51c5a
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_51c5a.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_51c5a.dir/feature_tests.c.o  -o cmTC_51c5a 
-make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_aff3e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_aff3e.dir/build.make CMakeFiles/cmTC_aff3e.dir/build
+make[1]: Entering directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_aff3e.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_aff3e.dir/feature_tests.c.o   -c /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/feature_tests.c
+Linking C executable cmTC_aff3e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_aff3e.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_aff3e.dir/feature_tests.c.o  -o cmTC_aff3e 
+make[1]: Leaving directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -164,17 +164,17 @@ make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
 
 
 Detecting C [-std=c99] compiler features compiled with the following output:
-Change Dir: /home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_7ccea/fast"
-/usr/bin/make -f CMakeFiles/cmTC_7ccea.dir/build.make CMakeFiles/cmTC_7ccea.dir/build
-make[1]: Entering directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_7ccea.dir/feature_tests.c.o
-/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_7ccea.dir/feature_tests.c.o   -c /home/pi/MAVSDK/example/getGPS/CMakeFiles/feature_tests.c
-Linking C executable cmTC_7ccea
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7ccea.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_7ccea.dir/feature_tests.c.o  -o cmTC_7ccea 
-make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_67347/fast"
+/usr/bin/make -f CMakeFiles/cmTC_67347.dir/build.make CMakeFiles/cmTC_67347.dir/build
+make[1]: Entering directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_67347.dir/feature_tests.c.o
+/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_67347.dir/feature_tests.c.o   -c /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/feature_tests.c
+Linking C executable cmTC_67347
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_67347.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_67347.dir/feature_tests.c.o  -o cmTC_67347 
+make[1]: Leaving directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -184,17 +184,17 @@ make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
 
 
 Detecting C [-std=c90] compiler features compiled with the following output:
-Change Dir: /home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_281ae/fast"
-/usr/bin/make -f CMakeFiles/cmTC_281ae.dir/build.make CMakeFiles/cmTC_281ae.dir/build
-make[1]: Entering directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_281ae.dir/feature_tests.c.o
-/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_281ae.dir/feature_tests.c.o   -c /home/pi/MAVSDK/example/getGPS/CMakeFiles/feature_tests.c
-Linking C executable cmTC_281ae
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_281ae.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_281ae.dir/feature_tests.c.o  -o cmTC_281ae 
-make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_12ffa/fast"
+/usr/bin/make -f CMakeFiles/cmTC_12ffa.dir/build.make CMakeFiles/cmTC_12ffa.dir/build
+make[1]: Entering directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_12ffa.dir/feature_tests.c.o
+/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_12ffa.dir/feature_tests.c.o   -c /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/feature_tests.c
+Linking C executable cmTC_12ffa
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_12ffa.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_12ffa.dir/feature_tests.c.o  -o cmTC_12ffa 
+make[1]: Leaving directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -202,30 +202,30 @@ make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
 Determining if the CXX compiler works passed with the following output:
-Change Dir: /home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_b1d1b/fast"
-/usr/bin/make -f CMakeFiles/cmTC_b1d1b.dir/build.make CMakeFiles/cmTC_b1d1b.dir/build
-make[1]: Entering directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_b1d1b.dir/testCXXCompiler.cxx.o
-/usr/bin/c++     -o CMakeFiles/cmTC_b1d1b.dir/testCXXCompiler.cxx.o -c /home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_b1d1b
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b1d1b.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_b1d1b.dir/testCXXCompiler.cxx.o  -o cmTC_b1d1b 
-make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_105ea/fast"
+/usr/bin/make -f CMakeFiles/cmTC_105ea.dir/build.make CMakeFiles/cmTC_105ea.dir/build
+make[1]: Entering directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_105ea.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_105ea.dir/testCXXCompiler.cxx.o -c /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_105ea
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_105ea.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_105ea.dir/testCXXCompiler.cxx.o  -o cmTC_105ea 
+make[1]: Leaving directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: /home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_096d1/fast"
-/usr/bin/make -f CMakeFiles/cmTC_096d1.dir/build.make CMakeFiles/cmTC_096d1.dir/build
-make[1]: Entering directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_096d1.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++     -o CMakeFiles/cmTC_096d1.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_096d1
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_096d1.dir/link.txt --verbose=1
-/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_096d1.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_096d1 
+Run Build Command:"/usr/bin/make" "cmTC_b8690/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b8690.dir/build.make CMakeFiles/cmTC_b8690.dir/build
+make[1]: Entering directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_b8690.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTC_b8690.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_b8690
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b8690.dir/link.txt --verbose=1
+/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_b8690.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_b8690 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper
@@ -235,24 +235,24 @@ Thread model: posix
 gcc version 8.3.0 (Raspbian 8.3.0-6+rpi1) 
 COMPILER_PATH=/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/
 LIBRARY_PATH=/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/8/../../../:/lib/arm-linux-gnueabihf/:/lib/:/usr/lib/arm-linux-gnueabihf/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_096d1' '-shared-libgcc'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp'
- /usr/lib/gcc/arm-linux-gnueabihf/8/collect2 -plugin /usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so -plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccx90hyd.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu -m armelf_linux_eabi -o cmTC_096d1 /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/8 -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../.. -L/lib/arm-linux-gnueabihf -L/usr/lib/arm-linux-gnueabihf CMakeFiles/cmTC_096d1.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/arm-linux-gnueabihf/8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_096d1' '-shared-libgcc'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp'
-make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_b8690' '-shared-libgcc'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp'
+ /usr/lib/gcc/arm-linux-gnueabihf/8/collect2 -plugin /usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so -plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccSCabF1.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu -m armelf_linux_eabi -o cmTC_b8690 /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/8 -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../.. -L/lib/arm-linux-gnueabihf -L/usr/lib/arm-linux-gnueabihf CMakeFiles/cmTC_b8690.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/arm-linux-gnueabihf/8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_b8690' '-shared-libgcc'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp'
+make[1]: Leaving directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_096d1/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_096d1.dir/build.make CMakeFiles/cmTC_096d1.dir/build]
-  ignore line: [make[1]: Entering directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_096d1.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_096d1.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_096d1]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_096d1.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_096d1.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_096d1 ]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_b8690/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_b8690.dir/build.make CMakeFiles/cmTC_b8690.dir/build]
+  ignore line: [make[1]: Entering directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_b8690.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_b8690.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_b8690]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b8690.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_b8690.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_b8690 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper]
@@ -262,13 +262,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 8.3.0 (Raspbian 8.3.0-6+rpi1) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/8/../../../:/lib/arm-linux-gnueabihf/:/lib/:/usr/lib/arm-linux-gnueabihf/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_096d1' '-shared-libgcc'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp']
-  link line: [ /usr/lib/gcc/arm-linux-gnueabihf/8/collect2 -plugin /usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so -plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccx90hyd.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu -m armelf_linux_eabi -o cmTC_096d1 /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/8 -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../.. -L/lib/arm-linux-gnueabihf -L/usr/lib/arm-linux-gnueabihf CMakeFiles/cmTC_096d1.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/arm-linux-gnueabihf/8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_b8690' '-shared-libgcc'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp']
+  link line: [ /usr/lib/gcc/arm-linux-gnueabihf/8/collect2 -plugin /usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so -plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccSCabF1.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu -m armelf_linux_eabi -o cmTC_b8690 /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/8 -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../.. -L/lib/arm-linux-gnueabihf -L/usr/lib/arm-linux-gnueabihf CMakeFiles/cmTC_b8690.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/arm-linux-gnueabihf/8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crtn.o]
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccx90hyd.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccSCabF1.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -284,7 +284,7 @@ Parsed CXX implicit link information from above output:
     arg [-m] ==> ignore
     arg [armelf_linux_eabi] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_096d1] ==> ignore
+    arg [cmTC_b8690] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o] ==> ignore
@@ -293,7 +293,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/gcc/arm-linux-gnueabihf/8/../../..] ==> dir [/usr/lib/gcc/arm-linux-gnueabihf/8/../../..]
     arg [-L/lib/arm-linux-gnueabihf] ==> dir [/lib/arm-linux-gnueabihf]
     arg [-L/usr/lib/arm-linux-gnueabihf] ==> dir [/usr/lib/arm-linux-gnueabihf]
-    arg [CMakeFiles/cmTC_096d1.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_b8690.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -316,17 +316,17 @@ Parsed CXX implicit link information from above output:
 
 
 Detecting CXX [-std=c++2a] compiler features compiled with the following output:
-Change Dir: /home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_a4ee7/fast"
-/usr/bin/make -f CMakeFiles/cmTC_a4ee7.dir/build.make CMakeFiles/cmTC_a4ee7.dir/build
-make[1]: Entering directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_a4ee7.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++2a -o CMakeFiles/cmTC_a4ee7.dir/feature_tests.cxx.o -c /home/pi/MAVSDK/example/getGPS/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_a4ee7
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a4ee7.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_a4ee7.dir/feature_tests.cxx.o  -o cmTC_a4ee7 
-make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_c09b7/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c09b7.dir/build.make CMakeFiles/cmTC_c09b7.dir/build
+make[1]: Entering directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_c09b7.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++2a -o CMakeFiles/cmTC_c09b7.dir/feature_tests.cxx.o -c /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_c09b7
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c09b7.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_c09b7.dir/feature_tests.cxx.o  -o cmTC_c09b7 
+make[1]: Leaving directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -389,17 +389,17 @@ make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX [-std=c++17] compiler features compiled with the following output:
-Change Dir: /home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_68cf4/fast"
-/usr/bin/make -f CMakeFiles/cmTC_68cf4.dir/build.make CMakeFiles/cmTC_68cf4.dir/build
-make[1]: Entering directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_68cf4.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++17 -o CMakeFiles/cmTC_68cf4.dir/feature_tests.cxx.o -c /home/pi/MAVSDK/example/getGPS/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_68cf4
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_68cf4.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_68cf4.dir/feature_tests.cxx.o  -o cmTC_68cf4 
-make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_93337/fast"
+/usr/bin/make -f CMakeFiles/cmTC_93337.dir/build.make CMakeFiles/cmTC_93337.dir/build
+make[1]: Entering directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_93337.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++17 -o CMakeFiles/cmTC_93337.dir/feature_tests.cxx.o -c /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_93337
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_93337.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_93337.dir/feature_tests.cxx.o  -o cmTC_93337 
+make[1]: Leaving directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -462,17 +462,17 @@ make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
-Change Dir: /home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_8f895/fast"
-/usr/bin/make -f CMakeFiles/cmTC_8f895.dir/build.make CMakeFiles/cmTC_8f895.dir/build
-make[1]: Entering directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_8f895.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_8f895.dir/feature_tests.cxx.o -c /home/pi/MAVSDK/example/getGPS/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_8f895
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8f895.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_8f895.dir/feature_tests.cxx.o  -o cmTC_8f895 
-make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_96ff5/fast"
+/usr/bin/make -f CMakeFiles/cmTC_96ff5.dir/build.make CMakeFiles/cmTC_96ff5.dir/build
+make[1]: Entering directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_96ff5.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_96ff5.dir/feature_tests.cxx.o -c /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_96ff5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_96ff5.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_96ff5.dir/feature_tests.cxx.o  -o cmTC_96ff5 
+make[1]: Leaving directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -535,17 +535,17 @@ make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
-Change Dir: /home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_d8a88/fast"
-/usr/bin/make -f CMakeFiles/cmTC_d8a88.dir/build.make CMakeFiles/cmTC_d8a88.dir/build
-make[1]: Entering directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_d8a88.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_d8a88.dir/feature_tests.cxx.o -c /home/pi/MAVSDK/example/getGPS/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_d8a88
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d8a88.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_d8a88.dir/feature_tests.cxx.o  -o cmTC_d8a88 
-make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_84e7b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_84e7b.dir/build.make CMakeFiles/cmTC_84e7b.dir/build
+make[1]: Entering directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_84e7b.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_84e7b.dir/feature_tests.cxx.o -c /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_84e7b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_84e7b.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_84e7b.dir/feature_tests.cxx.o  -o cmTC_84e7b 
+make[1]: Leaving directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -608,17 +608,17 @@ make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
-Change Dir: /home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_e56bf/fast"
-/usr/bin/make -f CMakeFiles/cmTC_e56bf.dir/build.make CMakeFiles/cmTC_e56bf.dir/build
-make[1]: Entering directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_e56bf.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_e56bf.dir/feature_tests.cxx.o -c /home/pi/MAVSDK/example/getGPS/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_e56bf
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e56bf.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_e56bf.dir/feature_tests.cxx.o  -o cmTC_e56bf 
-make[1]: Leaving directory '/home/pi/MAVSDK/example/getGPS/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_834cb/fast"
+/usr/bin/make -f CMakeFiles/cmTC_834cb.dir/build.make CMakeFiles/cmTC_834cb.dir/build
+make[1]: Entering directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_834cb.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_834cb.dir/feature_tests.cxx.o -c /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_834cb
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_834cb.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_834cb.dir/feature_tests.cxx.o  -o cmTC_834cb 
+make[1]: Leaving directory '/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
