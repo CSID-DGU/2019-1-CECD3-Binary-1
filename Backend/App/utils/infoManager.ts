@@ -22,7 +22,7 @@ export const patrol = (droneId: string) => {
   let drone = DroneInfoGrp.get(droneId) || { id: '', url: '', status: '', target: '' };
   drone.status = 'patrol';
   drone.target = '';
-  setTargetUserID('', droneId.substring(1, droneId.length));
+  setTargetUserID('', droneId);
   matching();
 }
 

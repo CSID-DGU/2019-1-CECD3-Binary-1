@@ -91,6 +91,9 @@ export const takeoffTest = (droneID: string) => {
     json: true
   }, function (error, res, body) {
     if (error) console.error(error);
-    else console.log(body);
+    else {
+      console.log(body);
+      setTargetUserID('id', droneID);
+    }
   });
 }
