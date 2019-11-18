@@ -88,6 +88,7 @@ function timer_upload_action() {
                 break;
             }
         }
+        if(t_count == 1) UnixdomainSocket.write('call_test');
         UnixdomainSocket.write('getGPS');
     }
 }

@@ -18,6 +18,8 @@
 #include <vector>
 #include <mutex>
 #include <condition_variable>
+
+#include "enum.h"
 struct gps_info_t{
     float altitude;
     double latitude;
@@ -29,7 +31,7 @@ class unixDomainSocket {
 private:
     int server_sockfd, client_sockfd;
     int state, client_len;
-    unsigned int command;
+    flightMode mode;
     struct sockaddr_un clientaddr, serveraddr;
     std::vector<gps_info_t> gps_info;
     std::mutex mutex_gps;
@@ -48,7 +50,7 @@ public:
     void setGPS(float altitude, double latitude, double longitude);
     void actionOn();
     void actionOff();
-    unixDomainSocket(std::string path, std::condition_variable* _cv, std::mutex* _mutex_action, unsigned int _command);
+    unixDomainSocket(std::string path, std::condition_variable* _cv, std::mutex* _mutex_action, flightMode& _mode);
     ~unixDomainSocket() {
         close(client_sockfd);
     }

@@ -12,10 +12,12 @@ export interface IDroneInfo {
   id: string,
   url: string,
   status: string,
+  target: string,
 }
 
 export const DroneInfo: IDroneInfo = {
   id: '',
   url: '',
   status: '',
+  target: '',
 }

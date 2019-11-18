@@ -5,14 +5,14 @@ import mongo from 'connect-mongo';
 import mongoose from 'mongoose';
 import * as onem2m from './utils/oneM2M';
 import * as mqtt from './utils/mqtt';
-import { MONGODB_URI, SESSION_SECRET } from './utils/env';
+import { MONGODB_URL, SESSION_SECRET } from './utils/env';
 
 const app = express();
 const MongoStore = mongo(session);
 
 // Connect to MongoDB
 mongoose.Promise = global.Promise;
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
+mongoose.connect(MONGODB_URL, { useNewUrlParser: true })
   .then(() => {
     console.log('Successfully connected to MongoDB.');
   })
@@ -30,7 +30,7 @@ app.use(session({
   saveUninitialized: true,
   secret: SESSION_SECRET,
   store: new MongoStore({
-    url: MONGODB_URI,
+    url: MONGODB_URL,
     autoReconnect: true
   })
 }));
@@ -44,9 +44,11 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
 // Route handlers
 import * as index from './routes/index';
 import * as user from './routes/user';
+import * as drone from './routes/drone';
 
 app.use('/', index.router);
 app.use('/users', user.router);
+app.use('/drones', drone.router);
 
 // Start server
 app.listen(app.get('port'), () => {

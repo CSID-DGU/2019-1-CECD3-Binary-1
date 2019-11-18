@@ -3,7 +3,9 @@
 #include <mavsdk/mavsdk.h>
 #include <mavsdk/plugins/action/action.h>
 #include <mavsdk/plugins/telemetry/telemetry.h>
+
 #include "unix_domain_socket.h"
+#include "enum.h"
 
 #include <iostream>
 #include <thread>
@@ -40,7 +42,7 @@ int main(int argc, char** argv)
     ConnectionResult connection_result;
     std::condition_variable cv;
     std::mutex mutex_action;
-    unsigned int command = 0;
+    flightMode mode;
 
     bool discovered_system = false;
     if (argc == 2) {
@@ -69,7 +71,7 @@ int main(int argc, char** argv)
         discovered_system = true;
     });
 
-    // We usually receive heartbeats at 1Hz, therefore we should find a system after around 2
+    // We usually receive heartbeats at 1Hz, therefore we should find a syste교m after around 2
     // seconds.
     
     sleep_for(seconds(2));
@@ -86,9 +88,7 @@ int main(int argc, char** argv)
 
     auto telemetry = std::make_shared<Telemetry>(system);
     auto action = std::make_shared<Action>(system);
-    unixDomainSocket sock("/tmp/unix.sock", &cv, &mutex_action, &command);    //make socket
-    
-
+    unixDomainSocket sock("/tmp/unix.sock", &cv, &mutex_action, mode);    //make socket
     // We want to listen to the GPS and alititude of the drone at 1 Hz.
     {
         std::cout << "Setting rate updates..." << std::endl;
@@ -123,7 +123,9 @@ int main(int argc, char** argv)
                   << "Altitude: " << position.relative_altitude_m << " m"
                   << NORMAL_CONSOLE_TEXT // set to default color again
                   << std::endl;
+#ifdef SOCKET_ON
         sock.setGPS(position.relative_altitude_m, position.latitude_deg, position.longitude_deg);
+#endif
         std::cout << "Altitude: " << position.relative_altitude_m << " m" << std::endl
                 << "Latitude: " << position.latitude_deg << std::endl
                 << "Longitude: " << position.longitude_deg << std::endl;
@@ -137,12 +139,16 @@ int main(int argc, char** argv)
 
     
     while (true) {
+#ifdef SOCKET_ON
         std::unique_lock<std::mutex> lk(mutex_action);
         cv.wait(
                 lk, [&] { return test.isActivate(); });
 
-        switch(command) {
-        case 1: //takeoff and land test
+#else
+    mode = TEST;
+#endif
+        switch((int)mode) {
+        case TEST: //takeoff and land test
             std::cout << "Before Arming......" << std::endl;
             // Arm vehicle
 
@@ -186,13 +192,12 @@ int main(int argc, char** argv)
             sleep_for(seconds(3));
             std::cout << "Finished..." << std::endl;
             break;
-
-        default:
-            break;
+            
         }
 
-
+#ifdef SOCKET_ON
         test.actionOff();
+#endif
         std::this_thread::sleep_for(std::chrono::milliseconds(80));
     }
 

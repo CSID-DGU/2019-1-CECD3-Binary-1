@@ -1,7 +1,8 @@
 import request from 'request';
+import { HOST_ADDRESS } from './env';
 
-const MOBIUS_URL = 'https://localhost:8080';
-const BE_APP_URL = 'https://localhost:8081';
+const MOBIUS_URL = `http://${HOST_ADDRESS}:8080`;
+const BE_APP_URL = `http://${HOST_ADDRESS}:8081`;
 
 export const init = () => {
   request.post({
@@ -23,79 +24,52 @@ export const init = () => {
     json: true
   }, function (error, res, body) {
     if (error) console.error(error);
-    else {
-      console.log(body);
-      create_gpsGrp();
-    }
-  });
-}
-
-const create_gpsGrp = () => {
-  request.post({
-    headers: {
-      'X-M2M-RI': 'GW_APP',
-      'X-M2M-Origin': '/Mobius/BE_APP',
-      'Content-Type': 'application/vnd.onem2m-res+json;ty=9',
-      'Accept': 'application/json'
-    },
-    body: {
-      'm2m:grp': {
-        'rn': 'gpsGrp',
-        'mnm': 10,
-        'mid': []
-      }
-    },
-    url: MOBIUS_URL + '/Mobius/BE_APP',
-    json: true
-  }, function (error, res, body) {
-    if (error) console.error(error);
-    else {
-      console.log(body);
-      update_gpsGrp();
-    }
-  });
-}
-
-const update_gpsGrp = () => {
-  request.put({
-    headers: {
-      'X-M2M-RI': 'GW_APP',
-      'X-M2M-Origin': '/Mobius/BE_APP',
-      'Content-Type': 'application/vnd.onem2m-res+json',
-      'Accept': 'application/json'
-    },
-    body: {
-      'm2m:grp': {
-        'mnm': 100,
-        'mid': ['/Mobius/Drone0/gps', '/Mobius/Drone1/gps']
-      }
-    },
-    url: MOBIUS_URL + '/Mobius/BE_APP/gpsGrp',
-    json: true
-  }, function (error, res, body) {
-    if (error) console.error(error);
     else console.log(body);
   });
 }
 
-const lookup_drones = () => {
-  request.get({
+export const setTargetUserID = (userID: string, droneID: string) => {
+  request.post({
     headers: {
       'X-M2M-RI': 'BE_APP',
       'X-M2M-Origin': '/Mobius/BE_APP',
+      'Content-Type': 'application/vnd.onem2m-res+json;ty=4',
       'Accept': 'application/json'
     },
-    url: MOBIUS_URL + '/Mobius?rcn=4',
+    body: {
+      'm2m:cin': {
+        'con': userID
+      }
+    },
+    url: MOBIUS_URL + `/Mobius/${droneID}/userId`,
     json: true
   }, function (error, res, body) {
     if (error) console.error(error);
     else {
-      console.log(body['m2m:rsp']['m2m:ae']);
-      console.log(body['m2m:rsp']['m2m:grp']);
-      // console.log(body['m2m:grp']['mid']);
-      // body['m2m:grp']['mid'].map((drone: string) => {
-      //   oneM2M.Drone_Grp.push({ id: drone, url: '' })
-      // })
+      console.log(body);
+      if (userID === '') droneCall(droneID, 0);
+      else droneCall(droneID, 1);
     }
+  });
+}
+
+const droneCall = (droneID: string, call: number) => {
+  request.post({
+    headers: {
+      'X-M2M-RI': 'BE_APP',
+      'X-M2M-Origin': '/Mobius/BE_APP',
+      'Content-Type': 'application/vnd.onem2m-res+json;ty=4',
+      'Accept': 'application/json'
+    },
+    body: {
+      'm2m:cin': {
+        'con': call
+      }
+    },
+    url: MOBIUS_URL + `/Mobius/${droneID}/call`,
+    json: true
+  }, function (error, res, body) {
+    if (error) console.error(error);
+    else console.log(body);
   });
 }

@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserAction } from '../../store/user/user.action';
+import axios from 'axios';
 import * as mqtt from '../../utils/Mqtt';
+import { GOOGLE_API_KEY } from '../../utils/env';
 import {
   AppBar,
   Button,
@@ -70,12 +72,13 @@ const User = () => {
   const intervalId = useRef();
   const [isCall, setIsCall] = useState(false);
   const droneCall = () => {
-    if (window.navigator.geolocation) setIsCall(true);
-    else alert('Current location information is not verified.');
+    setIsCall(true);
+    // if (window.navigator.geolocation) setIsCall(true);
+    // else alert('Current location information is not verified.');
   }
 
   useEffect(() => {
-    mqtt.connect();
+    // mqtt.connect();
 
     return () => {
       clearInterval(intervalId.current);
@@ -85,12 +88,25 @@ const User = () => {
   useEffect(() => {
     if (isCall) {
       const interval = setInterval(() => {
-        window.navigator.geolocation.getCurrentPosition(position => {
-          mqtt.publish('/oneM2M/req/FE_APP/' + userId + '/json', { lat: position.coords.latitude, lon: position.coords.longitude });
-        }, () => {
-          alert('Current location information is not verified.');
-          clearInterval(interval);
-        }, { enableHighAccuracy: true });
+        axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${GOOGLE_API_KEY}`, {
+          'homeMobileCountryCode': 450,
+          'homeMobileNetworkCode': 8,
+          'radioType': 'lte',
+          'carrier': 'KT',
+          'considerIp': 'true'
+        })
+          .then(response => {
+            mqtt.publish('/oneM2M/req/FE_APP/' + userId + '/json', { lat: response.data.location.lat, lon: response.data.location.lng });
+          })
+          .catch(error => {
+            console.log(error);
+          })
+        // window.navigator.geolocation.getCurrentPosition(position => {
+        //   mqtt.publish('/oneM2M/req/FE_APP/' + userId + '/json', { lat: position.coords.latitude, lon: position.coords.longitude });
+        // }, () => {
+        //   alert('Current location information is not verified.');
+        //   clearInterval(interval);
+        // }, { enableHighAccuracy: true });
       }, 1000);
       intervalId.current = interval;
     }
@@ -121,12 +137,7 @@ const User = () => {
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
             <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
-              About smart policing
-            </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              Something short and leading about the collection below—its contents, the creator, etc.
-              Make it short and sweet, but not too short so folks don&apos;t simply skip over it
-              entirely.
+              Smart Policing
             </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
