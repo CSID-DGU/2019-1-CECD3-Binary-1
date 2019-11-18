@@ -103,6 +103,9 @@ function send_to_server(cname, con){
         }else if(cname === 'call'){
             if(con) wdata = 'call_drone';
             else wdata = 'call_rtl';
+        }else if(cname === 'takeoff'){
+            if(con) wdata = 'call_takeoff';
+            else wdata = 'call_land';
         }
         UnixdomainSocket.write(wdata);
     }
