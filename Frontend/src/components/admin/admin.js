@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { UserAction } from '../../store/user/user.action';
 import CityMap from '../map';
 import Player from '../player';
+import { GET } from '../../utils/Api';
 import * as mqtt from '../../utils/Mqtt';
 import moment from 'moment';
 import 'moment-timezone';
@@ -44,6 +45,10 @@ const useStyles = makeStyles(theme => ({
   heroButtons: {
     marginTop: theme.spacing(4),
   },
+  testButtons: {
+    textDecorationLine: 'underline',
+    margin: theme.spacing(0, 4),
+  },
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
@@ -62,8 +67,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const cameras = [
-  { id: 'camera1', url: 'ws://localhost:9999/' },
-  { id: 'camera2', url: 'ws://localhost:9998/' },
+  { id: 'SDrone2', url: 'ws://localhost:9999/' },
 ];
 
 const Admin = () => {
@@ -131,6 +135,18 @@ const Admin = () => {
                     <Typography gutterBottom variant="h5" component="h2">
                       {camera.id}
                     </Typography>
+                    <Button
+                      className={classes.testButtons}
+                      onClick={() => GET(`/drones/takeoff/${camera.id}`)}
+                    >
+                      Take-off Test
+                      </Button>
+                    <Button
+                      className={classes.testButtons}
+                      onClick={() => GET(`/drones/patrol/${camera.id}`)}
+                    >
+                      Patrol Start
+                      </Button>
                   </CardContent>
                 </Card>
               </Grid>

@@ -27,13 +27,12 @@ export const init = () => {
     if (error) console.error(error);
     else {
       console.log(body);
-      lookup_be_app();
-      lookup_drones();
+      lookupBEApp();
     }
   });
 }
 
-const lookup_be_app = () => {
+const lookupBEApp = () => {
   request.get({
     headers: {
       'X-M2M-RI': 'FE_APP',
@@ -47,24 +46,6 @@ const lookup_be_app = () => {
     else {
       console.log(body);
       server.url = body['m2m:ae']['poa'][0];
-      lookup_drones();
-    }
-  });
-}
-
-const lookup_drones = () => {
-  request.get({
-    headers: {
-      'X-M2M-RI': 'BE_APP',
-      'X-M2M-Origin': '/Mobius/BE_APP',
-      'Accept': 'application/json'
-    },
-    url: MOBIUS_URL + '/Mobius/BE_APP?rcn=4',
-    json: true
-  }, function (error, res, body) {
-    if (error) console.error(error);
-    else {
-      console.log(body['m2m:rsp']['m2m:grp']);
     }
   });
 }
