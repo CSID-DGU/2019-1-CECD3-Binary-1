@@ -11,47 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af7197ac-406b-4ed1-a67c-c3290bac7304" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/drone_control.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/drone_control.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/.idea/getGPS.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/3.13.4/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/3.13.4/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/3.13.4/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/3.13.4/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/3.13.4/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/3.13.4/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/3.13.4/CompilerIdC/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/3.13.4/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/3.13.4/CompilerIdCXX/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/feature_tests.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/feature_tests.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/cmake_install.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/takeoff_and_land" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/takeoff_and_land" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/takeoff_and_land.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/takeoff_and_land.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/unix_domain_socket.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/unix_domain_socket.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mavsdk_example/getGPS/unix_domain_socket.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../mavsdk_example/getGPS/unix_domain_socket.h" afterDir="false" />
-    </list>
+    <list default="true" id="af7197ac-406b-4ed1-a67c-c3290bac7304" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/CMakeFiles/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -250,12 +210,12 @@
       <workItem from="1574009935217" duration="1311000" />
       <workItem from="1574020012787" duration="4699000" />
       <workItem from="1574055767136" duration="2253000" />
-      <workItem from="1574065003450" duration="2035000" />
+      <workItem from="1574065003450" duration="2282000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11813000" />
+    <option name="totallyTimeSpent" value="12060000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
