@@ -10,8 +10,12 @@
 #include <mavsdk/plugins/action/action.h>
 #include <mavsdk/plugins/telemetry/telemetry.h>
 #include <mavsdk/plugins/mission/mission.h>
-#include "main.h"
+#include <mavsdk/plugins/follow_me/follow_me.h>
+#include <thread>
 
+#include <functional>
+#include "unix_domain_socket.h"
+#include "main.h"
 using namespace mavsdk;
 using namespace std::this_thread;
 using namespace std::chrono;
@@ -26,9 +30,9 @@ private:
     int* mode;
     inline void handle_action_err_exit(Action::Result result, const std::string& message);
     inline void handle_mission_err_exit(Mission::Result result, const std::string& message);
-    inline void droneControl::action_error_exit(Action::Result result, const std::string& message);
-    inline void droneControl::follow_me_error_exit(FollowMe::Result result, const std::string& message);
-    inline void droneControl::connection_error_exit(ConnectionResult result, const std::string& message);
+    inline void action_error_exit(Action::Result result, const std::string& message);
+    inline void follow_me_error_exit(FollowMe::Result result, const std::string& message);
+    inline void connection_error_exit(ConnectionResult result, const std::string& message);
 
 // Handles connection result
     inline void handle_connection_err_exit(ConnectionResult result, const std::string& message);
@@ -43,7 +47,7 @@ public:
     }
     int testTakeoff();
     int patrol();
-    int followPerson();
+    int followPerson(unixDomainSocket& sock);
 
 };
 

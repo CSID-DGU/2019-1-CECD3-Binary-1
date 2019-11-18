@@ -4,7 +4,6 @@
 
 #ifndef SOCKETTEST_UNIX_DOMAIN_SOCKET_H
 #define SOCKETTEST_UNIX_DOMAIN_SOCKET_H
-
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/socket.h>
@@ -18,43 +17,54 @@
 #include <vector>
 #include <mutex>
 #include <condition_variable>
+#include <atomic>
+#include <functional>
 #include "main.h"
 
 
 
 class unixDomainSocket {
 private:
+
+    typedef std::function<void(double lat, double lon)> location_callback_t;    //location call_back
+    //for socket
     int server_sockfd, client_sockfd;
     int state, client_len;
+    char file_name[24];
+    char buf[255];
+
+    //for communicate with main thread
     int* mode;
     struct sockaddr_un clientaddr, serveraddr;
     std::vector<gps_info_t> gps_info;
+
+    //for pthread_mutex;
     std::mutex mutex_gps;
     std::mutex* mutex_atcion;
     std::condition_variable* cv;
-    char file_name[24];
-    char buf[255];
+
+    //for follow mode
+    std::thread* thread_{nullptr};
+    std::atomic<bool> follow_end{false};
+    location_callback_t location_callback = nullptr;
+
+
+    //socket
     void socketCreate();
     void socketAccept(int local_fd);
     void socketListen();
-    std::thread* thread_{nullptr};
-    std::atomic<bool> call_exit_;
 
-    void follow_person_start(){
-
-    }
-    void follow_person_stop();
+    //follow mode
+    void followStart();
+    void followStop();
 
 
 public:
-    typedef std::function<void(double lat, double lon)> location_callback_t;    //location call_back
-    void request_location_updates(location_callback_t callback);
-    bool is_running() { return !call_exit_; };
-    void requestLocationUpdate() {
-        location_callback_ = callback;
-        stop();
-        start();
-    }
+
+    void requestLocationUpdate(location_callback_t callback);
+    void getLocations();
+    bool isFollowRunning() { return !follow_end; };
+
     bool isActivate();
     void setGPS(float altitude, double latitude, double longitude);
     void actionOn();

@@ -3,9 +3,9 @@
 //
 
 #include "drone_control.h"
+
 // Handles Action's result
-inline void droneControl::action_error_exit(Action::Result result, const std::string& message)
-{
+inline void droneControl::action_error_exit(Action::Result result, const std::string &message) {
     if (result != Action::Result::SUCCESS) {
         std::cerr << ERROR_CONSOLE_TEXT << message << Action::result_str(result)
                   << NORMAL_CONSOLE_TEXT << std::endl;
@@ -14,8 +14,7 @@ inline void droneControl::action_error_exit(Action::Result result, const std::st
 }
 // Handles FollowMe's result
 
-inline void droneControl::follow_me_error_exit(FollowMe::Result result, const std::string& message)
-{
+inline void droneControl::follow_me_error_exit(FollowMe::Result result, const std::string &message) {
     if (result != FollowMe::Result::SUCCESS) {
         std::cerr << ERROR_CONSOLE_TEXT << message << FollowMe::result_str(result)
                   << NORMAL_CONSOLE_TEXT << std::endl;
@@ -24,8 +23,7 @@ inline void droneControl::follow_me_error_exit(FollowMe::Result result, const st
 }
 // Handles connection result
 
-inline void droneControl::connection_error_exit(ConnectionResult result, const std::string& message)
-{
+inline void droneControl::connection_error_exit(ConnectionResult result, const std::string &message) {
     if (result != ConnectionResult::SUCCESS) {
         std::cerr << ERROR_CONSOLE_TEXT << message << connection_result_str(result)
                   << NORMAL_CONSOLE_TEXT << std::endl;
@@ -34,14 +32,14 @@ inline void droneControl::connection_error_exit(ConnectionResult result, const s
 }
 
 
-inline void droneControl::handle_action_err_exit(Action::Result result, const std::string& message)
-{
+inline void droneControl::handle_action_err_exit(Action::Result result, const std::string &message) {
     if (result != Action::Result::SUCCESS) {
         std::cerr << ERROR_CONSOLE_TEXT << message << Action::result_str(result)
                   << NORMAL_CONSOLE_TEXT << std::endl;
         exit(EXIT_FAILURE);
     }
 }
+
 inline void droneControl::handle_mission_err_exit(Mission::Result result, const std::string &message) {
     if (result != Mission::Result::SUCCESS) {
         std::cerr << ERROR_CONSOLE_TEXT << message << Mission::result_str(result)
@@ -50,8 +48,7 @@ inline void droneControl::handle_mission_err_exit(Mission::Result result, const 
     }
 }
 
-inline void droneControl::handle_connection_err_exit(ConnectionResult result, const std::string &message)
-{
+inline void droneControl::handle_connection_err_exit(ConnectionResult result, const std::string &message) {
     if (result != ConnectionResult::SUCCESS) {
         std::cerr << ERROR_CONSOLE_TEXT << message << connection_result_str(result)
                   << NORMAL_CONSOLE_TEXT << std::endl;
@@ -175,8 +172,7 @@ int droneControl::patrol() {
                 }
             }
             return GO_LOC;
-        }
-        else
+        } else
             sleep_for(seconds(1));
     }
 
@@ -197,12 +193,16 @@ int droneControl::patrol() {
     return 0;
 }
 
-int droneControl::followPerson() {
-    Action::Result takeoff_result = action->takeoff();
-    action_error_exit(takeoff_result, "Takeoff failed");
-    std::cout << "In Air..." << std::endl;
-    sleep_for(seconds(5)); // Wait for drone to reach takeoff altitude
-
+int droneControl::followPerson(unixDomainSocket& sock) {
+    // Subscribe to receive updates on flight mode. You can find out whether FollowMe is active.
+    telemetry->flight_mode_async(std::bind(
+            [&](Telemetry::FlightMode flight_mode) {
+                const FollowMe::TargetLocation last_location = follow_person->get_last_location();
+                std::cout << "[FlightMode: " << Telemetry::flight_mode_str(flight_mode)
+                          << "] Vehicle is at: " << last_location.latitude_deg << ", "
+                          << last_location.longitude_deg << " degrees." << std::endl;
+            },
+            std::placeholders::_1));
     // Configure Min height of the drone to be "20 meters" above home & Follow direction as "Front
     // right".
     FollowMe::Config config;
@@ -212,18 +212,18 @@ int droneControl::followPerson() {
 
     // Start Follow Me
     follow_me_result = follow_person->start();
-    follow_me_error_exit(follow_me_result, "Failed to start FollowMe mode");
+    follow_me_error_exit(follow_me_result, "Failed to start Follow mode");
 
     // Register for platform-specific Location provider. We're using FakeLocationProvider for the
     // example.
 
-//    location_provider.request_location_updates([&follow_person](double lat, double lon) {
-//        follow_person->set_target_location({lat, lon, 0.0, 0.f, 0.f, 0.f});
-//    });
+    sock.requestLocationUpdate([&](double lat, double lon) {
+        follow_person->set_target_location({lat, lon, 0.0, 0.f, 0.f, 0.f});
+    });
 
-//    while (location_provider.is_running()) {
-//        sleep_for(seconds(1));
-//    }
+    while (sock.isFollowRunning()) {
+        sleep_for(seconds(1));
+    }
 
     // Stop Follow Me
     follow_me_result = follow_person->stop();

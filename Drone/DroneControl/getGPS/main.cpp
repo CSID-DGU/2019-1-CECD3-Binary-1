@@ -1,5 +1,6 @@
 #include "main.h"
-
+#include "unix_domain_socket.h"
+#include "drone_control.h"
 using namespace mavsdk;
 using namespace std::this_thread;
 using namespace std::chrono;
@@ -109,14 +110,12 @@ int main(int argc, char** argv)
     }
 
     // Set up callback to monitor altitude while the vehicle is in flight
-    telemetry->position_async([](Telemetry::Position position) {
+    telemetry->position_async([&](Telemetry::Position position) {
         std::cout << TELEMETRY_CONSOLE_TEXT // set to blue
                   << "Altitude: " << position.relative_altitude_m << " m"
                   << NORMAL_CONSOLE_TEXT // set to default color again
                   << std::endl;
-#ifdef SOCKET_ON
         sock.setGPS(position.relative_altitude_m, position.latitude_deg, position.longitude_deg);
-#endif
         std::cout << "Altitude: " << position.relative_altitude_m << " m" << std::endl
                 << "Latitude: " << position.latitude_deg << std::endl
                 << "Longitude: " << position.longitude_deg << std::endl;
@@ -137,14 +136,12 @@ int main(int argc, char** argv)
             case TEST:
                 cont.testTakeoff();
                 break;
-            case PATROL:
-                if (cont.patrol() == GO_LOC) {
-
-                }
-                else
-                    break;
+            case PATROL: {
+                cont.patrol();
+                break;
+            }
             case GO_LOC:
-
+                cont.followPerson(sock);
                 break;
             case RTL:
 

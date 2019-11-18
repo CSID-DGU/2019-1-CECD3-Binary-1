@@ -130,6 +130,40 @@ void unixDomainSocket::actionOff() {
 bool unixDomainSocket::isActivate() {
     return true; //todo change
 }
+void unixDomainSocket::requestLocationUpdate(location_callback_t callback)
+{
+    location_callback = callback;
+    followStop();
+    followStart();
+}
+
+void unixDomainSocket::followStart()
+{
+    follow_end = false;
+    thread_ = new std::thread(&unixDomainSocket::getLocations, this);
+}
+
+void unixDomainSocket::followStop()
+{
+    follow_end = true;
+
+    if (thread_) {
+        thread_->join();
+        delete thread_;
+        thread_ = nullptr;
+    }
+}
+
+// Rudimentary location provider to draw a square.
+void unixDomainSocket::getLocations()
+{
+    while (!follow_end) {
+        // 1. get data from socket
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    }
+}
+
 unixDomainSocket::unixDomainSocket(std::string path, std::condition_variable* _cv, std::mutex* _mutex_action, int* _mode) {
     mode = _mode;
     cv = _cv;

@@ -11,8 +11,6 @@
 #include <mavsdk/plugins/telemetry/telemetry.h>
 #include <mavsdk/plugins/mission/mission.h>
 #include <mavsdk/plugins/follow_me/follow_me.h>
-#include "unix_domain_socket.h"
-#include "drone_control.h"
 #include <iostream>
 #include <thread>
 #include <future>
@@ -22,6 +20,12 @@
 #define ERROR_CONSOLE_TEXT "\033[31m" // Turn text on console red
 #define TELEMETRY_CONSOLE_TEXT "\033[34m" // Turn text on console blue
 #define NORMAL_CONSOLE_TEXT "\033[0m" // Restore normal console colour
+
+struct gps_info_t{
+    float altitude;
+    double latitude;
+    double longitude;
+};
 enum flightMode {
     INACTIVE,
     TEST,
@@ -29,12 +33,8 @@ enum flightMode {
     GO_LOC,
     RTL
 };
-struct gps_info_t{
-    float altitude;
-    double latitude;
-    double longitude;
-};
-struct{
+
+struct test{
     std::vector<gps_info_t> person_location;
     bool status;    //1 : active, 0 : inactive
 };
