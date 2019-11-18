@@ -1,6 +1,7 @@
 import moment from 'moment';
 import 'moment-timezone';
 import { publish } from './mqtt';
+import { setTargetUserID } from './oneM2M';
 import { IUserInfo, IDroneInfo } from '../models/info';
 import * as gpsManager from './gpsManager';
 
@@ -10,11 +11,22 @@ export const UserInfoGrp: Map<string, IUserInfo> = new Map();
 export const DroneInfoGrp: Map<string, IDroneInfo> = new Map();
 
 export const register = (type: string, id: string, url: string) => {
-  if (type === 'user') UserInfoGrp.set(id, { id: id, status: 'unmatched' });
-  else if (type === 'drone') DroneInfoGrp.set(id, { id: id, url: url, status: 'patrol' });
+  if (type === 'user') {
+    UserInfoGrp.set(id, { id: id, status: 'unmatched' });
+    matching();
+  }
+  else if (type === 'drone') DroneInfoGrp.set(id, { id: id, url: url, status: '', target: '' });
 }
 
-export const matching = () => {
+export const patrol = (droneId: string) => {
+  let drone = DroneInfoGrp.get(droneId) || { id: '', url: '', status: '', target: '' };
+  drone.status = 'patrol';
+  drone.target = '';
+  setTargetUserID('', droneId);
+  matching();
+}
+
+const matching = () => {
   UserInfoGrp.forEach(userInfo => {
     if (userInfo.status === 'unmatched') {
       const userGps = gpsManager.UserGpsGrp.get(userInfo.id) || { lat: 0, lon: 0 };
@@ -29,8 +41,13 @@ export const matching = () => {
           }
         }
       });
-      // TODO: POST user id on selected drone
-      if (droneId) 0;
+      if (droneId) {
+        userInfo.status = 'matched';
+        let drone = DroneInfoGrp.get(droneId) || { id: '', url: '', status: '', target: '' };
+        drone.status = 'accompany';
+        drone.target = userInfo.id;
+        setTargetUserID(userInfo.id, droneId);
+      }
     }
   });
 }
