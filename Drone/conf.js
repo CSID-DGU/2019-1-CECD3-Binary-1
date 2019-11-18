@@ -24,7 +24,7 @@ var acp = {};
 conf.useprotocol = 'http'; // select one for 'http' or 'mqtt' or 'coap' or 'ws'
 
 // build cse
-cse.host        = '10.0.75.2';
+cse.host        = '210.94.199.139';
 cse.port        = '8080';
 cse.name        = 'Mobius';
 cse.id          = '/Mobius2';
@@ -51,10 +51,13 @@ cnt_arr[count++].name = 'gps';
 cnt_arr[count] = {};
 cnt_arr[count].parent = '/' + cse.name + '/' + ae.name;
 cnt_arr[count++].name = 'target_gps';
+cnt_arr[count] = {};
 cnt_arr[count].parent = '/' + cse.name + '/' + ae.name;
 cnt_arr[count++].name = 'call';
+cnt_arr[count] = {};
 cnt_arr[count].parent = '/' + cse.name + '/' + ae.name;
-cnt_arr[count++].name = 'userId';
+cnt_arr[count++].name = 'userId'
+cnt_arr[count] = {};;
 cnt_arr[count].parent = '/' + cse.name + '/' + ae.name;
 cnt_arr[count++].name = 'patrol';
 // cnt_arr[count] = {};
