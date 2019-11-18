@@ -78,7 +78,7 @@ const User = () => {
   }
 
   useEffect(() => {
-    mqtt.connect();
+    // mqtt.connect();
 
     return () => {
       clearInterval(intervalId.current);
