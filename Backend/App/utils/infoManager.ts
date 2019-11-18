@@ -22,7 +22,7 @@ export const patrol = (droneId: string) => {
   let drone = DroneInfoGrp.get(droneId) || { id: '', url: '', status: '', target: '' };
   drone.status = 'patrol';
   drone.target = '';
-  setTargetUserID('', droneId);
+  setTargetUserID('', droneId.substring(1, droneId.length));
   matching();
 }
 
@@ -42,11 +42,12 @@ const matching = () => {
         }
       });
       if (droneId) {
+        droneId = droneId || '';
         userInfo.status = 'matched';
         let drone = DroneInfoGrp.get(droneId) || { id: '', url: '', status: '', target: '' };
         drone.status = 'accompany';
         drone.target = userInfo.id;
-        setTargetUserID(userInfo.id, droneId);
+        setTargetUserID(userInfo.id, droneId.substring(1, length));
       }
     }
   });

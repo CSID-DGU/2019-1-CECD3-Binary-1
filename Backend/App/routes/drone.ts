@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { takeoffTest } from '../utils/oneM2M';
+import { takeoffTest, setTargetUserID } from '../utils/oneM2M';
 import { patrol } from '../utils/infoManager';
 
 const router = express.Router();
@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/takeoff/:droneId', function (req: Request, res: Response) {
   const droneId = req.params.droneId.substring(1, req.params.droneId.length);
   takeoffTest(droneId);
+  setTargetUserID('id', 'Drone'); // for testing
   res.status(200).send();
 });
 
