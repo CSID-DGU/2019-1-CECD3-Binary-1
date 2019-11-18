@@ -1,8 +1,9 @@
 import request from 'request';
 import { server } from './Api';
+import { HOST_ADDRESS } from '../utils/env';
 
-const MOBIUS_URL = 'http://localhost:8080';
-const FE_APP_URL = 'http://localhost:3000';
+const MOBIUS_URL = `http://${HOST_ADDRESS}:8080`;
+const FE_APP_URL = `http://${HOST_ADDRESS}:3000`;
 
 export const init = () => {
   request.post({

@@ -17,13 +17,20 @@ export const register = (type: string, id: string, url: string) => {
 export const matching = () => {
   UserInfoGrp.forEach(userInfo => {
     if (userInfo.status === 'unmatched') {
-      const userGps = gpsManager.UserGpsGrp.get(userInfo.id)
-      let distance = -1;
+      const userGps = gpsManager.UserGpsGrp.get(userInfo.id) || { lat: 0, lon: 0 };
+      let droneId, distance = -1;
       DroneInfoGrp.forEach(droneInfo => {
         if (droneInfo.status === 'patrol') {
-          // TODO calculate the distance between drones and users
+          const droneGps = gpsManager.DroneGpsGrp.get(droneInfo.id) || { lat: 0, lon: 0 };
+          const tmp = calcDistance(userGps.lat, userGps.lon, droneGps.lat, droneGps.lon);
+          if (distance == -1 || distance > tmp) {
+            droneId = droneInfo.id;
+            distance = tmp;
+          }
         }
-      })
+      });
+      // TODO: POST user id on selected drone
+      if (droneId) 0;
     }
   });
 }
@@ -43,4 +50,21 @@ export const remove = () => {
       publish('/oneM2M/req/BE_APP/' + droneGps.id + '/json', { id: droneGps.id, type: 'drone' });
     }
   });
+}
+
+const calcDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
+  let theta = Number((lon1 - lon2).toFixed(13));
+  let dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+  dist = Math.acos(dist);
+  dist = rad2deg(dist);
+  dist = dist * 60 * 1.1515;
+  dist = dist * 1.609344;
+  return Number((dist * 1000).toFixed());
+}
+
+const deg2rad = (deg: number) => {
+  return (deg * Math.PI / 180);
+}
+const rad2deg = (rad: number) => {
+  return (rad * 180 / Math.PI);
 }

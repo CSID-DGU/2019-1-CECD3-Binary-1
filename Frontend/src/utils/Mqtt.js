@@ -1,22 +1,23 @@
 import mqtt from 'mqtt';
+import { HOST_ADDRESS } from '../utils/env';
 
-const client = mqtt.connect('ws://10.0.75.2:9001');
+const client = mqtt.connect(`ws://${HOST_ADDRESS}:9001`);
 
 export const connect = (updateUserGps, removeUser, updateDroneGps, removeDrone) => {
-  client.on('connect', function () {
-    client.subscribe('/oneM2M/req/FE_APP/+/json', function (err) {
+  client.on('connect', () => {
+    client.subscribe('/oneM2M/req/FE_APP/+/json', err => {
       if (err) console.error(err);
       else console.log("Subscribe FE_APP success!");
     });
-    client.subscribe('/oneM2M/req/Mobius2/+/json', function (err) {
+    client.subscribe('/oneM2M/req/Mobius2/+/json', err => {
       if (err) console.error(err);
       else console.log("Subscribe Mobius2 success!");
     });
-    client.subscribe('/oneM2M/req/BE_APP/+/json', function (err) {
+    client.subscribe('/oneM2M/req/BE_APP/+/json', err => {
       if (err) console.error(err);
       else console.log("Subscribe BE_APP success!");
     });
-    client.on('message', function (topic, message) {
+    client.on('message', (topic, message) => {
       const id = topic.split('/')[4];
       const data = JSON.parse(message.toString());
       if (topic.split('/')[3] === 'FE_APP')
