@@ -3,7 +3,9 @@
 #include <mavsdk/mavsdk.h>
 #include <mavsdk/plugins/action/action.h>
 #include <mavsdk/plugins/telemetry/telemetry.h>
+
 #include "unix_domain_socket.h"
+#include "enum.h"
 
 #include <iostream>
 #include <thread>
@@ -40,7 +42,7 @@ int main(int argc, char** argv)
     ConnectionResult connection_result;
     std::condition_variable cv;
     std::mutex mutex_action;
-    unsigned int command = 0;
+    flightMode mode;
 
     bool discovered_system = false;
     if (argc == 2) {
@@ -69,7 +71,7 @@ int main(int argc, char** argv)
         discovered_system = true;
     });
 
-    // We usually receive heartbeats at 1Hz, therefore we should find a system after around 2
+    // We usually receive heartbeats at 1Hz, therefore we should find a syste교m after around 2
     // seconds.
     
     sleep_for(seconds(2));
@@ -86,9 +88,7 @@ int main(int argc, char** argv)
 
     auto telemetry = std::make_shared<Telemetry>(system);
     auto action = std::make_shared<Action>(system);
-#ifdef SOCKET_ON
-    unixDomainSocket sock("/tmp/unix.sock", &cv, &mutex_action, &command);    //make socket
-#endif
+    unixDomainSocket sock("/tmp/unix.sock", &cv, &mutex_action, mode);    //make socket
     // We want to listen to the GPS and alititude of the drone at 1 Hz.
     {
         std::cout << "Setting rate updates..." << std::endl;
@@ -145,11 +145,10 @@ int main(int argc, char** argv)
                 lk, [&] { return test.isActivate(); });
 
 #else
-        command = 1;
-        std::cout << "This is for test" << std::endl;
+    mode = TEST;
 #endif
-        switch(command) {
-        case 1: //takeoff and land test
+        switch((int)mode) {
+        case TEST: //takeoff and land test
             std::cout << "Before Arming......" << std::endl;
             // Arm vehicle
 

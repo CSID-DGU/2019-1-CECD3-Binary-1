@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/takeoff_and_land.cpp" "/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.o"
-  "/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/unix_domain_socket.cpp" "/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.o"
+  "/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/takeoff_and_land.cpp" "/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/takeoff_and_land.cpp.o"
+  "/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/unix_domain_socket.cpp" "/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeFiles/takeoff_and_land.dir/unix_domain_socket.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

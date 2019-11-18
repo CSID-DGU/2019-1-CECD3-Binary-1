@@ -11,13 +11,14 @@ endif()
 find_package(MAVSDK REQUIRED)
 
 add_executable(takeoff_and_land
-    takeoff_and_land.cpp unix_domain_socket.cpp unix_domain_socket.h
+    takeoff_and_land.cpp unix_domain_socket.cpp unix_domain_socket.h enum.h
 )
 
 target_link_libraries(takeoff_and_land
     MAVSDK::mavsdk_info
     MAVSDK::mavsdk_telemetry
     MAVSDK::mavsdk_action
+    MAVSDK::mavsdk_mission
     MAVSDK::mavsdk
     pthread
 )

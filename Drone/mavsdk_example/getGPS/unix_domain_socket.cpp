@@ -40,45 +40,51 @@ void unixDomainSocket::socketAccept(int local_fd) {
             //fclose(fp);
             break;
         }
-        else if (strncmp(buf, "getGPS", 6) == 0) {  //
-            int last_index = gps_info.size() - 1;
-            if (last_index >= 0) {
-                std::string gps_str = "/";  //start
-                gps_str += std::to_string((gps_info[last_index].altitude));
-                gps_str.push_back(' ');
-                gps_str += std::to_string((gps_info[last_index].longitude));
-                gps_str.push_back(' ');
-                gps_str += std::to_string((gps_info[last_index].latitude));
-                gps_str.push_back('/'); //end
-                write(local_fd, gps_str.c_str(), gps_str.size());
-                std::cout << "SEND DATA : " << gps_str << std::endl;
-            }
-            else {
-                //nothing to send
+        else if (strncmp(buf, "get_", 4) == 0) {  //
+            if (strncmp(buf + 4, "gps", 3)) {
+                int last_index = gps_info.size() - 1;
+                if (last_index >= 0) {
+                    std::string gps_str = "/";  //start
+                    gps_str += std::to_string((gps_info[last_index].altitude));
+                    gps_str.push_back(' ');
+                    gps_str += std::to_string((gps_info[last_index].longitude));
+                    gps_str.push_back(' ');
+                    gps_str += std::to_string((gps_info[last_index].latitude));
+                    gps_str.push_back('/'); //end
+                    write(local_fd, gps_str.c_str(), gps_str.size());
+                    std::cout << "SEND DATA : " << gps_str << std::endl;
+                } else {
+                    write(local_fd, "Error : No GPS", 14);
+                }
             }
         }
-        else if (strncmp(buf, "call_arm", 8) == 0){
-
-            if (!action_on) {
-                mutex_atcion->lock();
-                //set condition variable to enable
-                action_on = true;
-                mutex_atcion->unlock();
-                cv->notify_one();
+        else if (strncmp(buf, "call_", 5) == 0){
+            if (strncmp(buf +5, "test", 4)) {
+                if (!action_on) {
+                    mutex_atcion->lock();
+                    //set condition variable to enable
+                    action_on = true;
+                    mutex_atcion->unlock();
+                    cv->notify_one();
+                } else {
+                    write(local_fd, "ERROR", 5);
+                }
             }
-            else {
-                write(local_fd, "ERROR", 5);
+            else if (strncmp(buf +5, "patrol", 6)) {        //patrol : using mavsdk fly mission
+
+            }
+            else if (strncmp(buf +5, "drone", 5)) {         //cal drone
+
             }
 
         }
         else if (strncmp(buf, "call_test", 9) == 0){
-
             if (!action_on) {
                 mutex_atcion->lock();
                 //set condition variable to enable
                 action_on = true;
-                *command = 1;    //todo : 변경필요
-                std::cout << "getCommand!!" << std::endl;
+                std::cout << "getCommand : call_test" << std::endl;
+                mode = TEST;
                 mutex_atcion->unlock();
                 cv->notify_one();
             }
@@ -123,9 +129,9 @@ bool unixDomainSocket::isActivate() {
     }
     return false;
 }
-unixDomainSocket::unixDomainSocket(std::string path, std::condition_variable* _cv, std::mutex* _mutex_action, unsigned int* _command){
+unixDomainSocket::unixDomainSocket(std::string path, std::condition_variable* _cv, std::mutex* _mutex_action, flightMode& _mode){
     action_on = false;
-    command = _command;
+    mode = _mode;
     cv = _cv;
     mutex_atcion = _mutex_action;
     strcpy(file_name, path.c_str());

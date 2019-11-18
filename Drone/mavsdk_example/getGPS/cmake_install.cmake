@@ -1,4 +1,4 @@
-# Install script for directory: /home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS
+# Install script for directory: /home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/pi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="takeoff_and_land"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\..\..\usr\local\lib\cmake\MAVSDK\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="takeoff_and_land">
+				<Option output="/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/takeoff_and_land" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/mavsdk"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 takeoff_and_land"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="takeoff_and_land/fast">
+				<Option output="/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/takeoff_and_land" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/mavsdk"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 takeoff_and_land/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/enum.h">
+			<Option target="takeoff_and_land"/>
+		</Unit>
+		<Unit filename="/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/takeoff_and_land.cpp">
+			<Option target="takeoff_and_land"/>
+		</Unit>
+		<Unit filename="/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/unix_domain_socket.cpp">
+			<Option target="takeoff_and_land"/>
+		</Unit>
+		<Unit filename="/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/unix_domain_socket.h">
+			<Option target="takeoff_and_land"/>
+		</Unit>
+		<Unit filename="/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/../../../../../../usr/local/lib/cmake/MAVSDK/MAVSDKConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\local\lib\cmake\MAVSDK\"/>
+		</Unit>
+		<Unit filename="/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/../../../../../../usr/local/lib/cmake/MAVSDK/MAVSDKTargets-debug.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\local\lib\cmake\MAVSDK\"/>
+		</Unit>
+		<Unit filename="/home/choi/2019-1-CECD3-Binary-1/Drone/mavsdk_example/getGPS/../../../../../../usr/local/lib/cmake/MAVSDK/MAVSDKTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\local\lib\cmake\MAVSDK\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
