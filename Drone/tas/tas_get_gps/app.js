@@ -92,24 +92,16 @@ function timer_upload_action() {
     }
 }
 
-function serial_upload_action() {
-    if (tas_state == 'upload') {
-        var buf = new Buffer(4);
-        buf[0] = 0x11;
-        buf[1] = 0x01;
-        buf[2] = 0x01;
-        buf[3] = 0xED;
-        myPort.write(buf);
-    }
-}
-
 function send_to_server(cname, con){
     if(UnixdomainSocket){
         var wdata;
         if(cname === 'target_gps'){
-            wdata = 'call '+ con;
-        }else if(cname === 'take_off'){
-            //
+            wdata = con[0].toString() + ' '+ con[1].toString();
+        }else if(cname === 'patrol'){
+            if(con) wdata = 'call_patrol'; 
+        }else if(cname === 'call'){
+            if(con) wdata = 'call_drone';
+            else wdata = 'call_rtl';
         }
         UnixdomainSocket.write(wdata);
     }
@@ -250,6 +242,12 @@ function saveLastestData(data) {
         if(tas_state == 'upload') {
             for(var i = 0; i < upload_arr.length; i++) {
                 if(upload_arr[i].ctname == 'gps') {
+                    var cin = {ctname: upload_arr[i].ctname, con: send_obj};
+                    console.log('SEND : ' + JSON.stringify(cin) + ' ---->');
+                    upload_client.write(JSON.stringify(cin) + '<EOF>');
+                    break;
+                }
+                else if(upload_arr[i].ctname == 'userId'){
                     var cin = {ctname: upload_arr[i].ctname, con: send_obj};
                     console.log('SEND : ' + JSON.stringify(cin) + ' ---->');
                     upload_client.write(JSON.stringify(cin) + '<EOF>');

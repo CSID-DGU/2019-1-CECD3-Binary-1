@@ -15,6 +15,7 @@
 // for TAS
 var net = require('net');
 var ip = require('ip');
+var mqtt = require('mqtt');
 
 var socket_arr = {};
 exports.socket_arr = socket_arr;
@@ -87,6 +88,52 @@ function tas_handler (data) {
 
             if (jsonObj.con == 'hello') {
                 this.write(line + '<EOF>');
+            }
+            else if(ctname === 'userId'){
+                const client = mqtt.connect('mqtt://210.94.199.139:1883');
+                client.on('connect',  () => {
+                    client.subscribe('/oneM2M/req/FE_APP/'+content+'/json');
+                    console.log('[mqtt_connect] noti_topic : ' + content);
+                });
+                client.on('message',(topic, message)=>{
+                    const data = JSON.parse(message.toString());
+                    if (topic.split('/')[4] === content) {
+                        try {
+                          const lat = data.lat;
+                          const lon = data.lon;
+                          const parent = conf.cnt[1].parent + '/target_gps';
+                          sh_adn.crtci(parent, 1, content, this, function (status, res_body, to, socket) {
+                            try {
+                                var to_arr = to.split('/');
+                                var result = {};
+                                result.ctname = 'target_gps';
+                                result.con = [lon, lat];
+
+                                console.log('<---- x-m2m-rsc : ' + status + ' <----');
+                                if (status == 5106 || status == 2001 || status == 4105) {
+                                    socket.write(JSON.stringify(result) + '<EOF>');
+                                }
+                                else if (status == 5000) {
+                                    sh_state = 'crtae';
+                                    socket.write(JSON.stringify(result) + '<EOF>');
+                                }
+                                else if (status == 9999) {
+                                    socket.write(JSON.stringify(result) + '<EOF>');
+                                }
+                                else {
+                                    socket.write(JSON.stringify(result) + '<EOF>');
+                                }
+                            }
+                            catch (e) {
+                                console.log(e.message);
+                            }
+                        });
+                        } catch (error) {
+                          console.log('mqtt error: '+err);
+                        }
+                      }
+                })
+
             }
             else {
                 if (sh_state == 'crtci') {
