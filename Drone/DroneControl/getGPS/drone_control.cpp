@@ -3,6 +3,37 @@
 //
 
 #include "drone_control.h"
+// Handles Action's result
+inline void droneControl::action_error_exit(Action::Result result, const std::string& message)
+{
+    if (result != Action::Result::SUCCESS) {
+        std::cerr << ERROR_CONSOLE_TEXT << message << Action::result_str(result)
+                  << NORMAL_CONSOLE_TEXT << std::endl;
+        exit(EXIT_FAILURE);
+    }
+}
+// Handles FollowMe's result
+
+inline void droneControl::follow_me_error_exit(FollowMe::Result result, const std::string& message)
+{
+    if (result != FollowMe::Result::SUCCESS) {
+        std::cerr << ERROR_CONSOLE_TEXT << message << FollowMe::result_str(result)
+                  << NORMAL_CONSOLE_TEXT << std::endl;
+        exit(EXIT_FAILURE);
+    }
+}
+// Handles connection result
+
+inline void droneControl::connection_error_exit(ConnectionResult result, const std::string& message)
+{
+    if (result != ConnectionResult::SUCCESS) {
+        std::cerr << ERROR_CONSOLE_TEXT << message << connection_result_str(result)
+                  << NORMAL_CONSOLE_TEXT << std::endl;
+        exit(EXIT_FAILURE);
+    }
+}
+
+
 inline void droneControl::handle_action_err_exit(Action::Result result, const std::string& message)
 {
     if (result != Action::Result::SUCCESS) {
@@ -124,7 +155,29 @@ int droneControl::patrol() {
 
 
     while (!mission->mission_finished()) {
-        sleep_for(seconds(1));
+        if (*mode == GO_LOC) {  //change mode to GO_LOC!!!
+            // 1. stop current mission
+            {
+                auto prom = std::make_shared<std::promise<Mission::Result>>();
+                auto future_result = prom->get_future();
+
+                std::cout << "Pausing mission..." << std::endl;
+                mission->pause_mission_async(
+                        [prom](Mission::Result result) {
+                            prom->set_value(result);
+                        });
+
+                const Mission::Result result = future_result.get();
+                if (result != Mission::Result::SUCCESS) {
+                    std::cout << "Failed to pause mission (" << Mission::result_str(result) << ")" << std::endl;
+                } else {
+                    std::cout << "Mission paused." << std::endl;
+                }
+            }
+            return GO_LOC;
+        }
+        else
+            sleep_for(seconds(1));
     }
 
     // Wait for some time.
@@ -144,3 +197,48 @@ int droneControl::patrol() {
     return 0;
 }
 
+int droneControl::followPerson() {
+    Action::Result takeoff_result = action->takeoff();
+    action_error_exit(takeoff_result, "Takeoff failed");
+    std::cout << "In Air..." << std::endl;
+    sleep_for(seconds(5)); // Wait for drone to reach takeoff altitude
+
+    // Configure Min height of the drone to be "20 meters" above home & Follow direction as "Front
+    // right".
+    FollowMe::Config config;
+    config.min_height_m = 10.0;
+    config.follow_direction = FollowMe::Config::FollowDirection::BEHIND;
+    FollowMe::Result follow_me_result = follow_person->set_config(config);
+
+    // Start Follow Me
+    follow_me_result = follow_person->start();
+    follow_me_error_exit(follow_me_result, "Failed to start FollowMe mode");
+
+    // Register for platform-specific Location provider. We're using FakeLocationProvider for the
+    // example.
+
+//    location_provider.request_location_updates([&follow_person](double lat, double lon) {
+//        follow_person->set_target_location({lat, lon, 0.0, 0.f, 0.f, 0.f});
+//    });
+
+//    while (location_provider.is_running()) {
+//        sleep_for(seconds(1));
+//    }
+
+    // Stop Follow Me
+    follow_me_result = follow_person->stop();
+    follow_me_error_exit(follow_me_result, "Failed to stop FollowMe mode");
+
+    // Stop flight mode updates.
+    telemetry->flight_mode_async(nullptr);
+
+    // Land
+    const Action::Result land_result = action->land();
+    action_error_exit(land_result, "Landing failed");
+    while (telemetry->in_air()) {
+        std::cout << "waiting until landed" << std::endl;
+        sleep_for(seconds(1));
+    }
+    std::cout << "Landed..." << std::endl;
+    return 0;
+}

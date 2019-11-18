@@ -21,22 +21,29 @@ private:
     std::shared_ptr<Action> action;
     std::shared_ptr<Mission> mission;
     std::shared_ptr<Telemetry> telemetry;
+    std::shared_ptr<FollowMe> follow_person;
     std::string patrol_route;
+    int* mode;
     inline void handle_action_err_exit(Action::Result result, const std::string& message);
     inline void handle_mission_err_exit(Mission::Result result, const std::string& message);
-
+    inline void droneControl::action_error_exit(Action::Result result, const std::string& message);
+    inline void droneControl::follow_me_error_exit(FollowMe::Result result, const std::string& message);
+    inline void droneControl::connection_error_exit(ConnectionResult result, const std::string& message);
 
 // Handles connection result
     inline void handle_connection_err_exit(ConnectionResult result, const std::string& message);
 public:
-    droneControl(std::shared_ptr<Action> _action, std::shared_ptr<Mission> _mission, std::shared_ptr<Telemetry> _telemetry) {
+    droneControl(std::shared_ptr<Action> _action, std::shared_ptr<Mission> _mission, std::shared_ptr<Telemetry> _telemetry, std::shared_ptr<FollowMe> _followme, int* _mode) {
         action = _action;
         mission = _mission;
         telemetry = _telemetry;
+        follow_person = _followme;
         patrol_route = "../patrol_route/test_route.plan";
+        mode = _mode;
     }
     int testTakeoff();
     int patrol();
+    int followPerson();
 
 };
 

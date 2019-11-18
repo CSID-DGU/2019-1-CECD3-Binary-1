@@ -60,36 +60,44 @@ void unixDomainSocket::socketAccept(int local_fd) {
         else if (strncmp(buf, "call_", 5) == 0){
             if (strncmp(buf +5, "test", 4)) {
                 if (!(*mode)) {       //if mode inactive
-                    mutex_atcion->lock();
-                    //set condition variable to enable
                     *mode = TEST;
-                    mutex_atcion->unlock();
-                    cv->notify_one();
                 } else {
                     write(local_fd, "ERROR", 5);
                 }
             }
             else if (strncmp(buf +5, "patrol", 6)) {        //patrol : using mavsdk fly mission
                 if (!(*mode)) {       //if mdoe inactive
-                    mutex_atcion->lock();
+//                    mutex_atcion->lock();
                     //set condition variable to enable
                     *mode = PATROL;
-                    mutex_atcion->unlock();
-                    cv->notify_one();
+//                    mutex_atcion->unlock();
+//                    cv->notify_one();
                 } else {
                     write(local_fd, "Already on Action : Patrol", 26);
                 }
             }
             else if (strncmp(buf +5, "drone", 5)) {         //cal drone
                 if (!(*mode)) {
-                    mutex_atcion->lock();
+//                    mutex_atcion->lock();
                     //set condition variable to enable
                     *mode = GO_LOC;
-                    mutex_atcion->unlock();
+//                    mutex_atcion->unlock();
                     cv->notify_one();
                 } else {    //stop current mission and goto follow me mode
                     //write(local_fd, "Already on Action : Patrol", 26);
-
+                    *mode = GO_LOC;
+                }
+            }
+            else if (strncmp(buf +5, "rtl", 3)) {         //cal drone
+                if (!(*mode)) {
+//                    mutex_atcion->lock();
+                    //set condition variable to enable
+                    *mode = GO_LOC;
+//                    mutex_atcion->unlock();
+                    cv->notify_one();
+                } else {    //stop current mission and goto follow me mode
+                    //write(local_fd, "Already on Actio!n : Patrol", 26);
+                    *mode = RTL;
                 }
             }
         }

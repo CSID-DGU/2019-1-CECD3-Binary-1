@@ -77,8 +77,9 @@ int main(int argc, char** argv)
     auto action = std::make_shared<Action>(system);
     auto mission = std::make_shared<Mission>(system);
     auto telemetry = std::make_shared<Telemetry>(system);
+    auto follow_me = std::make_shared<FollowMe>(system);
     unixDomainSocket sock("/tmp/unix.sock", &cv, &mutex_action, &mode);    //make socket
-    droneControl cont(action, mission, telemetry);
+    droneControl cont(action, mission, telemetry, follow_me, &mode);
     // We want to listen to the GPS and alititude of the drone at 1 Hz.
     {
         std::cout << "Setting rate updates..." << std::endl;
@@ -127,30 +128,32 @@ int main(int argc, char** argv)
         sleep_for(seconds(1));
     }
 
-    
-    while (true) {
-#ifdef SOCKET_ON
+    int i = 0;
+    while (i < 5) {
         std::unique_lock<std::mutex> lk(mutex_action);
         cv.wait(
-                lk, [&] { return test.isActivate(); });
-        while (mode == PATROL) {    //wait for patrol command
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+                lk, [&] { return sock.isActivate(); });
+        switch(mode) {
+            case TEST:
+                cont.testTakeoff();
+                break;
+            case PATROL:
+                if (cont.patrol() == GO_LOC) {
+
+                }
+                else
+                    break;
+            case GO_LOC:
+
+                break;
+            case RTL:
+
+                break;
+            default:
+                std::cout << "Error on Command!" << std::endl;
         }
 
-
-#else
-        while (mode == TEST) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        }
-        cont.testTakeoff();
-
-#endif
-
-
-
-#ifdef SOCKET_ON
-        test.actionOff();
-#endif
+        mode = INACTIVE;
         std::this_thread::sleep_for(std::chrono::milliseconds(80));
     }
 

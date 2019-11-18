@@ -10,6 +10,7 @@
 #include <mavsdk/plugins/action/action.h>
 #include <mavsdk/plugins/telemetry/telemetry.h>
 #include <mavsdk/plugins/mission/mission.h>
+#include <mavsdk/plugins/follow_me/follow_me.h>
 #include "unix_domain_socket.h"
 #include "drone_control.h"
 #include <iostream>
@@ -25,6 +26,16 @@ enum flightMode {
     INACTIVE,
     TEST,
     PATROL,
-    GO_LOC
+    GO_LOC,
+    RTL
+};
+struct gps_info_t{
+    float altitude;
+    double latitude;
+    double longitude;
+};
+struct{
+    std::vector<gps_info_t> person_location;
+    bool status;    //1 : active, 0 : inactive
 };
 #endif //DRONE_SERVICE_MAIN_H
