@@ -32,12 +32,12 @@ cse.mqttport    = '1883';
 cse.wsport      = '7573';
 
 // build ae
-ae.name         = 'Drone1';
+ae.name         = 'Drone2';
 
-ae.id           = 'S' + ae.name;
+ae.id           = 'S'+ae.name;
 
 ae.parent       = '/' + cse.name;
-ae.appid        = 'drone1';
+ae.appid        = 'drone2';
 ae.host         = ip.address();
 ae.port         = '9727';
 ae.bodytype     = 'json'; // select 'json' or 'xml' or 'cbor'
@@ -60,6 +60,9 @@ cnt_arr[count++].name = 'userId'
 cnt_arr[count] = {};;
 cnt_arr[count].parent = '/' + cse.name + '/' + ae.name;
 cnt_arr[count++].name = 'patrol';
+cnt_arr[count] = {};;
+cnt_arr[count].parent = '/' + cse.name + '/' + ae.name;
+cnt_arr[count++].name = 'takeoff';
 // cnt_arr[count] = {};
 // cnt_arr[count].parent = '/' + cse.name + '/' + ae.name;
 // cnt_arr[count++].name = 'tvoc';
@@ -76,9 +79,29 @@ count = 0;
 
 // --------
 sub_arr[count] = {};
+sub_arr[count].parent = '/' + cse.name +'/' + ae.name + '/' + cnt_arr[count].name;
+sub_arr[count].name = 'sub-gps';
+sub_arr[count++].nu = 'mqtt://' + cse.host +'/' + ae.id + '?ct=' + ae.bodytype; // mqtt
+sub_arr[count] = {};
 sub_arr[count].parent = '/' + cse.name + '/' + ae.name + '/' + cnt_arr[count].name;
-sub_arr[count].name = 'sub';
-sub_arr[count++].nu = 'mqtt://' + cse.host + '/' + ae.id + '?ct=' + ae.bodytype; // mqtt
+sub_arr[count].name = 'sub-target_gps';
+sub_arr[count++].nu = 'mqtt://' + cse.host +'/' + ae.id + '?ct=' + ae.bodytype;
+sub_arr[count] = {};
+sub_arr[count].parent = '/' + cse.name + '/' + ae.name + '/' + cnt_arr[count].name;
+sub_arr[count].name = 'su-call';
+sub_arr[count++].nu = 'mqtt://' + cse.host +'/' + ae.id + '?ct=' + ae.bodytype;
+sub_arr[count] = {};
+sub_arr[count].parent = '/' + cse.name + '/' + ae.name + '/' + cnt_arr[count].name;
+sub_arr[count].name = 'sub-userId';
+sub_arr[count++].nu = 'mqtt://' + cse.host +'/' + ae.id + '?ct=' + ae.bodytype;
+sub_arr[count] = {};
+sub_arr[count].parent = '/' + cse.name + '/' + ae.name + '/' + cnt_arr[count].name;
+sub_arr[count].name = 'sub-patrol';
+sub_arr[count++].nu = 'mqtt://' + cse.host +'/' + ae.id + '?ct=' + ae.bodytype;
+sub_arr[count] = {};
+sub_arr[count].parent = '/' + cse.name + '/' + ae.name + '/' + cnt_arr[count].name;
+sub_arr[count].name = 'sub-takeoff';
+sub_arr[count++].nu = 'mqtt://' + cse.host +'/' + ae.id + '?ct=' + ae.bodytype;
 //sub_arr[count++].nu = 'http://' + ip.address() + ':' + ae.port + '/noti?ct=json'; // http
 //sub_arr[count++].nu = 'Mobius/'+ae.name; // mqtt
 // --------

@@ -88,7 +88,17 @@ function timer_upload_action() {
                 break;
             }
         }
-        if(t_count == 1) UnixdomainSocket.write('call_test');
+        /*
+        if(t_count == 1)
+        for (var i = 0; i < download_arr.length; i++) {
+            if (download_arr[i].id == 'userId') {
+                var cin = {ctname: download_arr[i].ctname, con: 'id'};
+                console.log(JSON.stringify(cin) + ' ---->');
+                upload_client.write(JSON.stringify(cin) + '<EOF>');
+                break;
+            }
+        }*/
+       // if(t_count == 1) UnixdomainSocket.write('call_test');
         UnixdomainSocket.write('getGPS');
     }
 }
@@ -101,11 +111,11 @@ function send_to_server(cname, con){
         }else if(cname === 'patrol'){
             if(con) wdata = 'call_patrol'; 
         }else if(cname === 'call'){
-            if(con) wdata = 'call_drone';
-            else wdata = 'call_rtl';
+            if(con==='1') wdata = 'call_drone';
+            else if(con==='0') wdata = 'call_rtl';
         }else if(cname === 'takeoff'){
-            if(con) wdata = 'call_takeoff';
-            else wdata = 'call_land';
+            if(con==='1') wdata = 'call_takeoff';
+            else if(con==='0') wdata = 'call_land';
         }
         UnixdomainSocket.write(wdata);
     }
@@ -142,6 +152,12 @@ function on_receive(data) {
                         }
 
                         for (j = 0; j < download_arr.length; j++) {
+                            if(download_arr[i].ctname == 'userId'){
+                                var cin = {ctname: download_arr[i].ctname, con: sink_obj.con};
+                                console.log('SEND : ' + JSON.stringify(cin) + ' ---->');
+                                upload_client.write(JSON.stringify(cin) + '<EOF>');
+                                break;
+                            }
                             if (download_arr[j].ctname == sink_obj.ctname) {
                                 g_down_buf = JSON.stringify({id: download_arr[i].id, con: sink_obj.con});
                                 console.log(g_down_buf + ' <----');
@@ -190,6 +206,7 @@ function tas_watchdog() {
             console.log('tas init udsocket ok');
             tas_state = 'connect';
         }
+        else tas_state = 'connect'
 
 
     }
@@ -211,7 +228,7 @@ function tas_watchdog() {
     }
 }
 
-wdt.set_wdt(require('shortid').generate(), 2, timer_upload_action);
+//wdt.set_wdt(require('shortid').generate(), 2, timer_upload_action);
 wdt.set_wdt(require('shortid').generate(), 3, tas_watchdog);
 
 var cur_c = '';
@@ -246,12 +263,6 @@ function saveLastestData(data) {
         if(tas_state == 'upload') {
             for(var i = 0; i < upload_arr.length; i++) {
                 if(upload_arr[i].ctname == 'gps') {
-                    var cin = {ctname: upload_arr[i].ctname, con: send_obj};
-                    console.log('SEND : ' + JSON.stringify(cin) + ' ---->');
-                    upload_client.write(JSON.stringify(cin) + '<EOF>');
-                    break;
-                }
-                else if(upload_arr[i].ctname == 'userId'){
                     var cin = {ctname: upload_arr[i].ctname, con: send_obj};
                     console.log('SEND : ' + JSON.stringify(cin) + ' ---->');
                     upload_client.write(JSON.stringify(cin) + '<EOF>');

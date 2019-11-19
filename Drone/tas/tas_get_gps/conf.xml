@@ -10,10 +10,6 @@
         <ctname>gps</ctname>
         <id>fe80:0000:0000:0000:0212:4b00:0235:bce5</id>
     </upload>
-     <upload>
-        <ctname>userId</ctname>
-        <id>userId</id>
-    </upload>
     <upload>
         <ctname>cnt-timer</ctname>
         <id>timer</id>
@@ -33,5 +29,9 @@
     <download>
         <ctname>call</ctname>
         <id>call</id>
+    </download>
+     <download>
+        <ctname>userId</ctname>
+        <id>userId</id>
     </download>
 </m2m:conf>
