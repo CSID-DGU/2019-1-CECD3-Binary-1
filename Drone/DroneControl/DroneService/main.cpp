@@ -135,11 +135,11 @@ int main(int argc, char** argv)
                 lk, [&] { return sock.isActivate(); });
         switch(mode) {
             case TEST:
-                std::cout << "test takeoff execute" << std::endl;
+                std::cout << "takeoff execute" << std::endl;
                 cont.testTakeoff();
                 break;
             case PATROL: {
-                std::cout << "test patrol execute" << std::endl;
+                std::cout << "patrol execute" << std::endl;
                 int r_val;
                 if ((r_val = cont.patrol()) == GO_LOC) {
                     cont.followPerson((sock));
@@ -150,11 +150,11 @@ int main(int argc, char** argv)
                 break;
             }
             case GO_LOC:
-                std::cout << "test go loc execute" << std::endl;
+                std::cout << "go loc execute" << std::endl;
                 cont.followPerson(sock);
                 break;
             case RTL:
-
+                std::cout << "return to launch execute" << std::endl;
                 break;
             default:
                 std::cout << "Error on Command!" << std::endl;
@@ -164,8 +164,5 @@ int main(int argc, char** argv)
         std::this_thread::sleep_for(std::chrono::milliseconds(80));
     }
 
-    
-    
-    
     return 0;
 }

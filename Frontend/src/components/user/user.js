@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserAction } from '../../store/user/user.action';
 import axios from 'axios';
+import { GET } from '../../utils/Api';
 import * as mqtt from '../../utils/Mqtt';
 import { GOOGLE_API_KEY } from '../../utils/env';
 import {
@@ -81,6 +82,7 @@ const User = () => {
     // mqtt.connect();
 
     return () => {
+      GET(`/drones/call/end/${userId}`);
       clearInterval(intervalId.current);
     }
   }, []);
@@ -110,7 +112,10 @@ const User = () => {
       }, 1000);
       intervalId.current = interval;
     }
-    else clearInterval(intervalId.current);
+    else {
+      GET(`/drones/call/end/${userId}`);
+      clearInterval(intervalId.current);
+    }
   }, [isCall]);
 
   return (
@@ -136,9 +141,6 @@ const User = () => {
       <main>
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
-            <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
-              Smart Policing
-            </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>

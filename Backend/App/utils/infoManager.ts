@@ -42,24 +42,24 @@ const matching = () => {
         }
       });
       if (droneId) {
+        droneId = droneId || '';
         userInfo.status = 'matched';
         let drone = DroneInfoGrp.get(droneId) || { id: '', url: '', status: '', target: '' };
         drone.status = 'accompany';
         drone.target = userInfo.id;
-        setTargetUserID(userInfo.id, droneId);
+        setTargetUserID(userInfo.id, droneId.substring(1, length));
       }
     }
   });
 }
 
-export const remove = () => {
-  gpsManager.UserGpsGrp.forEach(userGps => {
-    if (moment.duration(moment().diff(userGps.timestamp)).asSeconds() > 10) {
-      UserInfoGrp.delete(userGps.id);
-      gpsManager.remove('user', userGps.id);
-      publish('/oneM2M/req/BE_APP/' + userGps.id + '/json', { id: userGps.id, type: 'user' });
-    }
-  });
+export const removeDisconnectedUser = (userId: string) => {
+  UserInfoGrp.delete(userId);
+  gpsManager.remove('user', userId);
+  publish('/oneM2M/req/BE_APP/' + userId + '/json', { id: userId, type: 'user' });
+}
+
+export const removeDisconnectedDrone = () => {
   gpsManager.DroneGpsGrp.forEach(droneGps => {
     if (moment.duration(moment().diff(droneGps.timestamp)).asSeconds() > 10) {
       DroneInfoGrp.delete(droneGps.id);

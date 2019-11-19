@@ -116,7 +116,6 @@ void unixDomainSocket::socketAccept(int local_fd) {
             value_ >> token_;
             double latitude_ = std::stoi(token_);
             follow_gps_info.push({0.f, latitude_, longitude_});
-
         }
     }
 }

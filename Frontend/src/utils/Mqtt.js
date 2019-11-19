@@ -1,5 +1,5 @@
 import mqtt from 'mqtt';
-import { HOST_ADDRESS } from '../utils/env';
+import { HOST_ADDRESS } from './env';
 
 const client = mqtt.connect(`ws://${HOST_ADDRESS}:9001`);
 
