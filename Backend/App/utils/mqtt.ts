@@ -41,7 +41,7 @@ export const connect = () => {
       }
     });
 
-    setInterval(() => infoManager.remove(), 10000);
+    setInterval(() => infoManager.removeDisconnectedDrone(), 10000);
   });
 }
 

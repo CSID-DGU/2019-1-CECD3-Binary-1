@@ -139,7 +139,13 @@ const Admin = () => {
                       className={classes.testButtons}
                       onClick={() => GET(`/drones/takeoff/${camera.id}`)}
                     >
-                      Take-off Test
+                      Take-off
+                      </Button>
+                    <Button
+                      className={classes.testButtons}
+                      onClick={() => GET(`/drones/landing/${camera.id}`)}
+                    >
+                      Landing
                       </Button>
                     <Button
                       className={classes.testButtons}
