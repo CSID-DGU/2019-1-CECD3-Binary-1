@@ -58,48 +58,65 @@ void unixDomainSocket::socketAccept(int local_fd) {
             }
         }
         else if (strncmp(buf, "call_", 5) == 0){
-            if (strncmp(buf +5, "test", 4)) {
+            if (!strncmp(buf +5, "test", 4)) {
+                printf("%s", buf + 5);
                 if (!(*mode)) {       //if mode inactive
+
+                    //set condition variable to enable
+                    mutex_atcion->lock();
                     *mode = TEST;
+                    actionOn();
+                    mutex_atcion->unlock();
+                    cv->notify_one();
                 } else {
                     write(local_fd, "ERROR", 5);
                 }
             }
-            else if (strncmp(buf +5, "patrol", 6)) {        //patrol : using mavsdk fly mission
+            else if (!strncmp(buf +5, "patrol", 6)) {        //patrol : using mavsdk fly mission
                 if (!(*mode)) {       //if mdoe inactive
-//                    mutex_atcion->lock();
-                    //set condition variable to enable
+                    mutex_atcion->lock();
                     *mode = PATROL;
-//                    mutex_atcion->unlock();
-//                    cv->notify_one();
+                    actionOn();
+                    mutex_atcion->unlock();
+                    cv->notify_one();
                 } else {
                     write(local_fd, "Already on Action : Patrol", 26);
                 }
             }
-            else if (strncmp(buf +5, "drone", 5)) {         //cal drone
+            else if (!strncmp(buf +5, "drone", 5)) {         //cal drone
                 if (!(*mode)) {
-//                    mutex_atcion->lock();
-                    //set condition variable to enable
+                    mutex_atcion->lock();
                     *mode = GO_LOC;
-//                    mutex_atcion->unlock();
+                    actionOn();
+                    mutex_atcion->unlock();
                     cv->notify_one();
                 } else {    //stop current mission and goto follow me mode
                     //write(local_fd, "Already on Action : Patrol", 26);
                     *mode = GO_LOC;
                 }
             }
-            else if (strncmp(buf +5, "rtl", 3)) {         //cal drone
+            else if (!strncmp(buf +5, "rtl", 3)) {         //cal drone
                 if (!(*mode)) {
-//                    mutex_atcion->lock();
                     //set condition variable to enable
+                    mutex_atcion->lock();
                     *mode = GO_LOC;
-//                    mutex_atcion->unlock();
+                    actionOn();
+                    mutex_atcion->unlock();
                     cv->notify_one();
                 } else {    //stop current mission and goto follow me mode
-                    //write(local_fd, "Already on Actio!n : Patrol", 26);
                     *mode = RTL;
                 }
             }
+        }
+        else if (!strncmp(buf, "set_", 4)) {
+            std::stringstream value_(buf + 4);
+            std::string token_;
+            value_ >> token_;
+            double longitude_ = std::stoi(token_);
+            value_ >> token_;
+            double latitude_ = std::stoi(token_);
+            follow_gps_info.push({0.f, latitude_, longitude_});
+
         }
     }
 }
@@ -124,11 +141,13 @@ void unixDomainSocket::setGPS(float altitude, double latitude, double longitude)
 
 }
 void unixDomainSocket::actionOn() {
+    activate = true;
 }
 void unixDomainSocket::actionOff() {
+    activate = false;
 }
 bool unixDomainSocket::isActivate() {
-    return true; //todo change
+    return activate; //todo change
 }
 void unixDomainSocket::requestLocationUpdate(location_callback_t callback)
 {
@@ -159,6 +178,10 @@ void unixDomainSocket::getLocations()
 {
     while (!follow_end) {
         // 1. get data from socket
+        if (!follow_gps_info.empty()) {
+            location_callback(follow_gps_info.front().latitude, follow_gps_info.front().longitude);
+            follow_gps_info.pop();
+        }
         std::this_thread::sleep_for(std::chrono::seconds(1));
 
     }

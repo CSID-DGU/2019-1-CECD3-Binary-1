@@ -14,7 +14,7 @@
 #include <iostream>
 #include <thread>
 #include <future>
-
+#include <queue>
 
 
 #define ERROR_CONSOLE_TEXT "\033[31m" // Turn text on console red

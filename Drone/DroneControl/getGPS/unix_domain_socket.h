@@ -19,6 +19,7 @@
 #include <condition_variable>
 #include <atomic>
 #include <functional>
+#include <sstream>
 #include "main.h"
 
 
@@ -32,12 +33,12 @@ private:
     int state, client_len;
     char file_name[24];
     char buf[255];
-
+    bool activate = false;
     //for communicate with main thread
     int* mode;
     struct sockaddr_un clientaddr, serveraddr;
     std::vector<gps_info_t> gps_info;
-
+    std::queue<gps_info_t> follow_gps_info;
     //for pthread_mutex;
     std::mutex mutex_gps;
     std::mutex* mutex_atcion;

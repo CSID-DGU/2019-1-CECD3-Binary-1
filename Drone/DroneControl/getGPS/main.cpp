@@ -116,9 +116,9 @@ int main(int argc, char** argv)
                   << NORMAL_CONSOLE_TEXT // set to default color again
                   << std::endl;
         sock.setGPS(position.relative_altitude_m, position.latitude_deg, position.longitude_deg);
-        std::cout << "Altitude: " << position.relative_altitude_m << " m" << std::endl
-                << "Latitude: " << position.latitude_deg << std::endl
-                << "Longitude: " << position.longitude_deg << std::endl;
+//        std::cout << "Altitude: " << position.relative_altitude_m << " m" << std::endl
+//                << "Latitude: " << position.latitude_deg << std::endl
+//                << "Longitude: " << position.longitude_deg << std::endl;
     });
     // Check if vehicle is ready to arm
     while (telemetry->health_all_ok() != true) {
@@ -129,18 +129,22 @@ int main(int argc, char** argv)
 
     int i = 0;
     while (i < 5) {
+        mode = INACTIVE;
         std::unique_lock<std::mutex> lk(mutex_action);
         cv.wait(
                 lk, [&] { return sock.isActivate(); });
         switch(mode) {
             case TEST:
+                std::cout << "test takeoff execute" << std::endl;
                 cont.testTakeoff();
                 break;
             case PATROL: {
+                std::cout << "test patrol execute" << std::endl;
                 cont.patrol();
                 break;
             }
             case GO_LOC:
+                std::cout << "test go loc execute" << std::endl;
                 cont.followPerson(sock);
                 break;
             case RTL:
@@ -149,7 +153,7 @@ int main(int argc, char** argv)
             default:
                 std::cout << "Error on Command!" << std::endl;
         }
-
+        sock.actionOff();
         mode = INACTIVE;
         std::this_thread::sleep_for(std::chrono::milliseconds(80));
     }
