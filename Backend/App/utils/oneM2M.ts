@@ -74,7 +74,7 @@ const droneCall = (droneID: string, call: number) => {
   });
 }
 
-export const takeoffTest = (droneID: string) => {
+export const takeoff = (droneID: string) => {
   request.post({
     headers: {
       'X-M2M-RI': 'BE_APP',
@@ -91,9 +91,27 @@ export const takeoffTest = (droneID: string) => {
     json: true
   }, function (error, res, body) {
     if (error) console.error(error);
-    else {
-      console.log(body);
-      setTargetUserID('id', droneID);
-    }
+    else console.log(body);
+  });
+}
+
+export const landing = (droneID: string) => {
+  request.post({
+    headers: {
+      'X-M2M-RI': 'BE_APP',
+      'X-M2M-Origin': '/Mobius/BE_APP',
+      'Content-Type': 'application/vnd.onem2m-res+json;ty=4',
+      'Accept': 'application/json'
+    },
+    body: {
+      'm2m:cin': {
+        'con': 0
+      }
+    },
+    url: MOBIUS_URL + `/Mobius/${droneID}/takeoff`,
+    json: true
+  }, function (error, res, body) {
+    if (error) console.error(error);
+    else console.log(body);
   });
 }
