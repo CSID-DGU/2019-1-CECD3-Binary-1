@@ -99,7 +99,7 @@ void unixDomainSocket::socketAccept(int local_fd) {
                 if (!(*mode)) {
                     //set condition variable to enable
                     mutex_atcion->lock();
-                    *mode = GO_LOC;
+                    *mode = RTL;
                     actionOn();
                     mutex_atcion->unlock();
                     cv->notify_one();

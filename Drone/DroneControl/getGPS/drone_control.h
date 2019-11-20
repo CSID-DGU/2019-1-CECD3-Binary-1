@@ -48,6 +48,7 @@ public:
     int testTakeoff();
     int patrol();
     int followPerson(unixDomainSocket& sock);
+    int returnToLaunch();
 
 };
 

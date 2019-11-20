@@ -172,6 +172,25 @@ int droneControl::patrol() {
                 }
             }
             return GO_LOC;
+        } else if(*mode == RTL) {
+            {
+                auto prom = std::make_shared<std::promise<Mission::Result>>();
+                auto future_result = prom->get_future();
+
+                std::cout << "Pausing mission..." << std::endl;
+                mission->pause_mission_async(
+                        [prom](Mission::Result result) {
+                            prom->set_value(result);
+                        });
+
+                const Mission::Result result = future_result.get();
+                if (result != Mission::Result::SUCCESS) {
+                    std::cout << "Failed to pause mission (" << Mission::result_str(result) << ")" << std::endl;
+                } else {
+                    std::cout << "Mission paused." << std::endl;
+                }
+            }
+            return RTL;
         } else
             sleep_for(seconds(1));
     }
@@ -240,5 +259,23 @@ int droneControl::followPerson(unixDomainSocket& sock) {
         sleep_for(seconds(1));
     }
     std::cout << "Landed..." << std::endl;
+    return 0;
+}
+
+int droneControl::returnToLaunch() {
+    // Wait for some time.
+    sleep_for(seconds(5));
+
+    {
+        // Mission complete. Command RTL to go home.
+        std::cout << "Commanding Return to launch..." << std::endl;
+        const Action::Result result = action->return_to_launch();
+        if (result != Action::Result::SUCCESS) {
+            std::cout << "Failed to command return to launch (" << Action::result_str(result) << ")"
+                      << std::endl;
+        } else {
+            std::cout << "Commanded return to launch." << std::endl;
+        }
+    }
     return 0;
 }
