@@ -40,16 +40,16 @@ void unixDomainSocket::socketAccept(int local_fd) {
             break;
         }
         else if (strncmp(buf, "get_", 4) == 0) {  //
-            if (strncmp(buf + 4, "gps", 3)) {
+            if (!strncmp(buf + 4, "gps", 3)) {
                 int last_index = gps_info.size() - 1;
                 if (last_index >= 0) {
                     std::string gps_str = "/";  //start
                     gps_str += std::to_string((gps_info[last_index].altitude));
                     gps_str.push_back(' ');
-                    gps_str += std::to_string((gps_info[last_index].longitude));
-                    gps_str.push_back(' ');
                     gps_str += std::to_string((gps_info[last_index].latitude));
-                    gps_str.push_back('/'); //end
+                    gps_str.push_back('/');
+                    gps_str += std::to_string((gps_info[last_index].longitude));
+                    gps_str.push_back(' '); //end
                     write(local_fd, gps_str.c_str(), gps_str.size());
                     std::cout << "SEND DATA : " << gps_str << std::endl;
                 } else {
@@ -108,13 +108,15 @@ void unixDomainSocket::socketAccept(int local_fd) {
                 }
             }
         }
-        else if (!strncmp(buf, "set_", 4)) {
-            std::stringstream value_(buf + 4);
+        else if (!strncmp(buf, "target", 6)) {
+            std::stringstream value_(buf + 6);
             std::string token_;
             value_ >> token_;
-            double longitude_ = std::stoi(token_);
-            value_ >> token_;
             double latitude_ = std::stoi(token_);
+            value_ >> token_;
+            double longitude_ = std::stoi(token_);
+            std::cout << "latitude : " << latitude_ << std::endl << "longitude :" << longitude_ << std::endl;
+
             follow_gps_info.push({0.f, latitude_, longitude_});
         }
     }

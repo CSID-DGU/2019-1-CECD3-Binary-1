@@ -79,6 +79,7 @@ var t_count = 0;
 
 function timer_upload_action() {
     if (tas_state == 'upload') {
+        /*
         var con = {value: 'TAS' + t_count++ + ',' + '55.2'};
         for (var i = 0; i < upload_arr.length; i++) {
             if (upload_arr[i].id == 'timer') {
@@ -88,6 +89,7 @@ function timer_upload_action() {
                 break;
             }
         }
+        */
         /*
         if(t_count == 1)
         for (var i = 0; i < download_arr.length; i++) {
@@ -98,8 +100,8 @@ function timer_upload_action() {
                 break;
             }
         }*/
-       // if(t_count == 1) UnixdomainSocket.write('call_test');
-        UnixdomainSocket.write('getGPS');
+        //if(t_count == 1) UnixdomainSocket.write('call_test');
+        if(++t_count%2)UnixdomainSocket.write('get_gps');
     }
 }
 
@@ -107,14 +109,14 @@ function send_to_server(cname, con){
     if(UnixdomainSocket){
         var wdata;
         if(cname === 'target_gps'){
-            wdata = con[0].toString() + ' '+ con[1].toString();
+            wdata = 'target ' + con[0].toString() + ' '+ con[1].toString();
         }else if(cname === 'patrol'){
             if(con) wdata = 'call_patrol'; 
         }else if(cname === 'call'){
             if(con==='1') wdata = 'call_drone';
             else if(con==='0') wdata = 'call_rtl';
         }else if(cname === 'takeoff'){
-            if(con==='1') wdata = 'call_takeoff';
+            if(con==='1') wdata = 'call_test';
             else if(con==='0') wdata = 'call_land';
         }
         UnixdomainSocket.write(wdata);
@@ -228,7 +230,7 @@ function tas_watchdog() {
     }
 }
 
-//wdt.set_wdt(require('shortid').generate(), 2, timer_upload_action);
+wdt.set_wdt(require('shortid').generate(), 2, timer_upload_action);
 wdt.set_wdt(require('shortid').generate(), 3, tas_watchdog);
 
 var cur_c = '';
@@ -256,8 +258,8 @@ function saveLastestData(data) {
         nValue = nValue.split(" ");
         var send_obj = {
             "altitude": nValue[0],
-            "longitude": nValue[1],
-            "latitude": nValue[2]
+            "latitude": nValue[1],
+            "longitude": nValue[2]
         };
     
         if(tas_state == 'upload') {

@@ -27,8 +27,8 @@
         <id>patrol</id>
     </download>
     <download>
-        <ctname>call</ctname>
-        <id>call</id>
+        <ctname>takeoff</ctname>
+        <id>takeoff</id>
     </download>
      <download>
         <ctname>userId</ctname>

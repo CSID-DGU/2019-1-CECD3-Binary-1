@@ -142,7 +142,7 @@ function tas_handler (data) {
                                                 var to_arr = to.split('/');
                                                 var result = {};
                                                 result.ctname = 'target_gps';
-                                                result.con = [lon, lat];
+                                                result.con = [lat, lon];
                 
                                                 console.log('<---- x-m2m-rsc : ' + status + ' <----');
                                                 if (status == 5106 || status == 2001 || status == 4105) {
@@ -244,7 +244,6 @@ exports.noti = function(path_arr, cinObj) {
     else {
         //console.log(JSON.stringify(cin));
         console.log('<---- send to tas');
-
         if (socket_arr[path_arr[path_arr.length-2]] != null) {
             socket_arr[path_arr[path_arr.length-2]].write(JSON.stringify(cin) + '<EOF>');
         }
