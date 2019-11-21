@@ -145,7 +145,7 @@ exports.request_lock = function(obj, retry_count, callback) {
             }
 
             var options = {
-                hostname: 'localhost',
+                hostname: process.env.HOST_ADDRESS,
                 port: usecsebaseport,
                 path: rqps[idx].to,
                 method: op,
@@ -317,7 +317,7 @@ function request_tctl(obj, retry_count, tctl, callback) {
             }
 
             var options = {
-                hostname: 'localhost',
+                hostname: process.env.HOST_ADDRESS,
                 port: usecsebaseport,
                 path: rqps[idx].to + '/' + rn,
                 method: op,

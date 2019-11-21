@@ -144,7 +144,7 @@ exports.request_execute = function(obj, callback) {
     }
 
     var options = {
-        hostname: 'localhost',
+        hostname: process.env.HOST_ADDRESS,
         port: usecsebaseport,
         path: obj.tr.trqp.to + '?tctl=3&tid=' + obj.tr.tid,
         method: op,
@@ -321,7 +321,7 @@ exports.request_commit = function(obj, callback) {
     }
 
     var options = {
-        hostname: 'localhost',
+        hostname: process.env.HOST_ADDRESS,
         port: usecsebaseport,
         path: obj.tr.trqp.to + '?tid=' + obj.tr.tid,
         method: op,

@@ -40,7 +40,7 @@ var ws_state = 'init';
 // ������ �����մϴ�.
 var ws_app = express();
 
-var usewscbhost = 'localhost'; // pxyws to mobius
+var usewscbhost = process.env.HOST_ADDRESS; // pxyws to mobius
 
 var pxy_ws_server = null;
 

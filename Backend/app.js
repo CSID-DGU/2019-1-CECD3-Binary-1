@@ -1117,7 +1117,7 @@ function updateHitCount(binding) {
     var bodyString = JSON.stringify(bodyObj);
 
     var options = {
-        hostname: 'localhost',
+        hostname: process.env.HOST_ADDRESS,
         port: use_hit_man_port,
         path: '/hit_count',
         method: 'POST',
@@ -1304,7 +1304,7 @@ global.get_resource_from_url = function(ri, sri, option, callback) {
 
 function retrieveHitCount(response) {
     var options = {
-        hostname: 'localhost',
+        hostname: process.env.HOST_ADDRESS,
         port: use_hit_man_port,
         path: '/hit_count',
         method: 'GET',

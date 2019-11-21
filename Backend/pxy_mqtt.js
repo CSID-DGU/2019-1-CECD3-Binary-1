@@ -51,7 +51,7 @@ var events = require('events');
 var mqtt_app = express();
 
 
-var usemqttcbhost = 'localhost'; // pxymqtt to mobius
+var usemqttcbhost = process.env.HOST_ADDRESS; // pxymqtt to mobius
 
 
 

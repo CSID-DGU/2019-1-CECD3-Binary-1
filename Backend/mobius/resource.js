@@ -271,7 +271,7 @@ function check_TS(ri, callback) {
 
     if (use_secure == 'disable') {
         var options = {
-            hostname: 'localhost',
+            hostname: process.env.HOST_ADDRESS,
             port: usetsagentport,
             path: '/missingDataDetect',
             method: 'post',
@@ -297,7 +297,7 @@ function check_TS(ri, callback) {
     }
     else {
         options = {
-            hostname: 'localhost',
+            hostname: process.env.HOST_ADDRESS,
             port: usetsagentport,
             path: '/missingDataDetect',
             method: 'post',
@@ -342,7 +342,7 @@ function delete_TS(callback) {
 
     if (use_secure == 'disable') {
         var options = {
-            hostname: 'localhost',
+            hostname: process.env.HOST_ADDRESS,
             port: usetsagentport,
             path: '/missingDataDetect',
             method: 'delete',
@@ -367,7 +367,7 @@ function delete_TS(callback) {
     }
     else {
         options = {
-            hostname: 'localhost',
+            hostname: process.env.HOST_ADDRESS,
             port: usetsagentport,
             path: '/missingDataDetect',
             method: 'delete',
@@ -2703,7 +2703,7 @@ exports.delete = function (request, response, comm_Obj) {
 
 function request_update_cnt(bodyString, cs) {
     var options = {
-        hostname: 'localhost',
+        hostname: process.env.HOST_ADDRESS,
         port: use_cnt_man_port,
         path: '/cnt',
         method: 'PUT',

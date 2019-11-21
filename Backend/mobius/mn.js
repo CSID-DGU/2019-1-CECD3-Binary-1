@@ -273,7 +273,7 @@ exports.build_mn = function(ri, callback) {
                                     if (rsc == 200 || rsc == 201 || rsc == 403 || rsc == 409) {
                                         retrieve_CSEBase_http(parent_cbname, parent_cbhost, parent_cbhostport, function (rsc, jsonObj) {
                                             if (rsc == 200 || rsc == 201 || rsc == 403 || rsc == 409) {
-                                                create_remoteCSE_http(usecsebase, 'localhost', usecsebaseport, jsonObj, function (res, body) {
+                                                create_remoteCSE_http(usecsebase, process.env.HOST_ADDRESS, usecsebaseport, jsonObj, function (res, body) {
                                                     var rsc = res.statusCode;
                                                     console.log(rsc + ' : ' + body);
                                                     if (rsc == 200 || rsc == 201 || rsc == 403 || rsc == 409) {
@@ -413,7 +413,7 @@ function create_remoteCSE_mqtt(cseid, csebasename, body_Obj, callback) {
 
     var rqi = moment().utc().format('mmssSSS') + randomValueBase64(4);
     var options = {
-        hostname: 'localhost',
+        hostname: process.env.HOST_ADDRESS,
         port: usepxymqttport,
         path: '/register_csr',
         method: 'POST',
@@ -454,7 +454,7 @@ function create_remoteCSE_mqtt(cseid, csebasename, body_Obj, callback) {
 function retrieve_CSEBase_mqtt(cseid, csebasename, callback) {
     var rqi = moment().utc().format('mmssSSS') + randomValueBase64(4);
     var options = {
-        hostname: 'localhost',
+        hostname: process.env.HOST_ADDRESS,
         port: usepxymqttport,
         path: '/get_cb',
         method: 'get',
