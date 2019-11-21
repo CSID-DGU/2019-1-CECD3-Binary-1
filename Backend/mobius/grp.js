@@ -82,7 +82,7 @@ function check_member(request, response, mt, req_count, mid, cse_poa, valid_mid,
         db_sql.get_ri_sri(request, response, absolute_ri, function (err, results, request, response) {
             ri = ((results.length == 0) ? ri : results[0].ri);
             var target_cb = ri.split('/')[1];
-            var hostname = process.env.HOST_ADDRESS;
+            var hostname = use_host_address;
             var port = usecsebaseport;
             if (target_cb != usecsebase) {
                 if (cse_poa[target_cb]) {

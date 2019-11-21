@@ -80,7 +80,7 @@ function fopt_member(request, response, req_count, mid, body_Obj, cse_poa, agr, 
         db_sql.get_ri_sri(request, response, ri, function (err, results, request, response) {
             ri = ((results.length == 0) ? ri : results[0].ri);
             var target_cb = ri.split('/')[1];
-            var hostname = process.env.HOST_ADDRESS;
+            var hostname = use_host_address;
             var port = usecsebaseport;
             if (target_cb != usecsebase) {
                 if (cse_poa[target_cb]) {

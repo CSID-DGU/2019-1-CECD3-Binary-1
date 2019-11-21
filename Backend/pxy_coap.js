@@ -33,7 +33,7 @@ var coap_state = 'init';
 var events = require('events');
 var coap_custom = new events.EventEmitter();
 
-var usecoapcbhost = process.env.HOST_ADDRESS; // pxycoap to mobius
+var usecoapcbhost = use_host_address; // pxycoap to mobius
 
 var coap_rsc_code = {
     '2000': '2.05',
@@ -92,7 +92,7 @@ exports.coap_watchdog = function () {
             pxycoap_server = coap.createServer();
             pxycoap_server.listen(usecsebaseport, function() {
                 // var options = {
-                //     host: process.env.HOST_ADDRESS,
+                //     host: use_host_address,
                 //     port: usecsebaseport,
                 //     pathname: '/'+usecsebase,
                 //     method: 'get',

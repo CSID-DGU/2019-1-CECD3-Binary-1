@@ -70,7 +70,7 @@ function init_TS(callback) {
     var responseBody = '';
 
     var options = {
-        hostname: process.env.HOST_ADDRESS,
+        hostname: use_host_address,
         port: usetsagentport,
         path: ri,
         method: 'post',
@@ -129,7 +129,7 @@ function search_TS(request, response, callback) {
     var responseBody = '';
 
     var options = {
-        hostname: process.env.HOST_ADDRESS,
+        hostname: use_host_address,
         port: usecsebaseport,
         path: ri,
         method: 'get',

@@ -408,7 +408,7 @@ exports.check = function(request, notiObj, check_value) {
 
 function request_noti(nu, ri, bodyString, bodytype, xm2mri, exc) {
     var options = {
-        hostname: process.env.HOST_ADDRESS,
+        hostname: use_host_address,
         port: use_sgn_man_port,
         path: '/sgn',
         method: 'POST',
