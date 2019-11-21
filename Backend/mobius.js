@@ -41,7 +41,7 @@ global.use_hit_man_port     = '7594';
 
 global.usetsagentport       = '7582';
 
-global.use_mqtt_broker      = '10.0.75.2'; // mqttbroker for mobius
+global.use_mqtt_broker      = process.env.HOST_ADDRESS; // mqttbroker for mobius
 
 global.use_secure           = 'disable';
 global.use_mqtt_port        = '1883';

@@ -46,6 +46,8 @@ services:
     depends_on:
       backend_mysql:
         condition: service_healthy
+    env_file:
+      - .env
 
   backend_mongo:
     container_name: backend_mongo

@@ -1,6 +1,6 @@
 import request from 'request';
 import { server } from './Api';
-import { HOST_ADDRESS } from '../utils/env';
+import { HOST_ADDRESS } from './env';
 
 const MOBIUS_URL = `http://${HOST_ADDRESS}:8080`;
 const FE_APP_URL = `http://${HOST_ADDRESS}:3000`;
