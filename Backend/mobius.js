@@ -42,7 +42,7 @@ global.use_hit_man_port     = '7594';
 
 global.usetsagentport       = '7582';
 
-global.use_host_address     = ip.address();
+global.use_host_address     = 'backend_mobius';
 global.use_mqtt_broker      = process.env.HOST_ADDRESS; // mqttbroker for mobius
 
 global.use_secure           = 'disable';
