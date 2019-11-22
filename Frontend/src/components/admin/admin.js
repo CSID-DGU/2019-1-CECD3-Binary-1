@@ -102,7 +102,7 @@ const Admin = () => {
   cameraGrp.forEach((camera, index) => cameras.push(
     <Grid item key={camera.id} xs="6">
       <Card className={classes.card}>
-        <Player index={index} url={`ws://${camera.url}`} />
+        <Player index={index} url={camera.url} />
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h5" component="h2">
             {camera.id.substring(1, camera.id.length)}

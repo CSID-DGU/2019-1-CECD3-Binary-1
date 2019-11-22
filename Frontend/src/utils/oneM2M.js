@@ -1,6 +1,7 @@
 import request from 'request';
 import { server } from './Api';
 import { HOST_ADDRESS } from './env';
+import { cameraGrp } from '../components/admin/admin';
 
 const MOBIUS_URL = `http://${HOST_ADDRESS}:8080`;
 const FE_APP_URL = `http://${HOST_ADDRESS}:3000`;
@@ -63,7 +64,8 @@ export const lookupDrone = (droneId) => {
     if (error) console.error(error);
     else {
       console.log(body);
-      return body['m2m:ae']['poa'][0];
+      const id = 'S' + droneId;
+      cameraGrp.set(id, { id: id, url: body['m2m:ae']['poa'][0] });
     }
   });
 }
