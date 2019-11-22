@@ -49,3 +49,21 @@ const lookupBEApp = () => {
     }
   });
 }
+
+export const lookupDrone = (droneId) => {
+  request.get({
+    headers: {
+      'X-M2M-RI': 'FE_APP',
+      'X-M2M-Origin': '/Mobius/FE_APP',
+      'Accept': 'application/json'
+    },
+    url: MOBIUS_URL + `/Mobius/${droneId}`,
+    json: true
+  }, function (error, res, body) {
+    if (error) console.error(error);
+    else {
+      console.log(body);
+      return body['m2m:ae']['poa'][0];
+    }
+  });
+}

@@ -66,9 +66,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const cameras = [
-  { id: 'SDrone2', url: 'ws://localhost:9999/' },
-];
+export const cameraGrp = new Map();
 
 const Admin = () => {
   const classes = useStyles();
@@ -99,6 +97,39 @@ const Admin = () => {
     mqtt.connect(updateUserGps, removeUser, updateDroneGps, removeDrone);
   }, []);
 
+  const cameras = [];
+
+  cameraGrp.forEach((camera, index) => cameras.push(
+    <Grid item key={camera.id} xs="6">
+      <Card className={classes.card}>
+        <Player index={index} url={`ws://${camera.url}`} />
+        <CardContent className={classes.cardContent}>
+          <Typography gutterBottom variant="h5" component="h2">
+            {camera.id.substring(1, camera.id.length)}
+          </Typography>
+          <Button
+            className={classes.testButtons}
+            onClick={() => GET(`/drones/takeoff/${camera.id}`)}
+          >
+            Take-off
+            </Button>
+          <Button
+            className={classes.testButtons}
+            onClick={() => GET(`/drones/landing/${camera.id}`)}
+          >
+            Landing
+            </Button>
+          <Button
+            className={classes.testButtons}
+            onClick={() => GET(`/drones/patrol/${camera.id}`)}
+          >
+            Patrol Start
+            </Button>
+        </CardContent>
+      </Card>
+    </Grid>
+  ))
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -127,36 +158,7 @@ const Admin = () => {
         </div>
         <Container className={classes.cardGrid} maxWidth="xl">
           <Grid container spacing={4} xs="12">
-            {cameras.map((camera, index) => (
-              <Grid item key={camera.id} xs="6">
-                <Card className={classes.card}>
-                  <Player index={index} url={camera.url} />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {camera.id}
-                    </Typography>
-                    <Button
-                      className={classes.testButtons}
-                      onClick={() => GET(`/drones/takeoff/${camera.id}`)}
-                    >
-                      Take-off
-                      </Button>
-                    <Button
-                      className={classes.testButtons}
-                      onClick={() => GET(`/drones/landing/${camera.id}`)}
-                    >
-                      Landing
-                      </Button>
-                    <Button
-                      className={classes.testButtons}
-                      onClick={() => GET(`/drones/patrol/${camera.id}`)}
-                    >
-                      Patrol Start
-                      </Button>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
+            {cameras}
           </Grid>
         </Container>
       </main>

@@ -1,5 +1,7 @@
 import mqtt from 'mqtt';
 import { HOST_ADDRESS } from './env';
+import { lookupDrone } from './oneM2M';
+import { cameraGrp } from '../components/admin/admin';
 
 const client = mqtt.connect(`ws://${HOST_ADDRESS}:9001`);
 
@@ -26,10 +28,18 @@ export const connect = (updateUserGps, removeUser, updateDroneGps, removeDrone) 
         try {
           const con = data['pc']['m2m:sgn']['nev']['rep']['m2m:cin']['con'];
           updateDroneGps(id, parseFloat(con.latitude), parseFloat(con.longitude));
-        } catch (error) { /* No error handling required */ }
+        } catch (error) {
+          if (data['pc']['m2m:sgn']['sur'] === 'Mobius/Drone2/gps/sub-gps') {
+            const url = lookupDrone(id.substring(1, id.length));
+            cameraGrp.set(id, { id: id, url: url });
+          }
+        }
       else if (topic.split('/')[3] === 'BE_APP') {
         if (data.type === 'user') removeUser(data.id);
-        else if (data.type === 'drone') removeDrone(data.id);
+        else if (data.type === 'drone') {
+          removeDrone(data.id);
+          cameraGrp.delete(data.id);
+        }
       }
     });
   });
