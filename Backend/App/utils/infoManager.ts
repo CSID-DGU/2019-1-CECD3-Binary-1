@@ -18,15 +18,15 @@ export const register = (type: string, id: string, url: string) => {
   else if (type === 'drone') DroneInfoGrp.set(id, { id: id, url: url, status: '', target: '' });
 }
 
-export const patrol = (droneId: string) => {
+export const returnToLaunch = (droneId: string) => {
   let drone = DroneInfoGrp.get(droneId) || { id: '', url: '', status: '', target: '' };
   drone.status = 'patrol';
   drone.target = '';
-  setTargetUserID('', droneId);
+  setTargetUserID('', droneId.substring(1, droneId.length));
   matching();
 }
 
-const matching = () => {
+export const matching = () => {
   UserInfoGrp.forEach(userInfo => {
     if (userInfo.status === 'unmatched') {
       const userGps = gpsManager.UserGpsGrp.get(userInfo.id) || { lat: 0, lon: 0 };

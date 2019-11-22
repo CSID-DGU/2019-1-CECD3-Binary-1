@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import { takeoff, landing } from '../utils/oneM2M';
-import { DroneInfoGrp, patrol, removeDisconnectedUser } from '../utils/infoManager';
+import { takeoff, landing, patrol } from '../utils/oneM2M';
+import { DroneInfoGrp, returnToLaunch, matching, removeDisconnectedUser } from '../utils/infoManager';
 
 const router = express.Router();
 
@@ -17,8 +17,11 @@ router.get('/landing/:droneId', function (req: Request, res: Response) {
 });
 
 router.get('/patrol/:droneId', function (req: Request, res: Response) {
-  const droneId = req.params.droneId.substring(1, req.params.droneId.length);
-  patrol(droneId);
+  const droneId = req.params.droneId;
+  let drone = DroneInfoGrp.get(droneId) || { id: '', url: '', status: '', target: '' };
+  drone.status = 'patrol';
+  patrol(droneId.substring(1, droneId.length));
+  matching();
   res.status(200).send();
 });
 
@@ -26,7 +29,7 @@ router.get('/call/end/:userId', function (req: Request, res: Response) {
   const userId = req.params.userId;
   DroneInfoGrp.forEach(droneInfo => {
     if (droneInfo.target === userId) {
-      patrol(droneInfo.id.substring(1, droneInfo.id.length));
+      returnToLaunch(droneInfo.id);
       return true;
     }
   });
