@@ -47,7 +47,7 @@ export const matching = () => {
         let drone = DroneInfoGrp.get(droneId) || { id: '', url: '', status: '', target: '' };
         drone.status = 'accompany';
         drone.target = userInfo.id;
-        setTargetUserID(userInfo.id, droneId.substring(1, length));
+        setTargetUserID(userInfo.id, droneId.substring(1, droneId.length));
       }
     }
   });

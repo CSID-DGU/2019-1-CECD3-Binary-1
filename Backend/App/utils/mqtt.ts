@@ -22,13 +22,10 @@ export const connect = () => {
       const data = JSON.parse(message.toString());
 
       if (topic.split('/')[3] === 'FE_APP') {
-        try {
-          const lat = data.lat;
-          const lon = data.lon;
-          gpsManager.update('user', id, lat, lon);
-        } catch (error) {
-          infoManager.register('user', id, '');
-        }
+        if (!infoManager.UserInfoGrp.has(id)) infoManager.register('user', id, '');
+        const lat = data.lat;
+        const lon = data.lon;
+        gpsManager.update('user', id, lat, lon);
       }
       else if (topic.split('/')[3] === 'Mobius2') {
         try {
