@@ -94,34 +94,6 @@ function tas_handler (data) {
                     for (var j = 0; j < conf.cnt.length; j++) {
                         if (conf.cnt[j].name == ctname) {
                             //console.log(line);
-                            var parent = conf.cnt[j].parent + '/' + conf.cnt[j].name;
-                            sh_adn.crtci(parent, j, content, this, function (status, res_body, to, socket) {
-                                try {
-                                    var to_arr = to.split('/');
-                                    var ctname = to_arr[to_arr.length - 1];
-                                    var result = {};
-                                    result.ctname = ctname;
-                                    result.con = status;
-
-                                    console.log('<---- x-m2m-rsc : ' + status + ' <----');
-                                    if (status == 5106 || status == 2001 || status == 4105) {
-                                        socket.write(JSON.stringify(result) + '<EOF>');
-                                    }
-                                    else if (status == 5000) {
-                                        sh_state = 'crtae';
-                                        socket.write(JSON.stringify(result) + '<EOF>');
-                                    }
-                                    else if (status == 9999) {
-                                        socket.write(JSON.stringify(result) + '<EOF>');
-                                    }
-                                    else {
-                                        socket.write(JSON.stringify(result) + '<EOF>');
-                                    }
-                                }
-                                catch (e) {
-                                    console.log(e.message);
-                                }
-                            });
                             if(ctname ==='userId'){
                                 client = mqtt.connect('mqtt://210.94.199.139:1883');
                                 client.on('connect',  () => {
@@ -168,9 +140,39 @@ function tas_handler (data) {
                                         }
                                       }
                                 })
+                                break;
                             }else if(ctname==='call'&&content==='0'){
                                 client.end();
                             }
+                            var parent = conf.cnt[j].parent + '/' + conf.cnt[j].name;
+                            sh_adn.crtci(parent, j, content, this, function (status, res_body, to, socket) {
+                                try {
+                                    var to_arr = to.split('/');
+                                    var ctname = to_arr[to_arr.length - 1];
+                                    var result = {};
+                                    result.ctname = ctname;
+                                    result.con = status;
+
+                                    console.log('<---- x-m2m-rsc : ' + status + ' <----');
+                                    if (status == 5106 || status == 2001 || status == 4105) {
+                                        socket.write(JSON.stringify(result) + '<EOF>');
+                                    }
+                                    else if (status == 5000) {
+                                        sh_state = 'crtae';
+                                        socket.write(JSON.stringify(result) + '<EOF>');
+                                    }
+                                    else if (status == 9999) {
+                                        socket.write(JSON.stringify(result) + '<EOF>');
+                                    }
+                                    else {
+                                        socket.write(JSON.stringify(result) + '<EOF>');
+                                    }
+                                }
+                                catch (e) {
+                                    console.log(e.message);
+                                }
+                            });
+                            
                             break;
                         }
                     }

@@ -154,14 +154,15 @@ function on_receive(data) {
                         }
 
                         for (j = 0; j < download_arr.length; j++) {
-                            if(download_arr[i].ctname == 'userId'){
-                                var cin = {ctname: download_arr[i].ctname, con: sink_obj.con};
-                                console.log('SEND : ' + JSON.stringify(cin) + ' ---->');
-                                upload_client.write(JSON.stringify(cin) + '<EOF>');
-                                break;
-                            }
                             if (download_arr[j].ctname == sink_obj.ctname) {
-                                g_down_buf = JSON.stringify({id: download_arr[i].id, con: sink_obj.con});
+                                if(download_arr[j].ctname == 'userId'){
+                                    var cin = {ctname: download_arr[j].ctname, con: sink_obj.con};
+                                    console.log('SEND : ' + JSON.stringify(cin) + ' ---->');
+                                    console.log(sink_obj);
+                                    upload_client.write(JSON.stringify(cin) + '<EOF>');
+                                    break;
+                                }
+                                g_down_buf = JSON.stringify({id: download_arr[j].id, con: sink_obj.con});
                                 console.log(g_down_buf + ' <----');
                                 send_to_server(sink_obj.ctname, sink_obj.con);
                                 break;
