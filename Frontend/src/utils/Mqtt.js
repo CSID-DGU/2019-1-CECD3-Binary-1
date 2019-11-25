@@ -28,9 +28,8 @@ export const connect = (updateUserGps, removeUser, updateDroneGps, removeDrone) 
         try {
           const con = data['pc']['m2m:sgn']['nev']['rep']['m2m:cin']['con'];
           updateDroneGps(id, parseFloat(con.latitude), parseFloat(con.longitude));
-        } catch (error) {
-          if (data['pc']['m2m:sgn']['sur'] === 'Mobius/Drone2/gps/sub-gps') lookupDrone(id.substring(1, id.length));
-        }
+          if (!cameraGrp.has(id)) lookupDrone(id.substring(1, id.length));
+        } catch (error) { /* No error handling required */ }
       else if (topic.split('/')[3] === 'BE_APP') {
         if (data.type === 'user') removeUser(data.id);
         else if (data.type === 'drone') {

@@ -32,8 +32,10 @@ export const connect = () => {
           const con = data['pc']['m2m:sgn']['nev']['rep']['m2m:cin']['con'];
           gpsManager.update('drone', id, con.latitude, con.longitude);
         } catch (error) {
-          const url = '';
-          infoManager.register('drone', id, url);
+          if (!infoManager.DroneInfoGrp.has(id)) {
+            const url = '';
+            infoManager.register('drone', id, url);
+          }
         }
       }
     });
