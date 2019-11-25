@@ -88,7 +88,7 @@ sub_arr[count].name = 'sub-target_gps';
 sub_arr[count++].nu = 'mqtt://' + cse.host +'/' + ae.id + '?ct=' + ae.bodytype;
 sub_arr[count] = {};
 sub_arr[count].parent = '/' + cse.name + '/' + ae.name + '/' + cnt_arr[count].name;
-sub_arr[count].name = 'su-call';
+sub_arr[count].name = 'sub-call';
 sub_arr[count++].nu = 'mqtt://' + cse.host +'/' + ae.id + '?ct=' + ae.bodytype;
 sub_arr[count] = {};
 sub_arr[count].parent = '/' + cse.name + '/' + ae.name + '/' + cnt_arr[count].name;
