@@ -101,7 +101,7 @@ function timer_upload_action() {
             }
         }*/
         //if(t_count == 1) UnixdomainSocket.write('call_test');
-        if(++t_count%2)UnixdomainSocket.write('get_gps');
+        UnixdomainSocket.write('get_gps');
     }
 }
 
@@ -111,7 +111,7 @@ function send_to_server(cname, con){
         if(cname === 'target_gps'){
             wdata = 'target ' + con[0].toString() + ' '+ con[1].toString();
         }else if(cname === 'patrol'){
-            if(con) wdata = 'call_patrol'; 
+            if(con) wdata = 'call_patrol';
         }else if(cname === 'call'){
             if(con==='1') wdata = 'call_drone';
             else if(con==='0') wdata = 'call_rtl';
@@ -204,7 +204,7 @@ function tas_watchdog() {
         .on('error', showError)
         .on('close', closeConnection)
         ;
-    
+
         if(UnixdomainSocket){
             console.log('tas init udsocket ok');
             tas_state = 'connect';
@@ -225,7 +225,7 @@ function tas_watchdog() {
 
             if (tas_download_count >= download_arr.length) {
                 tas_state = 'upload';
-               
+
             }
         });
     }
@@ -262,7 +262,7 @@ function saveLastestData(data) {
             "latitude": nValue[1],
             "longitude": nValue[2]
         };
-    
+
         if(tas_state == 'upload') {
             for(var i = 0; i < upload_arr.length; i++) {
                 if(upload_arr[i].ctname == 'gps') {

@@ -19,7 +19,7 @@ var xml2js = require('xml2js');
 var url = require('url');
 var cbor = require('cbor');
 
-global.req_topic = '/oneM2M/req/'+conf.ae.id+conf.cse.id+'/'+conf.ae.bodytype;
+global.req_topic = '/oneM2M/req'+conf.cse.id+'/'+conf.ae.id+'/'+conf.ae.bodytype;
 
 var reg_resp_topic = '/oneM2M/reg_resp/'+conf.ae.id+'/+/#';
 var resp_topic = '/oneM2M/resp/'+conf.ae.id+'/+/#';

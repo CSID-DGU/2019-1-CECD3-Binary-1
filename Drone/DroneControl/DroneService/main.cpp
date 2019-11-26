@@ -141,10 +141,12 @@ int main(int argc, char** argv)
             case PATROL: {
                 std::cout << "patrol execute" << std::endl;
                 int r_val;
-                if ((r_val = cont.patrol()) == GO_LOC) {
+                r_val = cont.patrol();
+
+                if (r_val == GO_LOC) {
                     cont.followPerson((sock));
                 }
-                if (r_val == RTL) {
+                else if (r_val == RTL) {
                     cont.returnToLaunch();
                 }
                 break;
@@ -154,6 +156,7 @@ int main(int argc, char** argv)
                 cont.followPerson(sock);
                 break;
             case RTL:
+                cont.returnToLaunch();
                 std::cout << "return to launch execute" << std::endl;
                 break;
             default:

@@ -152,7 +152,7 @@ int droneControl::patrol() {
 
 
     while (!mission->mission_finished()) {
-        if (*mode == GO_LOC) {  //change mode to GO_LOC!!!
+        if ((*mode == GO_LOC) || (*mode == RTL)) {  //change mode to GO_LOC!!!
             // 1. stop current mission
             {
                 auto prom = std::make_shared<std::promise<Mission::Result>>();
@@ -171,26 +171,7 @@ int droneControl::patrol() {
                     std::cout << "Mission paused." << std::endl;
                 }
             }
-            return GO_LOC;
-        } else if(*mode == RTL) {
-            {
-                auto prom = std::make_shared<std::promise<Mission::Result>>();
-                auto future_result = prom->get_future();
-
-                std::cout << "Pausing mission..." << std::endl;
-                mission->pause_mission_async(
-                        [prom](Mission::Result result) {
-                            prom->set_value(result);
-                        });
-
-                const Mission::Result result = future_result.get();
-                if (result != Mission::Result::SUCCESS) {
-                    std::cout << "Failed to pause mission (" << Mission::result_str(result) << ")" << std::endl;
-                } else {
-                    std::cout << "Mission paused." << std::endl;
-                }
-            }
-            return RTL;
+            return *mode;
         } else
             sleep_for(seconds(1));
     }
@@ -213,6 +194,15 @@ int droneControl::patrol() {
 }
 
 int droneControl::followPerson(unixDomainSocket& sock) {
+
+    if (!sock.isInterrupt()) {
+        std::cout << "Arming..." << std::endl;
+        const Action::Result arm_result = action->arm();
+        handle_action_err_exit(arm_result, "Arm failed: ");
+        std::cout << "Armed." << std::endl;
+    }
+
+
     // Subscribe to receive updates on flight mode. You can find out whether FollowMe is active.
     telemetry->flight_mode_async(std::bind(
             [&](Telemetry::FlightMode flight_mode) {
@@ -251,20 +241,46 @@ int droneControl::followPerson(unixDomainSocket& sock) {
     // Stop flight mode updates.
     telemetry->flight_mode_async(nullptr);
 
-    // Land
-    const Action::Result land_result = action->land();
-    action_error_exit(land_result, "Landing failed");
-    while (telemetry->in_air()) {
-        std::cout << "waiting until landed" << std::endl;
-        sleep_for(seconds(1));
-    }
-    std::cout << "Landed..." << std::endl;
+
+
+//
+//    // Land
+//    const Action::Result land_result = action->land();
+//    action_error_exit(land_result, "Landing failed");
+//    while (telemetry->in_air()) {
+//        std::cout << "waiting until landed" << std::endl;
+//        sleep_for(seconds(1));
+//    }
+//    std::cout << "Landed..." << std::endl;
+//
+//
+//
+//    std::cout << "Arming..." << std::endl;
+//    const Action::Result arm_result = action->arm();
+//
+//    if (arm_result != Action::Result::SUCCESS) {
+//        std::cout << ERROR_CONSOLE_TEXT << "Arming failed:" << Action::result_str(arm_result)
+//                  << NORMAL_CONSOLE_TEXT << std::endl;
+//        return 1;
+//    }
+//
+//    // Take off
+//    std::cout << "Taking off..." << std::endl;
+//    const Action::Result takeoff_result = action->takeoff();
+//    if (takeoff_result != Action::Result::SUCCESS) {
+//        std::cout << ERROR_CONSOLE_TEXT << "Takeoff failed:" << Action::result_str(takeoff_result)
+//                  << NORMAL_CONSOLE_TEXT << std::endl;
+//        return 1;
+//    }
+//
+//
+//    returnToLaunch();
     return 0;
 }
 
 int droneControl::returnToLaunch() {
     // Wait for some time.
-    sleep_for(seconds(5));
+    // sleep_for(seconds(5));
 
     {
         // Mission complete. Command RTL to go home.

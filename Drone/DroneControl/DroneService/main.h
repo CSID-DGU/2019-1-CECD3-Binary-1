@@ -23,8 +23,8 @@
 
 struct gps_info_t{
     float altitude;
-    double latitude;
-    double longitude;
+    long double latitude;
+    long double longitude;
 };
 enum flightMode {
     INACTIVE,

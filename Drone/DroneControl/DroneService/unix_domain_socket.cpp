@@ -47,9 +47,9 @@ void unixDomainSocket::socketAccept(int local_fd) {
                     gps_str += std::to_string((gps_info[last_index].altitude));
                     gps_str.push_back(' ');
                     gps_str += std::to_string((gps_info[last_index].latitude));
-                    gps_str.push_back('/');
+                    gps_str.push_back(' ');
                     gps_str += std::to_string((gps_info[last_index].longitude));
-                    gps_str.push_back(' '); //end
+                    gps_str.push_back('/'); //end
                     write(local_fd, gps_str.c_str(), gps_str.size());
                     std::cout << "SEND DATA : " << gps_str << std::endl;
                 } else {
@@ -61,11 +61,11 @@ void unixDomainSocket::socketAccept(int local_fd) {
             if (!strncmp(buf +5, "test", 4)) {
                 printf("%s", buf + 5);
                 if (!(*mode)) {       //if mode inactive
-
                     //set condition variable to enable
                     mutex_atcion->lock();
                     *mode = TEST;
                     actionOn();
+                    interrupt = false;
                     mutex_atcion->unlock();
                     cv->notify_one();
                 } else {
@@ -77,10 +77,11 @@ void unixDomainSocket::socketAccept(int local_fd) {
                     mutex_atcion->lock();
                     *mode = PATROL;
                     actionOn();
+                    interrupt = false;
                     mutex_atcion->unlock();
                     cv->notify_one();
                 } else {
-                    write(local_fd, "Already on Action : Patrol", 26);
+                    write(local_fd, "Already on Action", 26);
                 }
             }
             else if (!strncmp(buf +5, "drone", 5)) {         //cal drone
@@ -88,10 +89,13 @@ void unixDomainSocket::socketAccept(int local_fd) {
                     mutex_atcion->lock();
                     *mode = GO_LOC;
                     actionOn();
+                    follow_end = false;
+                    interrupt = false;
                     mutex_atcion->unlock();
                     cv->notify_one();
-                } else {    //stop current mission and goto follow me mode
-                    //write(local_fd, "Already on Action : Patrol", 26);
+                }
+                else {                //stop current mission and goto follow me mode
+                    interrupt = true;
                     *mode = GO_LOC;
                 }
             }
@@ -101,9 +105,13 @@ void unixDomainSocket::socketAccept(int local_fd) {
                     mutex_atcion->lock();
                     *mode = RTL;
                     actionOn();
+                    interrupt = false;
                     mutex_atcion->unlock();
                     cv->notify_one();
-                } else {    //stop current mission and goto follow me mode
+                }
+                else {    //stop current mission or follow mode and return to launch
+                    interrupt = true;
+                    follow_end = true;
                     *mode = RTL;
                 }
             }
@@ -112,9 +120,9 @@ void unixDomainSocket::socketAccept(int local_fd) {
             std::stringstream value_(buf + 6);
             std::string token_;
             value_ >> token_;
-            double latitude_ = std::stoi(token_);
+            long double latitude_ = std::stold(token_);
             value_ >> token_;
-            double longitude_ = std::stoi(token_);
+            long double longitude_ = std::stold(token_);
             std::cout << "latitude : " << latitude_ << std::endl << "longitude :" << longitude_ << std::endl;
 
             follow_gps_info.push({0.f, latitude_, longitude_});

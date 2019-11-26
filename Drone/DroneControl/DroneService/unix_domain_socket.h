@@ -34,6 +34,7 @@ private:
     char file_name[24];
     char buf[255];
     bool activate = false;
+    bool interrupt = false;
     //for communicate with main thread
     int* mode;
     struct sockaddr_un clientaddr, serveraddr;
@@ -61,7 +62,9 @@ private:
 
 
 public:
-
+    bool isInterrupt() {
+        return interrupt;
+    }
     void requestLocationUpdate(location_callback_t callback);
     void getLocations();
     bool isFollowRunning() { return !follow_end; };
